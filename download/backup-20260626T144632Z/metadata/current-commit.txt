@@ -1,0 +1,4 @@
+Commit: 93078fce4c692cd939cd49c46bac15098c20a0fc
+Author: Phronesis Audit <audit@phronesis-studio.com>
+Date: 2026-06-26T14:38:39Z
+Message: fix(neural): larger readable fonts, Vitruvian Man properly visible, centered label

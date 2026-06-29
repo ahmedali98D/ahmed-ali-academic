@@ -1,0 +1,664 @@
+[
+  {
+    "id": "cmqui47640009jp04mkeaacop",
+    "template": "welcome-letter",
+    "clientName": null,
+    "payload": {
+      "clientName": "Test Client",
+      "kickoffDate": "July 1",
+      "kickoffTime": "10 AM",
+      "contactEmail": "test@test.com",
+      "engagementTitle": "New Project",
+      "kickoffLocation": "Zoom",
+      "whatHappensNext": [
+        "Kick-off"
+      ],
+      "communicationCadence": "Weekly"
+    },
+    "fileName": "welcome-letter-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:25.133Z"
+  },
+  {
+    "id": "cmqui46sb0008jp044cpgad4w",
+    "template": "invoice",
+    "clientName": null,
+    "payload": {
+      "total": "15,750",
+      "dueDate": "July 26 2026",
+      "vatRate": "5%",
+      "subtotal": "15k",
+      "clientOrg": "Test LLC",
+      "issueDate": "June 26 2026",
+      "lineItems": [
+        {
+          "qty": "1",
+          "total": "15k",
+          "unitPrice": "15k",
+          "description": "Dev"
+        }
+      ],
+      "vatAmount": "750",
+      "clientName": "Test Corp",
+      "bankDetails": [
+        {
+          "label": "Bank",
+          "value": "Mashreq"
+        }
+      ],
+      "paymentTerms": "Net 30",
+      "invoiceNumber": "INV-001"
+    },
+    "fileName": "invoice-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:24.636Z"
+  },
+  {
+    "id": "cmqui45yr0007jp04psjikpuc",
+    "template": "project-brief",
+    "clientName": null,
+    "payload": {
+      "briefDate": "June 2026",
+      "clientName": "Test Corp",
+      "constraints": [
+        "Budget"
+      ],
+      "projectName": "Test Project",
+      "openQuestions": [
+        "Timeline?"
+      ],
+      "successMetrics": [
+        "50% more leads"
+      ],
+      "targetAudience": "B2B UAE",
+      "problemStatement": "Outdated site",
+      "proposedApproach": "Next.js"
+    },
+    "fileName": "project-brief-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:23.571Z"
+  },
+  {
+    "id": "cmqui450g0006jp04jrd7b30s",
+    "template": "engagement-letter",
+    "clientName": null,
+    "payload": {
+      "fee": "25,000 AED",
+      "scope": "Full audit",
+      "clientOrg": "Test LLC",
+      "clientName": "Test Corp",
+      "kickoffDate": "July 1 2026",
+      "contactEmail": "test@test.com",
+      "deliverables": [
+        "Strategy doc"
+      ],
+      "engagementTitle": "Strategy",
+      "paymentSchedule": "50/50"
+    },
+    "fileName": "engagement-letter-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:22.337Z"
+  },
+  {
+    "id": "cmqui440h0005jp04pa1jueuf",
+    "template": "consultancy-quote",
+    "clientName": null,
+    "payload": {
+      "duration": "2 weeks",
+      "clientOrg": "Test LLC",
+      "objective": "Identify gaps",
+      "clientName": "Test Corp",
+      "fixedPrice": "15,000 AED",
+      "fixedScope": "Full review",
+      "hourlyRate": "500 AED",
+      "validUntil": "July 2026",
+      "methodology": [
+        "Interviews"
+      ],
+      "deliverables": [
+        "Report"
+      ],
+      "engagementTitle": "Audit"
+    },
+    "fileName": "consultancy-quote-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:21.042Z"
+  },
+  {
+    "id": "cmqui43gb0004jp04ec263c2p",
+    "template": "tutoring-quote",
+    "clientName": null,
+    "payload": {
+      "subject": "Philosophy",
+      "includes": [
+        "Curriculum"
+      ],
+      "perSession": "200 AED",
+      "validUntil": "July 2026",
+      "packageSize": "10 sessions",
+      "studentName": "Test Student",
+      "packagePrice": "1,700 AED",
+      "sessionFormat": "In-person",
+      "sessionLength": "60 min",
+      "packageSavings": "Save 300 AED"
+    },
+    "fileName": "tutoring-quote-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:20.315Z"
+  },
+  {
+    "id": "cmqui42gs0003jp043wtuod4w",
+    "template": "software-quote",
+    "clientName": null,
+    "payload": {
+      "terms": [
+        "50% upfront"
+      ],
+      "setupFee": "20,000 AED",
+      "clientName": "Test Corp",
+      "scopeItems": [
+        "Inventory"
+      ],
+      "validUntil": "July 2026",
+      "projectName": "ERP System",
+      "deliverables": [
+        "Working app"
+      ],
+      "annualLicense": "6,000 AED/year",
+      "timelinePhases": [
+        {
+          "phase": "Phase 1",
+          "duration": "4 weeks",
+          "deliverable": "MVP"
+        }
+      ],
+      "totalFirstYear": "26,000 AED",
+      "projectOverview": "Custom ERP"
+    },
+    "fileName": "software-quote-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:19.036Z"
+  },
+  {
+    "id": "cmqui41uw0002jp045ubg5bsk",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "https://test.com/admin",
+      "adminEmail": "test@test.com",
+      "clientName": "E2E Test",
+      "websiteUrl": "https://test.com",
+      "projectName": "Test Project",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM GST",
+      "adminPassword": "TestPass123!",
+      "evaluationPoints": [
+        "Design",
+        "Security"
+      ],
+      "projectDescription": "A test project"
+    },
+    "fileName": "demo-brief-2026-06-26.docx",
+    "createdAt": "2026-06-26T05:39:18.172Z"
+  },
+  {
+    "id": "cmqu1x9yg0009jy04lqozfk6m",
+    "template": "consultancy-quote",
+    "clientName": "Test Corp",
+    "payload": {
+      "duration": "2-4 weeks",
+      "clientOrg": "Test LLC",
+      "objective": "Identify inefficiencies and recommend improvements",
+      "clientName": "Test Corp",
+      "fixedPrice": "15,000 AED",
+      "fixedScope": "Full operational review",
+      "hourlyRate": "500 AED / hour",
+      "validUntil": "July 31, 2026",
+      "methodology": [
+        "Interviews",
+        "Data analysis",
+        "Benchmarking"
+      ],
+      "deliverables": [
+        "Audit report",
+        "Recommendations deck"
+      ],
+      "engagementTitle": "Operational Audit"
+    },
+    "fileName": "consultancy-quote-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:06:08.219Z"
+  },
+  {
+    "id": "cmqu1x0be0008jy04reybcxxh",
+    "template": "project-brief",
+    "clientName": "Test Corp",
+    "payload": {
+      "briefDate": "June 26, 2026",
+      "clientName": "Test Corp",
+      "constraints": [
+        "Budget under 50k AED"
+      ],
+      "projectName": "Website Redesign",
+      "openQuestions": [
+        "Content migration plan?"
+      ],
+      "successMetrics": [
+        "50% increase in leads",
+        "2s page load"
+      ],
+      "targetAudience": "B2B clients in UAE",
+      "problemStatement": "Outdated website",
+      "proposedApproach": "Next.js with headless CMS"
+    },
+    "fileName": "project-brief-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:55.802Z"
+  },
+  {
+    "id": "cmqu1wzz80007jy04n1d3i5em",
+    "template": "engagement-letter",
+    "clientName": "Test Corp",
+    "payload": {
+      "fee": "25,000 AED",
+      "scope": "Full digital strategy audit and implementation plan",
+      "clientOrg": "Test LLC",
+      "clientName": "Test Corp",
+      "kickoffDate": "July 1, 2026",
+      "contactEmail": "ahmed@phronesis-studio.com",
+      "deliverables": [
+        "Strategy document",
+        "Implementation roadmap"
+      ],
+      "engagementTitle": "Digital Strategy",
+      "paymentSchedule": "50% upfront, 50% on delivery"
+    },
+    "fileName": "engagement-letter-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:55.364Z"
+  },
+  {
+    "id": "cmqu1wyzd0006jy040muov72g",
+    "template": "software-quote",
+    "clientName": "Test Corp",
+    "payload": {
+      "terms": [
+        "50% upfront",
+        "50% on delivery"
+      ],
+      "setupFee": "20,000 AED",
+      "clientName": "Test Corp",
+      "scopeItems": [
+        "Inventory management",
+        "Reporting dashboard"
+      ],
+      "validUntil": "July 31, 2026",
+      "projectName": "ERP System",
+      "deliverables": [
+        "Working application",
+        "Source code",
+        "Documentation"
+      ],
+      "annualLicense": "6,000 AED / year",
+      "timelinePhases": [
+        {
+          "phase": "Phase 1",
+          "duration": "4 weeks",
+          "deliverable": "MVP"
+        }
+      ],
+      "totalFirstYear": "26,000 AED",
+      "projectOverview": "Custom ERP solution"
+    },
+    "fileName": "software-quote-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:54.073Z"
+  },
+  {
+    "id": "cmqu1wxxf0005jy04ck4g0472",
+    "template": "welcome-letter",
+    "clientName": "Test Client",
+    "payload": {
+      "clientName": "Test Client",
+      "kickoffDate": "July 1, 2026",
+      "kickoffLink": "https://zoom.us/test",
+      "kickoffTime": "10:00 AM GST",
+      "contactEmail": "ahmed@phronesis-studio.com",
+      "engagementTitle": "New Website Project",
+      "kickoffLocation": "Zoom",
+      "whatHappensNext": [
+        "Kick-off meeting",
+        "Discovery session",
+        "Design review"
+      ],
+      "communicationCadence": "Weekly check-ins via email"
+    },
+    "fileName": "welcome-letter-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:52.630Z"
+  },
+  {
+    "id": "cmqu1wj3a0004jy04cylh6w6m",
+    "template": "invoice",
+    "clientName": "Test Client LLC",
+    "payload": {
+      "total": "15,750 AED",
+      "dueDate": "July 26, 2026",
+      "vatRate": "5%",
+      "subtotal": "15,000 AED",
+      "clientOrg": "Test Org",
+      "issueDate": "June 26, 2026",
+      "lineItems": [
+        {
+          "qty": "1",
+          "total": "15,000 AED",
+          "unitPrice": "15,000 AED",
+          "description": "Website Development"
+        }
+      ],
+      "vatAmount": "750 AED",
+      "clientName": "Test Client LLC",
+      "bankDetails": [
+        {
+          "label": "Bank",
+          "value": "Mashreq Bank"
+        },
+        {
+          "label": "IBAN",
+          "value": "AE000000000000000000001"
+        }
+      ],
+      "paymentTerms": "Net 30 days",
+      "invoiceNumber": "INV-2026-001"
+    },
+    "fileName": "invoice-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:33.401Z"
+  },
+  {
+    "id": "cmqu1w8mf0003jy048t1y7f6m",
+    "template": "tutoring-quote",
+    "clientName": "Test Parent",
+    "payload": {
+      "subject": "Philosophy & Critical Thinking",
+      "includes": [
+        "Personalized curriculum",
+        "Progress reports",
+        "Study materials"
+      ],
+      "perSession": "200 AED",
+      "validUntil": "July 31, 2026",
+      "packageSize": "10 sessions",
+      "studentName": "Ahmed Jr",
+      "packagePrice": "1,700 AED",
+      "sessionFormat": "In-person (Al Ain)",
+      "sessionLength": "60 minutes",
+      "packageSavings": "Save 300 AED"
+    },
+    "fileName": "tutoring-quote-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:19.911Z"
+  },
+  {
+    "id": "cmqu1vxry0002jy04t97fasyl",
+    "template": "demo-brief",
+    "clientName": "Audit Test Client",
+    "payload": {
+      "adminUrl": "https://test.com/admin",
+      "adminEmail": "test@test.com",
+      "clientName": "Audit Test Client",
+      "websiteUrl": "https://test.com",
+      "projectName": "Test Project",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM UAE Time",
+      "adminPassword": "TestPass123!",
+      "evaluationPoints": [
+        "Design quality",
+        "Code security",
+        "Performance"
+      ],
+      "projectDescription": "A test project for audit purposes."
+    },
+    "fileName": "demo-brief-2026-06-25.docx",
+    "createdAt": "2026-06-25T22:05:05.777Z"
+  },
+  {
+    "id": "cmqsogy4v0000lc042wheptv2",
+    "template": "software-quote",
+    "clientName": "Al Reef Al Madeena",
+    "payload": {
+      "terms": [
+        "50% setup fee due on commencement, 50% on delivery",
+        "Annual license covers updates, security patches, and support",
+        "Custom features beyond scope quoted separately"
+      ],
+      "setupFee": "8,000",
+      "clientName": "Al Reef Al Madeena",
+      "scopeItems": [
+        "Custom user authentication and role-based access",
+        "Property listings with photo upload",
+        "Tenant management and rent tracking",
+        "Inquiry and viewing booking system"
+      ],
+      "validUntil": "14 days",
+      "projectName": "Properties Dashboard",
+      "deliverables": [
+        "Production web application deployed to Vercel",
+        "Admin dashboard",
+        "Source code and documentation",
+        "30 days post-launch support"
+      ],
+      "annualLicense": "2000",
+      "timelinePhases": [
+        {}
+      ],
+      "totalFirstYear": "",
+      "projectOverview": "Building a dashboard similary to Bayut designated to the availabel properties at Al Reef Al Madeena"
+    },
+    "fileName": "software-quote-2026-06-24.docx",
+    "createdAt": "2026-06-24T23:01:45.292Z"
+  },
+  {
+    "id": "cmqsnw1ed0000jj04m0umomet",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@test.com",
+      "clientName": "Live Eagle Test",
+      "websiteUrl": "https://test.vercel.app",
+      "projectName": "Eagle Verification",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM GST",
+      "adminPassword": "TestPass123!",
+      "evaluationPoints": [
+        "Eagle in header",
+        "Eagle in footer"
+      ],
+      "projectDescription": "Verifying eagle logo in DOCX on live Vercel deployment."
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T22:45:29.746Z"
+  },
+  {
+    "id": "cmqsntemn0000oppvzob4qu6c",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@test.com",
+      "clientName": "Eagle Logo Test",
+      "websiteUrl": "https://test.vercel.app",
+      "projectName": "Logo Verification",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM GST",
+      "adminPassword": "TestPass123!",
+      "evaluationPoints": [
+        "Eagle in header",
+        "Eagle in footer"
+      ],
+      "projectDescription": "Testing that the eagle logo embeds in the DOCX header and footer."
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T22:43:26.927Z"
+  },
+  {
+    "id": "cmqsjltww0002ky04jph5b1lo",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@demo.com",
+      "clientName": "",
+      "websiteUrl": "",
+      "projectName": "",
+      "deadlineDate": "",
+      "deadlineTime": "1:00 PM UAE Time (GST)",
+      "adminPassword": "",
+      "evaluationPoints": [
+        "Bilingual Arabic/English interface with mobile responsiveness",
+        "Search and filtering across all listings",
+        "Admin dashboard: add/edit items, manage inquiries",
+        "WhatsApp integration for inquiries and bookings"
+      ],
+      "projectDescription": ""
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:45:34.947Z"
+  },
+  {
+    "id": "cmqsjle430001ky04idw88bwd",
+    "template": "project-brief",
+    "clientName": null,
+    "payload": {
+      "briefDate": "",
+      "clientName": "",
+      "constraints": [
+        "Budget ceiling",
+        "Timeline deadline",
+        "Compliance requirements (PDPL, ADEK, ISO)"
+      ],
+      "projectName": "",
+      "openQuestions": [
+        "Who are the primary users?",
+        "What integrations are required?"
+      ],
+      "successMetrics": [
+        "Time saved per week per user",
+        "Reduction in manual errors",
+        "User adoption rate"
+      ],
+      "targetAudience": "",
+      "problemStatement": "",
+      "proposedApproach": ""
+    },
+    "fileName": "project-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:45:14.470Z"
+  },
+  {
+    "id": "cmqsjkfil0000ky0401sqawgi",
+    "template": "invoice",
+    "clientName": null,
+    "payload": {
+      "total": "",
+      "dueDate": "",
+      "vatRate": "5%",
+      "subtotal": "",
+      "clientOrg": "",
+      "issueDate": "",
+      "lineItems": [
+        {}
+      ],
+      "vatAmount": "",
+      "clientName": "",
+      "bankDetails": [
+        {}
+      ],
+      "paymentTerms": "Net 30 days from issue date. Payment by bank transfer.",
+      "invoiceNumber": ""
+    },
+    "fileName": "invoice-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:44:29.632Z"
+  },
+  {
+    "id": "cmqsjj2y80000kz045zcjk51u",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@alainproperties.com",
+      "clientName": "Mohammed Mosa Ali",
+      "websiteUrl": "https://al-ain-properties.vercel.app",
+      "projectName": "Al Ain Properties — Real Estate Platform",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM UAE Time (GST)",
+      "adminPassword": "AlAin@Admin2024!",
+      "evaluationPoints": [
+        "Bilingual interface",
+        "Property search",
+        "Admin dashboard",
+        "WhatsApp integration"
+      ],
+      "projectDescription": "A bilingual, mobile-responsive website engineered for property listings, WhatsApp-driven inquiries, viewing bookings, and a full administrative dashboard."
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:43:26.765Z"
+  },
+  {
+    "id": "cmqsjgnf60000op60a5vzi8qk",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@alainproperties.com",
+      "clientName": "Mohammed Mosa Ali",
+      "websiteUrl": "https://al-ain-properties.vercel.app",
+      "projectName": "Al Ain Properties — Real Estate Platform",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM UAE Time (GST)",
+      "adminPassword": "AlAin@Admin2024!",
+      "evaluationPoints": [
+        "Bilingual Arabic/English interface with dark mode and mobile responsiveness",
+        "Advanced property search across nine Al Ain areas and seven property types",
+        "Property details with photo galleries, WhatsApp inquiry, and viewing booking",
+        "Admin dashboard: add/edit properties with photo upload from device",
+        "WhatsApp integration: every inquiry routes directly to your phone"
+      ],
+      "projectDescription": "A bilingual, mobile-responsive website engineered for property listings, WhatsApp-driven inquiries, viewing bookings, and a full administrative dashboard."
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:41:33.331Z"
+  },
+  {
+    "id": "cmqsj2opz0000l70478oa9qt4",
+    "template": "demo-brief",
+    "clientName": null,
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@demo.com",
+      "clientName": "",
+      "websiteUrl": "",
+      "projectName": "",
+      "deadlineDate": "",
+      "deadlineTime": "1:00 PM UAE Time (GST)",
+      "adminPassword": "",
+      "evaluationPoints": [
+        "Bilingual Arabic/English interface with mobile responsiveness",
+        "Search and filtering across all listings",
+        "Admin dashboard: add/edit items, manage inquiries",
+        "WhatsApp integration for inquiries and bookings"
+      ],
+      "projectDescription": ""
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:30:41.827Z"
+  },
+  {
+    "id": "cmqsik2yw0000opur6lr042qj",
+    "template": "demo-brief",
+    "clientName": "Test Client",
+    "payload": {
+      "adminUrl": "/admin",
+      "adminEmail": "admin@test.com",
+      "clientName": "Mohammed Test",
+      "websiteUrl": "https://test.vercel.app",
+      "projectName": "Test Project",
+      "deadlineDate": "Friday, 26 June 2026",
+      "deadlineTime": "1:00 PM GST",
+      "adminPassword": "TestPass123!",
+      "evaluationPoints": [
+        "Feature 1",
+        "Feature 2"
+      ],
+      "projectDescription": "A test description."
+    },
+    "fileName": "demo-brief-2026-06-24.docx",
+    "createdAt": "2026-06-24T20:16:13.832Z"
+  }
+]

@@ -1,0 +1,20 @@
+93078fc fix(neural): larger readable fonts, Vitruvian Man properly visible, centered label
+535af71 fix(neural): larger clouds, text inside SVG, Vitruvian Man image, state bug
+1790801 feat(neural): Vitruvian redesign — real cloud shapes, neural pathways, marching colors
+0f8e6d5 fix(i18n): deep-merge JSON+DB so new sub-namespaces aren't shadowed
+5220ec8 fix(i18n): merge JSON base with DB rows so new namespaces work immediately
+815e465 feat: 8 enhancements — neural work viz, per-page SEO, CSP, SSR RTL, rationale content
+b5761ec fix(arabic): correct letter-spacing, font, and line-break issues on /ar
+73a6593 fix: restore professional Arabic content from DB backup + apply corrections
+cbaf40a Fix eagle: bigger centered eagle (no parallax) + mobile visibility
+81b19e8 Remove 1156 em-dashes from Echoes episode transcripts
+65715c1 Remove last em-dash from og:image:alt metadata
+de9dc46 Remove last 2 em-dashes from metadata (title + description)
+110bb23 Comprehensive SEO + branding + em-dash removal + email logo fix
+5f0eed9 Fix OG image (add eagle) + redesign floating eagle to be centered
+ee1c331 Add persistent floating eagle that follows the user across all pages
+605d24c Fix OG metadata: update image alt, fix og:url redirect, refine description
+9de6f41 Add Bing verification to locale layout (was missing on /en and /ar)
+b365d73 Add Bing Webmaster Tools verification meta tag
+1b24390 Add Google Search Console verification meta tag
+4e75f84 Refine hero copy + fix brand duplication + justify body text
