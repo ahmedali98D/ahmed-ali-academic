@@ -1,0 +1,697 @@
+     1→"use client";
+     2→
+     3→import { useState, useRef, useEffect } from "react";
+     4→import { motion, AnimatePresence } from "framer-motion";
+     5→import { useTranslations, useLocale } from "next-intl";
+     6→import { EASE } from "../anim";
+     7→
+     8→/**
+     9→ * Neural Network of Clouds — Vitruvian Edition v2
+    10→ *
+    11→ * Fixes:
+    12→ * 1. Clouds are 60% larger (scale 0.36 vs 0.22)
+    13→ * 2. Text is rendered INSIDE the SVG <g> so it's perfectly contained within
+    14→ *    each cloud silhouette — no more overflow
+    15→ * 3. Center node uses the actual Vitruvian Man image at low opacity (18%)
+    16→ *    with a sepia-teal duotone, so it reads as a watermark/scholarly ghost
+    17→ *    without competing with the floating eagle
+    18→ * 4. Separated `hovered` (visual highlight) from `selected` (rationale panel)
+    19→ *    — clicking a cloud sets `selected`, which persists even when the mouse
+    20→ *    leaves. The panel now shows the correct project.
+    21→ */
+    22→
+    23→type CloudId = "realestate" | "mscs" | "diplomatiq" | "math" | "echoes" | "alainroom";
+    24→
+    25→type Cloud = {
+    26→  id: CloudId;
+    27→  x: number;
+    28→  y: number;
+    29→  hue: "teal" | "terracotta" | "gold" | "forest";
+    30→  nameKey: string;
+    31→  descKey: string;
+    32→  rationaleKey: string;
+    33→  url?: string;
+    34→};
+    35→
+    36→// 16:9 viewBox (100 × 56.25). Clouds arranged in a wide oval, pushed outward
+    37→// to accommodate the larger cloud sizes (scale 0.48) and the central Vitruvian Man.
+    38→const CLOUDS: Cloud[] = [
+    39→  { id: "realestate", x: 50, y: 6,  hue: "teal",       nameKey: "neural.clouds.realestate.name",    descKey: "neural.clouds.realestate.desc",    rationaleKey: "neural.clouds.realestate.rationale",    url: "https://real-estate-emperor.vercel.app" },
+    40→  { id: "mscs",       x: 90, y: 18, hue: "gold",       nameKey: "neural.clouds.mscs.name",          descKey: "neural.clouds.mscs.desc",          rationaleKey: "neural.clouds.mscs.rationale",          url: "https://mscs-academy.vercel.app" },
+    41→  { id: "diplomatiq", x: 90, y: 40, hue: "gold",       nameKey: "neural.clouds.diplomatiq.name",    descKey: "neural.clouds.diplomatiq.desc",    rationaleKey: "neural.clouds.diplomatiq.rationale",    url: "https://mun-diplomatiq.vercel.app" },
+    42→  { id: "alainroom",  x: 50, y: 52, hue: "teal",       nameKey: "neural.clouds.alainroom.name",     descKey: "neural.clouds.alainroom.desc",     rationaleKey: "neural.clouds.alainroom.rationale",     url: "https://alainroomforrent.com/" },
+    43→  { id: "math",       x: 10, y: 40, hue: "gold",       nameKey: "neural.clouds.math.name",          descKey: "neural.clouds.math.desc",          rationaleKey: "neural.clouds.math.rationale" },
+    44→  { id: "echoes",     x: 10, y: 18, hue: "forest",     nameKey: "neural.clouds.echoes.name",        descKey: "neural.clouds.echoes.desc",        rationaleKey: "neural.clouds.echoes.rationale" },
+    45→];
+    46→
+    47→const CENTER = { x: 50, y: 28 };
+    48→
+    49→const HUE_HEX: Record<Cloud["hue"], string> = {
+    50→  teal: "#0F5C5E",
+    51→  terracotta: "#B5462A",
+    52→  gold: "#B48D3C",
+    53→  forest: "#2D6A4F",
+    54→};
+    55→
+    56→/** Cloud SVG path — a cumulus silhouette in a 100×60 viewBox. */
+    57→const CLOUD_PATH =
+    58→  "M 25,52 " +
+    59→  "C 18,52 12,47 13,40 " +
+    60→  "C 5,38 3,28 12,24 " +
+    61→  "C 12,12 28,8 36,16 " +
+    62→  "C 42,6 58,6 64,16 " +
+    63→  "C 72,8 88,12 88,24 " +
+    64→  "C 97,28 95,38 87,40 " +
+    65→  "C 88,47 82,52 75,52 " +
+    66→  "Z";
+    67→
+    68→function neuralPath(cx: number, cy: number, tx: number, ty: number): string {
+    69→  const dx = tx - cx;
+    70→  const dy = ty - cy;
+    71→  const cp1x = cx + dx * 0.35 + dy * 0.08;
+    72→  const cp1y = cy + dy * 0.35 - dx * 0.08;
+    73→  const cp2x = cx + dx * 0.65 - dy * 0.08;
+    74→  const cp2y = cy + dy * 0.65 + dx * 0.08;
+    75→  return `M ${cx} ${cy} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${tx} ${ty}`;
+    76→}
+    77→
+    78→function bezierPoint(
+    79→  t: number,
+    80→  p0: [number, number],
+    81→  p1: [number, number],
+    82→  p2: [number, number],
+    83→  p3: [number, number]
+    84→): [number, number] {
+    85→  const mt = 1 - t;
+    86→  const x = mt * mt * mt * p0[0] + 3 * mt * mt * t * p1[0] + 3 * mt * t * t * p2[0] + t * t * t * p3[0];
+    87→  const y = mt * mt * mt * p0[1] + 3 * mt * mt * t * p1[1] + 3 * mt * t * t * p2[1] + t * t * t * p3[1];
+    88→  return [x, y];
+    89→}
+    90→
+    91→function getControlPoints(cx: number, cy: number, tx: number, ty: number): [[number, number], [number, number]] {
+    92→  const dx = tx - cx;
+    93→  const dy = ty - cy;
+    94→  return [
+    95→    [cx + dx * 0.35 + dy * 0.08, cy + dy * 0.35 - dx * 0.08],
+    96→    [cx + dx * 0.65 - dy * 0.08, cy + dy * 0.65 + dx * 0.08],
+    97→  ];
+    98→}
+    99→
+   100→export function NeuralWork() {
+   101→  const t = useTranslations("workContent");
+   102→  const locale = useLocale();
+   103→  const isRTL = locale === "ar";
+   104→  // FIX #4: separated hovered (visual) from selected (rationale panel)
+   105→  const [hovered, setHovered] = useState<CloudId | null>(null);
+   106→  const [selected, setSelected] = useState<CloudId>("realestate");
+   107→  const [isMobile, setIsMobile] = useState(false);
+   108→  const rationaleRef = useRef<HTMLDivElement>(null);
+   109→
+   110→  useEffect(() => {
+   111→    const check = () => setIsMobile(window.innerWidth < 768);
+   112→    check();
+   113→    window.addEventListener("resize", check);
+   114→    return () => window.removeEventListener("resize", check);
+   115→  }, []);
+   116→
+   117→  // The cloud shown in the rationale panel = selected (persistent)
+   118→  const selectedCloud = CLOUDS.find((c) => c.id === selected) || CLOUDS[0];
+   119→  // The visually highlighted cloud = hovered (if any) else selected
+   120→  const active = hovered ?? selected;
+   121→
+   122→  const handleCloudClick = (cloud: Cloud) => {
+   123→    setSelected(cloud.id);
+   124→    setTimeout(() => {
+   125→      rationaleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+   126→    }, 150);
+   127→  };
+   128→
+   129→  return (
+   130→    <div className="relative w-full">
+   131→      {/* Eyebrow + title */}
+   132→      <div className="text-center mb-10 md:mb-14">
+   133→        <motion.div
+   134→          initial={{ opacity: 0, y: 10 }}
+   135→          whileInView={{ opacity: 1, y: 0 }}
+   136→          viewport={{ once: true }}
+   137→          transition={{ duration: 0.8, ease: EASE }}
+   138→          className="inline-flex items-center gap-3 mb-6"
+   139→        >
+   140→          <span className="h-px w-8 bg-teal/40" />
+   141→          <span className="eyebrow">{t("neural.eyebrow")}</span>
+   142→          <span className="h-px w-8 bg-teal/40" />
+   143→        </motion.div>
+   144→        <motion.h3
+   145→          initial={{ opacity: 0, y: 20 }}
+   146→          whileInView={{ opacity: 1, y: 0 }}
+   147→          viewport={{ once: true }}
+   148→          transition={{ duration: 1, ease: EASE, delay: 0.1 }}
+   149→          className="display text-ink leading-[1.05] mb-5"
+   150→          style={{ fontSize: "clamp(2.2rem, 5.5vw, 4.5rem)" }}
+   151→        >
+   152→          {t("neural.title")}{" "}
+   153→          <span className="display-italic text-teal">{t("neural.titleItalic")}</span>
+   154→        </motion.h3>
+   155→        <motion.p
+   156→          initial={{ opacity: 0, y: 20 }}
+   157→          whileInView={{ opacity: 1, y: 0 }}
+   158→          viewport={{ once: true }}
+   159→          transition={{ duration: 1, ease: EASE, delay: 0.2 }}
+   160→          className="body-serif text-sm md:text-base text-ink-soft leading-relaxed max-w-2xl mx-auto"
+   161→        >
+   162→          {t("neural.intro").split("\n").map((line, i, arr) => (
+   163→            <span key={i}>
+   164→              {line}
+   165→              {i < arr.length - 1 && <br />}
+   166→            </span>
+   167→          ))}
+   168→        </motion.p>
+   169→      </div>
+   170→
+   171→      {/* ─── DESKTOP: Wide Vitruvian neural field ─── */}
+   172→      {!isMobile && (
+   173→        <div className="relative w-full mx-auto" style={{ maxWidth: "850px" }}>
+   174→          <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+   175→            <svg
+   176→              className="absolute inset-0 w-full h-full"
+   177→              viewBox="0 0 100 56.25"
+   178→              preserveAspectRatio="xMidYMid meet"
+   179→              style={{ overflow: "visible" }}
+   180→            >
+   181→              <defs>
+   182→                <linearGradient id="marchingFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+   183→                  <stop offset="0%" stopColor="#0F5C5E" />
+   184→                  <stop offset="25%" stopColor="#B48D3C" />
+   185→                  <stop offset="50%" stopColor="#B5462A" />
+   186→                  <stop offset="75%" stopColor="#2D6A4F" />
+   187→                  <stop offset="100%" stopColor="#0F5C5E" />
+   188→                </linearGradient>
+   189→                <radialGradient id="cloudFillTeal" cx="50%" cy="40%" r="60%">
+   190→                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+   191→                  <stop offset="70%" stopColor="#F5EFE4" stopOpacity="1" />
+   192→                  <stop offset="100%" stopColor="#0F5C5E" stopOpacity="0.10" />
+   193→                </radialGradient>
+   194→                <radialGradient id="cloudFillGold" cx="50%" cy="40%" r="60%">
+   195→                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+   196→                  <stop offset="70%" stopColor="#F5EFE4" stopOpacity="1" />
+   197→                  <stop offset="100%" stopColor="#B48D3C" stopOpacity="0.10" />
+   198→                </radialGradient>
+   199→                <radialGradient id="cloudFillTerracotta" cx="50%" cy="40%" r="60%">
+   200→                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+   201→                  <stop offset="70%" stopColor="#F5EFE4" stopOpacity="1" />
+   202→                  <stop offset="100%" stopColor="#B5462A" stopOpacity="0.10" />
+   203→                </radialGradient>
+   204→                <radialGradient id="cloudFillForest" cx="50%" cy="40%" r="60%">
+   205→                  <stop offset="0%" stopColor="#FFFFFF" stopOpacity="1" />
+   206→                  <stop offset="70%" stopColor="#F5EFE4" stopOpacity="1" />
+   207→                  <stop offset="100%" stopColor="#2D6A4F" stopOpacity="0.10" />
+   208→                </radialGradient>
+   209→                {/* Vitruvian Man duotone filter — sepia + teal tint */}
+   210→                <filter id="vitruvianDuotone" x="-10%" y="-10%" width="120%" height="120%">
+   211→                  <feColorMatrix type="matrix" values="
+   212→                    0.3 0 0 0 0.06
+   213→                    0.3 0 0 0 0.36
+   214→                    0.3 0 0 0 0.37
+   215→                    0   0 0 1 0" />
+   216→                </filter>
+   217→                <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+   218→                  <feGaussianBlur stdDeviation="0.6" result="blur" />
+   219→                  <feMerge>
+   220→                    <feMergeNode in="blur" />
+   221→                    <feMergeNode in="SourceGraphic" />
+   222→                  </feMerge>
+   223→                </filter>
+   224→                <path id="cloudShape" d={CLOUD_PATH} />
+   225→              </defs>
+   226→
+   227→              {/* ── Vitruvian geometry ── */}
+   228→              <g opacity="0.10">
+   229→                <circle cx={CENTER.x} cy={CENTER.y} r="24" fill="none" stroke="#0F5C5E" strokeWidth="0.15" strokeDasharray="0.5 1" />
+   230→                <rect x={CENTER.x - 20} y={CENTER.y - 20} width="40" height="40" fill="none" stroke="#B48D3C" strokeWidth="0.12" strokeDasharray="0.3 0.8" opacity="0.6" />
+   231→                <line x1={CENTER.x} y1={CENTER.y - 26} x2={CENTER.x} y2={CENTER.y + 26} stroke="#0F5C5E" strokeWidth="0.08" strokeDasharray="0.3 0.6" />
+   232→                <line x1={CENTER.x - 26} y1={CENTER.y} x2={CENTER.x + 26} y2={CENTER.y} stroke="#0F5C5E" strokeWidth="0.08" strokeDasharray="0.3 0.6" />
+   233→                {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((deg) => {
+   234→                  const rad = (deg * Math.PI) / 180;
+   235→                  return (
+   236→                    <line
+   237→                      key={deg}
+   238→                      x1={CENTER.x + Math.cos(rad) * 23}
+   239→                      y1={CENTER.y + Math.sin(rad) * 23}
+   240→                      x2={CENTER.x + Math.cos(rad) * 25}
+   241→                      y2={CENTER.y + Math.sin(rad) * 25}
+   242→                      stroke="#0F5C5E"
+   243→                      strokeWidth="0.1"
+   244→                    />
+   245→                  );
+   246→                })}
+   247→              </g>
+   248→
+   249→              {/* ── Neural connection paths ── */}
+   250→              {CLOUDS.map((cloud) => {
+   251→                const isActive = active === cloud.id;
+   252→                const isDimmed = active !== cloud.id;
+   253→                const hueHex = HUE_HEX[cloud.hue];
+   254→                const path = neuralPath(CENTER.x, CENTER.y, cloud.x, cloud.y);
+   255→                const [cp1, cp2] = getControlPoints(CENTER.x, CENTER.y, cloud.x, cloud.y);
+   256→                const synapsePositions = [0.25, 0.5, 0.75].map((tt) =>
+   257→                  bezierPoint(tt, [CENTER.x, CENTER.y], cp1, cp2, [cloud.x, cloud.y])
+   258→                );
+   259→
+   260→                return (
+   261→                  <g key={cloud.id}>
+   262→                    <path
+   263→                      d={path}
+   264→                      fill="none"
+   265→                      stroke={hueHex}
+   266→                      strokeWidth={isActive ? 0.35 : 0.18}
+   267→                      strokeOpacity={isDimmed ? 0.08 : 0.35}
+   268→                      style={{ transition: "stroke-opacity 0.4s, stroke-width 0.4s" }}
+   269→                    />
+   270→                    <path
+   271→                      d={path}
+   272→                      fill="none"
+   273→                      stroke="url(#marchingFlow)"
+   274→                      strokeWidth={isActive ? 0.5 : 0.3}
+   275→                      strokeOpacity={isDimmed ? 0 : 0.9}
+   276→                      strokeDasharray="1.5 3"
+   277→                      strokeLinecap="round"
+   278→                      style={{
+   279→                        transition: "stroke-opacity 0.4s, stroke-width 0.4s",
+   280→                        filter: isActive ? "url(#softGlow)" : "none",
+   281→                      }}
+   282→                    >
+   283→                      <animate attributeName="stroke-dashoffset" from="0" to="-9" dur="2.5s" repeatCount="indefinite" />
+   284→                    </path>
+   285→                    {synapsePositions.map(([sx, sy], i) => (
+   286→                      <g key={i}>
+   287→                        <circle
+   288→                          cx={sx}
+   289→                          cy={sy}
+   290→                          r={isActive ? 0.5 : 0.3}
+   291→                          fill={hueHex}
+   292→                          opacity={isDimmed ? 0.1 : 0.9}
+   293→                          style={{ transition: "r 0.4s, opacity 0.4s" }}
+   294→                        >
+   295→                          <animate
+   296→                            attributeName="r"
+   297→                            values={isActive ? "0.5;0.8;0.5" : "0.3;0.45;0.3"}
+   298→                            dur="2s"
+   299→                            begin={`${i * 0.3}s`}
+   300→                            repeatCount="indefinite"
+   301→                          />
+   302→                        </circle>
+   303→                        <circle
+   304→                          cx={sx}
+   305→                          cy={sy}
+   306→                          r={isActive ? 1.2 : 0.7}
+   307→                          fill="none"
+   308→                          stroke={hueHex}
+   309→                          strokeWidth="0.08"
+   310→                          opacity={isDimmed ? 0.05 : 0.3}
+   311→                          style={{ transition: "r 0.4s, opacity 0.4s" }}
+   312→                        />
+   313→                      </g>
+   314→                    ))}
+   315→                    <circle
+   316→                      cx={cloud.x}
+   317→                      cy={cloud.y}
+   318→                      r={isActive ? 0.8 : 0.5}
+   319→                      fill={hueHex}
+   320→                      opacity={isDimmed ? 0.2 : 1}
+   321→                      style={{ transition: "r 0.4s, opacity 0.4s" }}
+   322→                    >
+   323→                      <animate
+   324→                        attributeName="r"
+   325→                        values={isActive ? "0.8;1.2;0.8" : "0.5;0.7;0.5"}
+   326→                        dur="2s"
+   327→                        repeatCount="indefinite"
+   328→                      />
+   329→                    </circle>
+   330→                  </g>
+   331→                );
+   332→              })}
+   333→
+   334→              {/* ── Center: Vitruvian Man image as the primary visual ── */}
+   335→              <g>
+   336→                {/* Pulsing rings — emit from the image */}
+   337→                <circle cx={CENTER.x} cy={CENTER.y} r="14" fill="none" stroke="#0F5C5E" strokeWidth="0.18" opacity="0.3">
+   338→                  <animate attributeName="r" values="14;22;22" dur="3s" repeatCount="indefinite" />
+   339→                  <animate attributeName="opacity" values="0.4;0;0" dur="3s" repeatCount="indefinite" />
+   340→                </circle>
+   341→                <circle cx={CENTER.x} cy={CENTER.y} r="14" fill="none" stroke="#0F5C5E" strokeWidth="0.15" opacity="0.2">
+   342→                  <animate attributeName="r" values="14;25;25" dur="3s" begin="1s" repeatCount="indefinite" />
+   343→                  <animate attributeName="opacity" values="0.3;0;0" dur="3s" begin="1s" repeatCount="indefinite" />
+   344→                </circle>
+   345→
+   346→                {/* Vitruvian Man image — compact, properly centered, visible */}
+   347→                <image
+   348→                  href="/vitruvian-man.jpg"
+   349→                  x={CENTER.x - 13}
+   350→                  y={CENTER.y - 13}
+   351→                  width="26"
+   352→                  height="26"
+   353→                  opacity="0.32"
+   354→                  filter="url(#vitruvianDuotone)"
+   355→                  preserveAspectRatio="xMidYMid meet"
+   356→                  clipPath="circle(13px at 50% 50%)"
+   357→                />
+   358→
+   359→                {/* Decorative ring around the Vitruvian Man image */}
+   360→                <circle
+   361→                  cx={CENTER.x}
+   362→                  cy={CENTER.y}
+   363→                  r="14"
+   364→                  fill="none"
+   365→                  stroke="#B48D3C"
+   366→                  strokeWidth="0.2"
+   367→                  opacity="0.5"
+   368→                />
+   369→                <circle
+   370→                  cx={CENTER.x}
+   371→                  cy={CENTER.y}
+   372→                  r="15"
+   373→                  fill="none"
+   374→                  stroke="#0F5C5E"
+   375→                  strokeWidth="0.15"
+   376→                  opacity="0.4"
+   377→                  strokeDasharray="0.5 1.5"
+   378→                />
+   379→
+   380→                {/* ΦΡΟΝΗΣΙΣ label — EXACTLY at the center of the circle */}
+   381→                {/* White backdrop circle for legibility over the image */}
+   382→                <circle
+   383→                  cx={CENTER.x}
+   384→                  cy={CENTER.y}
+   385→                  r="5.5"
+   386→                  fill="#FFFFFF"
+   387→                  opacity="0.92"
+   388→                />
+   389→                <circle
+   390→                  cx={CENTER.x}
+   391→                  cy={CENTER.y}
+   392→                  r="5.5"
+   393→                  fill="none"
+   394→                  stroke="#B48D3C"
+   395→                  strokeWidth="0.15"
+   396→                  opacity="0.5"
+   397→                />
+   398→                <text
+   399→                  x={CENTER.x}
+   400→                  y={CENTER.y + 0.8}
+   401→                  textAnchor="middle"
+   402→                  fill="#B48D3C"
+   403→                  style={{ fontFamily: "var(--font-cormorant), serif", fontSize: "2.6px", fontWeight: 600, letterSpacing: "0.2px" }}
+   404→                >
+   405→                  ΦΡΟΝΗΣΙΣ
+   406→                </text>
+   407→                <text
+   408→                  x={CENTER.x}
+   409→                  y={CENTER.y + 2.5}
+   410→                  textAnchor="middle"
+   411→                  fill="#0F5C5E"
+   412→                  style={{ fontFamily: "var(--font-jetbrains), monospace", fontSize: "0.85px", letterSpacing: "0.2px" }}
+   413→                >
+   414→                  {t("neural.centerMethod").toUpperCase()}
+   415→                </text>
+   416→              </g>
+   417→
+   418→              {/* ── FIX #1 & #2: Clouds 60% larger, text INSIDE the SVG group ── */}
+   419→              {CLOUDS.map((cloud, i) => {
+   420→                const isActive = active === cloud.id;
+   421→                const isSelected = selected === cloud.id;
+   422→                const isDimmed = active !== cloud.id;
+   423→                const hueHex = HUE_HEX[cloud.hue];
+   424→                const fillId =
+   425→                  cloud.hue === "teal" ? "cloudFillTeal" :
+   426→                  cloud.hue === "gold" ? "cloudFillGold" :
+   427→                  cloud.hue === "terracotta" ? "cloudFillTerracotta" : "cloudFillForest";
+   428→                // Clouds — compact scale so the visualization doesn't dominate the page
+   429→                const scale = isActive ? 0.38 : 0.34;
+   430→                const tx = cloud.x - 50 * scale;
+   431→                const ty = cloud.y - 30 * scale;
+   432→
+   433→                return (
+   434→                  <g
+   435→                    key={`cloud-${cloud.id}`}
+   436→                    style={{ cursor: "pointer", transition: "opacity 0.4s" }}
+   437→                    opacity={isDimmed ? 0.5 : 1}
+   438→                    onMouseEnter={() => setHovered(cloud.id)}
+   439→                    onMouseLeave={() => setHovered(null)}
+   440→                    onClick={() => handleCloudClick(cloud)}
+   441→                  >
+   442→                    {/* Cloud shadow */}
+   443→                    <ellipse
+   444→                      cx={cloud.x}
+   445→                      cy={cloud.y + 6 * scale}
+   446→                      rx={38 * scale}
+   447→                      ry={3 * scale}
+   448→                      fill={hueHex}
+   449→                      opacity={isDimmed ? 0.02 : 0.08}
+   450→                      style={{ transition: "opacity 0.4s" }}
+   451→                    />
+   452→                    {/* Cloud silhouette */}
+   453→                    <use
+   454→                      href="#cloudShape"
+   455→                      transform={`translate(${tx} ${ty}) scale(${scale})`}
+   456→                      fill={`url(#${fillId})`}
+   457→                      stroke={hueHex}
+   458→                      strokeWidth={(isActive ? 0.6 : 0.35) / scale}
+   459→                      strokeOpacity={isDimmed ? 0.2 : 0.7}
+   460→                      style={{
+   461→                        transition: "stroke-opacity 0.4s, stroke-width 0.4s",
+   462→                        filter: isActive ? `drop-shadow(0 0 1.5px ${hueHex}50)` : "none",
+   463→                      }}
+   464→                    />
+   465→
+   466→                    {/* Cloud text — NO truncation, NO description (rationale panel has full text) */}
+   467→                    {/* Domain label — top of cloud */}
+   468→                    <text
+   469→                      x={cloud.x}
+   470→                      y={cloud.y - 4}
+   471→                      textAnchor="middle"
+   472→                      fill={hueHex}
+   473→                      opacity={isDimmed ? 0.5 : 0.85}
+   474→                      style={{
+   475→                        fontFamily: "var(--font-jetbrains), monospace",
+   476→                        fontSize: "1.0px",
+   477→                        letterSpacing: "0.1px",
+   478→                        textTransform: "uppercase",
+   479→                        transition: "opacity 0.4s",
+   480→                      }}
+   481→                    >
+   482→                      {t(`neural.clouds.${cloud.id}.domain`)}
+   483→                    </text>
+   484→                    {/* Program name — center of cloud, NO truncation */}
+   485→                    <text
+   486→                      x={cloud.x}
+   487→                      y={cloud.y - 1}
+   488→                      textAnchor="middle"
+   489→                      fill="#1A1A1A"
+   490→                      opacity={isDimmed ? 0.6 : 1}
+   491→                      style={{
+   492→                        fontFamily: "var(--font-cormorant), serif",
+   493→                        fontSize: "1.6px",
+   494→                        fontWeight: 600,
+   495→                        transition: "opacity 0.4s",
+   496→                      }}
+   497→                    >
+   498→                      {t(cloud.nameKey)}
+   499→                    </text>
+   500→                    {/* Click hint — only on active cloud */}
+   501→                    {isActive && (
+   502→                      <text
+   503→                        x={cloud.x}
+   504→                        y={cloud.y + 3}
+   505→                        textAnchor="middle"
+   506→                        fill={hueHex}
+   507→                        opacity="0.85"
+   508→                        style={{
+   509→                          fontFamily: "var(--font-jetbrains), monospace",
+   510→                          fontSize: "0.85px",
+   511→                          letterSpacing: "0.15px",
+   512→                          textTransform: "uppercase",
+   513→                        }}
+   514→                      >
+   515→                        ↓ {t("neural.clickToExpand")}
+   516→                      </text>
+   517→                    )}
+   518→                    {/* Selected indicator — small dot below cloud */}
+   519→                    {isSelected && !isActive && (
+   520→                      <circle
+   521→                        cx={cloud.x}
+   522→                        cy={cloud.y + 4}
+   523→                        r="0.5"
+   524→                        fill={hueHex}
+   525→                        opacity="0.7"
+   526→                      />
+   527→                    )}
+   528→                  </g>
+   529→                );
+   530→              })}
+   531→            </svg>
+   532→          </div>
+   533→        </div>
+   534→      )}
+   535→
+   536→      {/* ─── MOBILE: Stacked vertical with cloud shapes ─── */}
+   537→      {isMobile && (
+   538→        <div className="relative">
+   539→          <div className="flex flex-col items-center mb-8">
+   540→            <div className="relative w-28 h-28 rounded-full bg-paper border-2 border-teal/40 flex flex-col items-center justify-center text-center shadow-lg">
+   541→              <div
+   542→                className="text-xl text-gold leading-none mb-1"
+   543→                style={{ fontFamily: "var(--font-cormorant)", fontWeight: 500 }}
+   544→              >
+   545→                ΦΡΟΝΗΣΙΣ
+   546→              </div>
+   547→              <div className="text-[8px] uppercase tracking-[0.22em] text-teal font-mono">
+   548→                {t("neural.centerMethod")}
+   549→              </div>
+   550→            </div>
+   551→            <div className="w-px h-8 bg-teal/20 mt-2" />
+   552→          </div>
+   553→
+   554→          <div className="space-y-5">
+   555→            {CLOUDS.map((cloud, i) => {
+   556→              const isSelected = selected === cloud.id;
+   557→              const hueHex = HUE_HEX[cloud.hue];
+   558→              return (
+   559→                <motion.div
+   560→                  key={cloud.id}
+   561→                  initial={{ opacity: 0, y: 20 }}
+   562→                  whileInView={{ opacity: 1, y: 0 }}
+   563→                  viewport={{ once: true }}
+   564→                  transition={{ duration: 0.6, ease: EASE, delay: i * 0.08 }}
+   565→                >
+   566→                  <button
+   567→                    onClick={() => handleCloudClick(cloud)}
+   568→                    className="w-full"
+   569→                    style={{ background: "none", border: "none", padding: 0 }}
+   570→                  >
+   571→                    <div
+   572→                      className="relative px-6 py-5 border-2 transition-all duration-400"
+   573→                      style={{
+   574→                        borderColor: isSelected ? hueHex : "var(--border)",
+   575→                        boxShadow: isSelected ? `0 8px 24px ${hueHex}30` : "0 1px 4px rgba(0,0,0,0.04)",
+   576→                        borderRadius: "2rem",
+   577→                        backgroundColor: "var(--paper)",
+   578→                      }}
+   579→                    >
+   580→                      <div className="text-[9px] uppercase tracking-[0.22em] font-mono mb-1" style={{ color: hueHex }}>
+   581→                        {t(`neural.clouds.${cloud.id}.domain`)}
+   582→                      </div>
+   583→                      <div className="display text-ink text-lg leading-tight">{t(cloud.nameKey)}</div>
+   584→                      <div className="body-serif text-xs text-ink-dim mt-1 leading-snug">
+   585→                        {t(cloud.descKey)}
+   586→                      </div>
+   587→                    </div>
+   588→                  </button>
+   589→                </motion.div>
+   590→              );
+   591→            })}
+   592→          </div>
+   593→        </div>
+   594→      )}
+   595→
+   596→      {/* ─── Always-visible rationale panel — shows SELECTED cloud ─── */}
+   597→      <div ref={rationaleRef} className="mt-10 md:mt-14 scroll-mt-24">
+   598→        <AnimatePresence mode="wait">
+   599→          <motion.div
+   600→            key={selectedCloud.id}
+   601→            initial={{ opacity: 0, y: 30 }}
+   602→            animate={{ opacity: 1, y: 0 }}
+   603→            exit={{ opacity: 0, y: -10 }}
+   604→            transition={{ duration: 0.6, ease: EASE }}
+   605→            className="max-w-4xl mx-auto"
+   606→          >
+   607→            <div
+   608→              className="relative p-8 md:p-12 rounded-3xl bg-paper-warm border overflow-hidden"
+   609→              style={{ borderColor: `${HUE_HEX[selectedCloud.hue]}40` }}
+   610→            >
+   611→              <div
+   612→                className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-5"
+   613→                style={{ backgroundColor: HUE_HEX[selectedCloud.hue], transform: "translate(30%, -30%)" }}
+   614→              />
+   615→              <div
+   616→                className="absolute bottom-0 left-0 w-32 h-32 rounded-full opacity-5"
+   617→                style={{ backgroundColor: HUE_HEX[selectedCloud.hue], transform: "translate(-30%, 30%)" }}
+   618→              />
+   619→
+   620→              <div className="relative">
+   621→                <div className="flex items-center gap-3 mb-6">
+   622→                  <span className="h-px w-12" style={{ backgroundColor: HUE_HEX[selectedCloud.hue] }} />
+   623→                  <span
+   624→                    className="text-[10px] uppercase tracking-[0.25em] font-mono"
+   625→                    style={{ color: HUE_HEX[selectedCloud.hue] }}
+   626→                  >
+   627→                    {t("neural.rationaleLabel")}
+   628→                  </span>
+   629→                </div>
+   630→
+   631→                <h4
+   632→                  className="display text-ink leading-[1.05] mb-6"
+   633→                  style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}
+   634→                >
+   635→                  {t(selectedCloud.nameKey)}
+   636→                </h4>
+   637→
+   638→                <p className="body-serif text-base md:text-lg text-ink-soft leading-[1.8] mb-8">
+   639→                  {t(selectedCloud.rationaleKey)}
+   640→                </p>
+   641→
+   642→                <div className="flex flex-wrap items-center gap-4 pt-6 border-t border-border">
+   643→                  <div className="text-[10px] uppercase tracking-[0.2em] text-ink-dim font-mono">
+   644→                    {t("neural.domainLabel")}:{" "}
+   645→                    <span style={{ color: HUE_HEX[selectedCloud.hue] }}>
+   646→                      {t(`neural.clouds.${selectedCloud.id}.domain`)}
+   647→                    </span>
+   648→                  </div>
+   649→                  {selectedCloud.url && (
+   650→                    <a
+   651→                      href={selectedCloud.url}
+   652→                      target="_blank"
+   653→                      rel="noopener noreferrer"
+   654→                      className="inline-flex items-center gap-2 text-sm ml-auto"
+   655→                      style={{ color: HUE_HEX[selectedCloud.hue] }}
+   656→                    >
+   657→                      <span className="link-underline">{t("visitSite")}</span>
+   658→                      <span>→</span>
+   659→                    </a>
+   660→                  )}
+   661→                </div>
+   662→              </div>
+   663→            </div>
+   664→          </motion.div>
+   665→        </AnimatePresence>
+   666→
+   667→        {/* Cloud selector dots */}
+   668→        <div className="flex justify-center gap-3 mt-8">
+   669→          {CLOUDS.map((cloud) => {
+   670→            const isSelected = selectedCloud.id === cloud.id;
+   671→            const hueHex = HUE_HEX[cloud.hue];
+   672→            return (
+   673→              <button
+   674→                key={cloud.id}
+   675→                onClick={() => {
+   676→                  setSelected(cloud.id);
+   677→                  setTimeout(() => {
+   678→                    rationaleRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+   679→                  }, 100);
+   680→                }}
+   681→                className="transition-all duration-300"
+   682→                style={{
+   683→                  width: isSelected ? "32px" : "10px",
+   684→                  height: "10px",
+   685→                  borderRadius: "5px",
+   686→                  backgroundColor: isSelected ? hueHex : "var(--border)",
+   687→                }}
+   688→                aria-label={t(cloud.nameKey)}
+   689→              />
+   690→            );
+   691→          })}
+   692→        </div>
+   693→      </div>
+   694→    </div>
+   695→  );
+   696→}
+   697→
