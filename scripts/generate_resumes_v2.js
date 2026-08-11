@@ -69,8 +69,8 @@ function link(url, text, color = COLOR.teal) {
 
 function para(children, opts = {}) {
   return new Paragraph({
-    spacing: { before: opts.before || 0, after: opts.after || 80, line: opts.line || 264 },
-    alignment: opts.align || AlignmentType.LEFT,
+    spacing: { before: opts.before || 0, after: opts.after || 80, line: opts.line || 252 },
+    alignment: opts.align || AlignmentType.JUSTIFIED,
     indent: opts.indent || undefined,
     border: opts.border || undefined,
     children,
@@ -94,7 +94,7 @@ function rule(color = COLOR.line, size = 4) {
 function sidebarSection(label, lines) {
   const children = [
     new Paragraph({
-      spacing: { before: 240, after: 80 },
+      spacing: { before: 200, after: 60 },
       children: [txt(label.toUpperCase(), { font: SANS, size: 15, color: COLOR.mist, bold: true, spacing: 60 })],
     }),
     new Paragraph({
@@ -115,7 +115,7 @@ function sidebarSection(label, lines) {
 function sidebarLinkSection(label, links) {
   const children = [
     new Paragraph({
-      spacing: { before: 240, after: 80 },
+      spacing: { before: 200, after: 60 },
       children: [txt(label.toUpperCase(), { font: SANS, size: 15, color: COLOR.mist, bold: true, spacing: 60 })],
     }),
     new Paragraph({
@@ -138,12 +138,12 @@ function sidebarLinkSection(label, links) {
 function mainHeading(text) {
   return [
     new Paragraph({
-      spacing: { before: 320, after: 100 },
-      children: [txt(text.toUpperCase(), { font: SANS, size: 18, color: COLOR.navy, bold: true, spacing: 80 })],
+      spacing: { before: 240, after: 60 },
+      children: [txt(text.toUpperCase(), { font: SANS, size: 17, color: COLOR.navy, bold: true, spacing: 80 })],
     }),
     new Paragraph({
-      spacing: { after: 120 },
-      border: { bottom: { color: COLOR.navy, space: 1, style: BorderStyle.SINGLE, size: 8 } },
+      spacing: { after: 80 },
+      border: { bottom: { color: COLOR.navy, space: 1, style: BorderStyle.SINGLE, size: 6 } },
       children: [new TextRun({ text: "" })],
     }),
   ];
@@ -152,25 +152,26 @@ function mainHeading(text) {
 function experienceEntry(title, org, period, bullets) {
   const children = [
     new Paragraph({
-      spacing: { before: 200, after: 20 },
-      children: [txt(title, { font: FONT, size: 22, color: COLOR.navy, bold: true })],
+      spacing: { before: 160, after: 15 },
+      children: [txt(title, { font: FONT, size: 21, color: COLOR.navy, bold: true })],
     }),
     new Paragraph({
-      spacing: { after: 20 },
+      spacing: { after: 15 },
       children: [
-        txt(org, { font: FONT, size: 19, color: COLOR.teal, italics: true }),
-        txt("  \u00B7  ", { font: FONT, size: 18, color: COLOR.silver }),
-        txt(period, { font: SANS, size: 17, color: COLOR.mist }),
+        txt(org, { font: FONT, size: 18, color: COLOR.teal, italics: true }),
+        txt("  \u00B7  ", { font: FONT, size: 17, color: COLOR.silver }),
+        txt(period, { font: SANS, size: 16, color: COLOR.mist }),
       ],
     }),
   ];
   for (const b of bullets) {
     children.push(new Paragraph({
-      spacing: { after: 50, line: 252 },
-      indent: { left: 280, hanging: 160 },
+      spacing: { after: 35, line: 240 },
+      indent: { left: 260, hanging: 150 },
+      alignment: AlignmentType.JUSTIFIED,
       children: [
-        txt("\u2013  ", { font: FONT, size: 19, color: COLOR.teal }),
-        txt(b, { font: FONT, size: 19, color: COLOR.ink }),
+        txt("\u2013  ", { font: FONT, size: 18, color: COLOR.teal }),
+        txt(b, { font: FONT, size: 18, color: COLOR.ink }),
       ],
     }));
   }
@@ -180,20 +181,20 @@ function experienceEntry(title, org, period, bullets) {
 function publicationEntry(title, meta, description, links) {
   const children = [
     new Paragraph({
-      spacing: { before: 200, after: 20 },
-      children: [txt(title, { font: FONT, size: 22, color: COLOR.navy, bold: true, italics: true })],
+      spacing: { before: 160, after: 15 },
+      children: [txt(title, { font: FONT, size: 21, color: COLOR.navy, bold: true, italics: true })],
     }),
     new Paragraph({
-      spacing: { after: 40 },
-      children: [txt(meta, { font: SANS, size: 16, color: COLOR.mist })],
+      spacing: { after: 30 },
+      children: [txt(meta, { font: SANS, size: 15, color: COLOR.mist })],
     }),
     new Paragraph({
-      spacing: { after: 60, line: 252 },
+      spacing: { after: 40, line: 240 },
       alignment: AlignmentType.JUSTIFIED,
-      children: [txt(description, { font: FONT, size: 19, color: COLOR.graphite, italics: true })],
+      children: [txt(description, { font: FONT, size: 18, color: COLOR.graphite, italics: true })],
     }),
     new Paragraph({
-      spacing: { after: 80 },
+      spacing: { after: 60 },
       children: links,
     }),
   ];
@@ -203,22 +204,23 @@ function publicationEntry(title, meta, description, links) {
 function educationEntry(degree, institution, period, detail) {
   const children = [
     new Paragraph({
-      spacing: { before: 180, after: 20 },
-      children: [txt(degree, { font: FONT, size: 21, color: COLOR.navy, bold: true })],
+      spacing: { before: 140, after: 15 },
+      children: [txt(degree, { font: FONT, size: 20, color: COLOR.navy, bold: true })],
     }),
     new Paragraph({
-      spacing: { after: 20 },
+      spacing: { after: 15 },
       children: [
-        txt(institution, { font: FONT, size: 19, color: COLOR.teal, italics: true }),
-        txt("  \u00B7  ", { font: FONT, size: 18, color: COLOR.silver }),
-        txt(period, { font: SANS, size: 17, color: COLOR.mist }),
+        txt(institution, { font: FONT, size: 18, color: COLOR.teal, italics: true }),
+        txt("  \u00B7  ", { font: FONT, size: 17, color: COLOR.silver }),
+        txt(period, { font: SANS, size: 16, color: COLOR.mist }),
       ],
     }),
   ];
   if (detail) {
     children.push(new Paragraph({
-      spacing: { after: 60, line: 252 },
-      children: [txt(detail, { font: FONT, size: 18, color: COLOR.graphite })],
+      spacing: { after: 40, line: 240 },
+      alignment: AlignmentType.JUSTIFIED,
+      children: [txt(detail, { font: FONT, size: 17, color: COLOR.graphite })],
     }));
   }
   return children;
@@ -226,50 +228,48 @@ function educationEntry(degree, institution, period, detail) {
 
 function bulletEntry(items) {
   return items.map(item => new Paragraph({
-    spacing: { after: 50, line: 252 },
-    indent: { left: 280, hanging: 160 },
+    spacing: { after: 30, line: 240 },
+    indent: { left: 260, hanging: 150 },
+    alignment: AlignmentType.JUSTIFIED,
     children: [
-      txt("\u2013  ", { font: FONT, size: 19, color: COLOR.teal }),
-      txt(item, { font: FONT, size: 19, color: COLOR.ink }),
+      txt("\u2013  ", { font: FONT, size: 18, color: COLOR.teal }),
+      txt(item, { font: FONT, size: 18, color: COLOR.ink }),
     ],
   }));
 }
 
 // ─── Two-column layout builder ─────────────────────────────────────────────
 
-function twoColumnResume(sidebarChildren, mainChildren) {
-  return new Table({
-    width: { size: 100, type: WidthType.PERCENTAGE },
-    borders: {
-      top: { style: BorderStyle.NONE },
-      bottom: { style: BorderStyle.NONE },
-      left: { style: BorderStyle.NONE },
-      right: { style: BorderStyle.NONE },
-      insideHorizontal: { style: BorderStyle.NONE },
-      insideVertical: { style: BorderStyle.SINGLE, size: 2, color: COLOR.line },
-    },
-    rows: [
-      new TableRow({
-        children: [
-          // Sidebar
-          new TableCell({
-            width: { size: 32, type: WidthType.PERCENTAGE },
-            margins: { top: 400, bottom: 400, left: 300, right: 300 },
-            shading: { type: ShadingType.CLEAR, fill: COLOR.parchment },
-            verticalAlign: VerticalAlign.TOP,
-            children: sidebarChildren,
-          }),
-          // Main content
-          new TableCell({
-            width: { size: 68, type: WidthType.PERCENTAGE },
-            margins: { top: 400, bottom: 400, left: 400, right: 300 },
-            verticalAlign: VerticalAlign.TOP,
-            children: mainChildren,
-          }),
-        ],
-      }),
-    ],
-  });
+function singleColumnResume(headerChildren, mainChildren) {
+  return [
+    // Header block with parchment background
+    new Table({
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      borders: {
+        top: { style: BorderStyle.NONE },
+        bottom: { style: BorderStyle.NONE },
+        left: { style: BorderStyle.NONE },
+        right: { style: BorderStyle.NONE },
+        insideHorizontal: { style: BorderStyle.NONE },
+        insideVertical: { style: BorderStyle.NONE },
+      },
+      rows: [
+        new TableRow({
+          cantSplit: true,
+          children: [
+            new TableCell({
+              width: { size: 100, type: WidthType.PERCENTAGE },
+              margins: { top: 360, bottom: 200, left: 500, right: 500 },
+              shading: { type: ShadingType.CLEAR, fill: COLOR.parchment },
+              children: headerChildren,
+            }),
+          ],
+        }),
+      ],
+    }),
+    // Main content flows naturally (no table wrapper)
+    ...mainChildren,
+  ];
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -364,7 +364,7 @@ function buildOperationsResume() {
     // Summary
     ...mainHeading("Profile"),
     new Paragraph({
-      spacing: { after: 120, line: 280 },
+      spacing: { after: 80, line: 252 },
       alignment: AlignmentType.JUSTIFIED,
       children: [txt(
         "Operations leader, author, and systems architect with eight years across education, operations, and software. Twenty-one percent revenue growth in year one. Four rapid promotions in a single organization. ISO 9001 and 45001 certified. Author of a published handbook on instructional design. Founder of a studio that builds production-grade platforms serving real clients. One method throughout: see clearly, decide wisely, build what lasts.",
@@ -481,21 +481,13 @@ function buildOperationsResume() {
 
     // Studio
     ...mainHeading("Studio of Phronesis"),
-    new Paragraph({
-      spacing: { after: 80, line: 264 },
-      alignment: AlignmentType.JUSTIFIED,
-      children: [
-        txt("Founded 2024. ", { font: FONT, size: 19, color: COLOR.graphite, italics: true }),
-        txt("A personal studio producing bilingual educational content and production-grade software platforms, built on the Aristotelian principle of phronesis: practical wisdom applied to the perception and closure of gaps in systems, classrooms, and operations.",
-          { font: FONT, size: 19, color: COLOR.graphite }),
-      ],
-    }),
     ...bulletEntry([
-      "Real Estate Emperor: property management SaaS, 400+ units managed live, 4 roles, 4 languages.",
-      "MSCS Academy: 130 lessons, 390+ activities, UAE curriculum-aligned learning platform.",
-      "DiplomatiQ: MUN operating system with seven-tier competency framework and AI evaluation.",
+      "Founded 2024. Bilingual educational content and production-grade software platforms, built on the principle of phronesis.",
+      "Real Estate Emperor: property management SaaS, 400+ units managed live.",
+      "MSCS Academy: 130 lessons, 390+ activities, UAE curriculum-aligned.",
+      "DiplomatiQ: MUN operating system with AI evaluation.",
       "Al Ain Real Estate: production listings site for a live broker client.",
-      "Echoes of Wisdom: bilingual philosophy podcast, 16 episodes across 2 seasons.",
+      "Echoes of Wisdom: bilingual philosophy podcast, 16 episodes, 2 seasons.",
     ]),
   ];
 
@@ -514,11 +506,11 @@ function buildOperationsResume() {
     sections: [{
       properties: {
         page: {
-          margin: { top: 0, bottom: 0, left: 0, right: 0 },
+          margin: { top: 360, bottom: 360, left: 0, right: 0 },
         },
       },
       children: [
-        twoColumnResume(sidebar, main),
+        singleColumnResume(sidebar, main),
       ],
     }],
   });
@@ -615,7 +607,7 @@ function buildTeachingResume() {
     // Profile
     ...mainHeading("Profile"),
     new Paragraph({
-      spacing: { after: 120, line: 280 },
+      spacing: { after: 80, line: 252 },
       alignment: AlignmentType.JUSTIFIED,
       children: [txt(
         "Licensed UAE educator with ADEK approval in Moral, Social, and Cultural Studies and Islamic Education. Classroom practice spans Grades 1 to 12 in the American Curriculum, with subject mapping to IB MYP, Cambridge Global Perspectives, IB Theory of Knowledge, and A-Level Philosophy. Author of a published handbook on instructional design. Faculty Head for Model United Nations; coached students to win Best School at MANORMUN V 2026. BA in Philosophy from Alexandria University, PGDE from Al-Azhar University.",
@@ -717,8 +709,8 @@ function buildTeachingResume() {
       "Independent Educational Initiative",
       "2026 \u2013 Present",
       [
-        "Produces and hosts a bilingual (Arabic/English) philosophy podcast with 16 episodes across 2 seasons.",
-        "Bridges academic philosophy and public discourse, making complex ideas in ethics, logic, and epistemology accessible.",
+        "Produces and hosts a bilingual philosophy podcast, 16 episodes across 2 seasons.",
+        "Bridges academic philosophy and public discourse.",
       ]
     ),
 
@@ -727,8 +719,8 @@ function buildTeachingResume() {
       "Educational Content & Software Platform Studio",
       "2024 \u2013 Present",
       [
-        "Built MSCS Academy: interactive learning platform for UAE MSCS curriculum (130 lessons, 390+ activities).",
-        "Built DiplomatiQ: MUN operating system with seven-tier competency framework and AI evaluation.",
+        "Built MSCS Academy: 130 lessons, 390+ activities, UAE curriculum-aligned.",
+        "Built DiplomatiQ: MUN operating system with AI evaluation.",
         "Published bilingual mathematics curriculum guides (Grades 1\u20134 live, 5\u201312 in production, free PDFs).",
       ]
     ),
@@ -749,11 +741,11 @@ function buildTeachingResume() {
     sections: [{
       properties: {
         page: {
-          margin: { top: 0, bottom: 0, left: 0, right: 0 },
+          margin: { top: 360, bottom: 360, left: 0, right: 0 },
         },
       },
       children: [
-        twoColumnResume(sidebar, main),
+        singleColumnResume(sidebar, main),
       ],
     }],
   });
