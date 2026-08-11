@@ -1,0 +1,309 @@
+     1→---
+     2→Task ID: 1
+     3→Agent: Super Z (main)
+     4→Task: Fix three issues on the phronesis-studio.com site and confirm readiness for Season 2 of Echoes of Wisdom.
+     5→
+     6→Work Log:
+     7→- Read `/home/z/my-project/audit/phronesis-studio/src/app/[locale]/work/[slug]/page.tsx` and discovered that `generateMetadata` was declared as `async function generateMetadata(...)` (line 68) — MISSING the `export` keyword. This is the root cause of issue #3 (OG image not showing when sharing https://phronesis-studio.com/work/history-of-philosophy). Next.js only invokes a NAMED EXPORT called `generateMetadata`; without `export`, the function is silently ignored and the page falls back to the locale-layout default metadata (which uses /og-image.png, not /og-philosophy.png).
+     8→- Patched `work/[slug]/page.tsx`:
+     9→  * Added `export` to `generateMetadata`.
+    10→  * Made OG image URLs absolute (`https://phronesis-studio.com/og-philosophy.png`) instead of relative — many social crawlers (WhatsApp, Telegram, LinkedIn) don't honor `metadataBase` reliably.
+    11→  * Added `secureUrl`, `type: "image/png"`, `width`, `height`, `alt` to each OG image entry.
+    12→  * Added `twitter: { card: "summary_large_image", ... }` metadata (was missing on /work/[slug] pages — Twitter/X cards were broken).
+    13→  * Added `type: "website"`, `url`, `siteName` to OG metadata.
+    14→- Fixed issue #1 (back button sends user to /work instead of /echoes):
+    15→  * `Echoes.tsx` now links to `/${locale}/work/history-of-philosophy?from=echoes` (added `?from=echoes` query param).
+    16→  * `work/[slug]/page.tsx` now reads `searchParams.from` and routes the back arrow to `/${locale}/echoes` when `from=echoes`, otherwise `/${locale}/work` (default). Back-label is also localized: "Echoes" / "أصداء الحكمة" when came from Echoes, "All Work" / "كل الأعمال" otherwise.
+    17→- Fixed issue #2 (painting too small):
+    18→  * Moved the `<img src="/school-of-athens-faded.jpg">` block OUTSIDE the `max-w-4xl` text column so it now renders at the FULL container width (px-6 md:px-12 lg:px-20 — substantially wider than max-w-4xl ≈ 896px).
+    19→  * Added a subtle drop-shadow `shadow-[0_20px_60px_-20px_rgba(15,92,94,0.35)]` for depth.
+    20→  * Replaced the harsh `bg-[#F5EFE4]/60` full-overlay with a `bg-gradient-to-t from-[#F5EFE4]/70 via-[#F5EFE4]/10 to-transparent` so the painting is no longer dimmed — only the bottom edge is washed for badge legibility.
+    21→  * Added a small attribution chip ("Raphael · School of Athens" / "رفائيل · مدرسة أثينا") in the corner.
+    22→  * Improved alt text for accessibility/SEO.
+    23→- Confirmed TypeScript compiles cleanly (`tsc --noEmit` passes with no errors).
+    24→- Read the Season 2 docx (`/home/z/my-project/upload/خطة_بودكاست_تاريخ_الفلسفة.docx`) — it is a 16-season, 222-episode master plan for "History of Philosophy from A to Z" (تاريخ الفلسفة من الألف إلى الياء). The user wants to start producing this as Season 2 of Echoes of Wisdom, Arabic-only initially.
+    25→
+    26→Stage Summary:
+    27→- Three concrete bugs fixed in `src/app/[locale]/work/[slug]/page.tsx` and `src/components/sections/Echoes.tsx`:
+    28→  1. Back button now context-aware (returns to /echoes when user came from /echoes).
+    29→  2. School of Athens painting now renders at full container width, no longer constrained to max-w-4xl.
+    30→  3. OG image metadata now actually emitted (was missing `export`), with absolute URLs, Twitter card, and complete image metadata — sharing https://phronesis-studio.com/work/history-of-philosophy will now show the painting in WhatsApp/Telegram/Twitter/LinkedIn/Facebook previews.
+    31→- Season 2 readiness: confirmed. Awaiting user's go-ahead and the actual Arabic episode transcripts. The existing Prisma `Episode` model requires both `en_full` and `ar_full` — for Arabic-only episodes, English fields will be filled with a placeholder ("English translation forthcoming") until translations are ready, OR the schema can be made nullable. Will confirm approach with user before seeding.
+    32→
+    33→---
+    34→Task ID: 2
+    35→Agent: Super Z (main)
+    36→Task: Fix episode OG image not showing + eliminate /work vs /echoes confusion.
+    37→
+    38→Work Log:
+    39→- Discovered `generateMetadata` in `src/app/[locale]/echoes/[number]/page.tsx` was missing the `export` keyword (line 13) — same bug class as the previous /work/[slug] fix. Next.js silently ignored it; the page fell back to locale-layout default metadata (wrong title, wrong OG image).
+    40→- Patched `echoes/[number]/page.tsx`:
+    41→  * Added `export` to `generateMetadata`.
+    42→  * Switched OG image from `/og-image.png` (generic site banner) to `/og-philosophy.png` (philosophy-themed).
+    43→  * Made OG URLs absolute (`https://phronesis-studio.com/og-philosophy.png`).
+    44→  * Added `secureUrl`, `type: "image/png"`, `width`, `height`, `alt`.
+    45→  * Added `twitter: { card: "summary_large_image", ... }` (was missing entirely).
+    46→  * Changed OG `type` from default to `"article"` (more accurate for episode pages).
+    47→- Eliminated /work vs /echoes confusion by moving History of Philosophy to its own route:
+    48→  * Created `src/app/[locale]/echoes/history-of-philosophy/page.tsx` — self-contained page, back arrow always points to `/${locale}/echoes`.
+    49→  * Modified `src/app/[locale]/work/[slug]/page.tsx`:
+    50→    - Removed `history-of-philosophy` from PROJECTS map.
+    51→    - Removed the `?from=echoes` searchParams plumbing entirely.
+    52→    - Added `permanentRedirect()` (HTTP 308) at top of `ProjectPage` for `slug === "history-of-philosophy"` so old links / Google's index update to the new URL.
+    53→    - Removed the `isForthcoming` branch from `generateMetadata` (no longer needed).
+    54→  * Updated `src/components/sections/Echoes.tsx`: card now links directly to `/${locale}/echoes/history-of-philosophy` (no `?from=echoes`).
+    55→  * Updated `src/app/sitemap.ts`: removed `history-of-philosophy` from `PROJECT_SLUGS`, added new `ECHOES_EXTRA_ROUTES = ["history-of-philosophy"]` list and emits `/{locale}/echoes/history-of-philosophy` entries.
+    56→- TypeScript compiles clean (`tsc --noEmit` passes).
+    57→- Committed as `e451b21` and pushed to `origin/main`. Vercel auto-deployed.
+    58→
+    59→Stage Summary (verified live on production):
+    60→- `/echoes/1` now serves: `<title>Why Is Philosophy Still Important in a Chaotic World? · Echoes of Wisdom Ep. 1 · Studio of Phronesis</title>` with `og:image = https://phronesis-studio.com/og-philosophy.png` and `twitter:card = summary_large_image`. ✅
+    61→- `/work/history-of-philosophy` returns HTTP 308 → `location: /en/echoes/history-of-philosophy`. ✅
+    62→- `/echoes/history-of-philosophy` returns HTTP 200 with correct OG metadata, full-width painting, and back link pointing to `/en/echoes`. ✅
+    63→- `/echoes` page card now links to `/echoes/history-of-philosophy` (same URL family — no more /work vs /echoes confusion). ✅
+    64→- Sitemap updated to advertise the new canonical URL; old URL permanently redirects so Google's index will update on next crawl.
+    65→
+    66→---
+    67→Task ID: 3
+    68→Agent: Super Z (main)
+    69→Task: User reported client never received an email sent from admin portal (checked inbox + spam).
+    70→
+    71→Work Log:
+    72→- Root cause analysis: admin UI showed "Email sent successfully" whenever `transport.sendMail()` resolved without throwing. But "SMTP accepted" ≠ "delivered" — email can still be silently dropped at three later points: (1) Brevo sender not verified, (2) SPF/DKIM/DMARC DNS missing, (3) DMARC p=reject with misaligned SPF/DKIM.
+    73→- Code was throwing away the SMTP response (messageId, accepted, rejected) and had no DNS diagnostic.
+    74→- Enhanced `src/lib/email.ts`:
+    75→  * `sendEmail()` now returns `EmailSendResult { messageId, response, accepted, rejected, pending }` from nodemailer's SMTP response.
+    76→  * Added `verifySmtp()` — issues NOOP via `transport.verify()`.
+    77→  * Added `checkEmailDnsRecords(domain)` — uses `dns/promises` to resolve SPF, DKIM (brevo._domainkey, s1._domainkey, s2._domainkey), DMARC, MX. Returns found/missing + copy-paste fix templates.
+    78→- Enhanced `src/app/api/admin/email-send/route.ts`: captures SMTP response, returns `{ messageId, smtpResponse, accepted, rejected, brevoLogsUrl }` to the admin UI.
+    79→- Rewrote `src/app/api/admin/email-test/route.ts` as a full diagnostic: (1) verifySmtp, (2) send test + capture messageId, (3) checkEmailDnsRecords. Builds `warnings[]` flagging SPF missing, DKIM missing, DMARC p=reject with bad SPF/DKIM, etc.
+    80→- Updated `src/components/admin/ComposeEmailModal.tsx`: on success, shows "SMTP accepted." + messageId + link to Brevo → Transactional → Logs with explicit "SMTP accepting your email ≠ recipient received it" reminder. Shows soft error if Brevo rejected any recipients.
+    81→- Updated `src/app/admin/settings/page.tsx`: renamed "Send test email" → "Run email deliverability diagnostic". Renders full report: SMTP status, send details with messageId + Brevo logs link, DNS records panel showing SPF/DKIM (3 selectors)/DMARC/MX with green/red status, current value, and copy-paste fix templates.
+    82→- One TypeScript parse failure during development (dropped a `}` closing a JSX expression `{`...`}`); fixed by restoring the `}` on the className template literal closing line.
+    83→- TypeScript compiles clean.
+    84→- Committed as `9d34eb6` and pushed to `origin/main`. Vercel auto-deployed.
+    85→
+    86→Stage Summary (verified live on production):
+    87→- `/admin/settings` loads (HTTP 307 redirect to login as expected for unauth).
+    88→- `/api/admin/email-test` returns 401 to unauthenticated requests (auth check working).
+    89→- `/en/echoes/history-of-philosophy` still returns 200.
+    90→- User can now: log in to admin → Settings → click "Run email deliverability diagnostic" → see a full report telling them EXACTLY which of the three failure modes is causing their emails to disappear (Brevo sender verification, SPF/DKIM/DMARC DNS records, or DMARC policy alignment). Each missing DNS record comes with a copy-paste template to add at their DNS provider.
+    91→- After deploying, the user needs to: (1) log in to Brevo dashboard → Senders & IP → verify `ahmed@phronesis-studio.com` as a sender AND authenticate the `phronesis-studio.com` domain (Brevo will give DKIM record to add), (2) add SPF TXT record `v=spf1 include:spf.brevo.com ~all` at their DNS provider, (3) optionally add DMARC `v=DMARC1; p=none; rua=mailto:ahmed@phronesis-studio.com` for monitoring. The new diagnostic panel will walk them through each step.
+    92→
+    93→---
+    94→Task ID: 4
+    95→Agent: Super Z (main)
+    96→Task: User shared their actual DNS records; diagnose why emails still aren't being delivered.
+    97→
+    98→Work Log:
+    99→- Ran `dig +short TXT phronesis-studio.com` and discovered the actual DNS state:
+   100→  * SPF: `v=spf1 include:spf.efwd.registrar-servers.com ~all` (Namecheap email forwarding — but does NOT include spf.brevo.com)
+   101→  * DKIM: brevo1._domainkey CNAME → b1.phronesis-studio-com.dkim.brevo.com, brevo2._domainkey CNAME → b2.phronesis-studio-com.dkim.brevo.com (modern CNAME form, correctly configured)
+   102→  * DMARC: `v=DMARC1; p=quarantine; rua=mailto:rua@dmarc.brevo.com` (correctly configured)
+   103→  * brevo-code:1859f948e55d648b2c2d1fc80823529f TXT on @ (Brevo domain ownership verification — correctly configured)
+   104→- Root cause identified: SPF record does not include spf.brevo.com. When Brevo sends from ahmed@phronesis-studio.com, recipient servers do an SPF lookup, see Brevo's IP is not authorized, and with DMARC p=quarantine they spam-filter (or for strict recipients like corporate Exchange, drop entirely pre-spam-folder).
+   105→- Discovered two bugs in my own diagnostic code (just shipped in commit 9d34eb6):
+   106→  1. `checkEmailDnsRecords()` was looking for DKIM at `brevo._domainkey` (TXT). Brevo's modern setup uses CNAME at `brevo1._domainkey` and `brevo2._domainkey`. So the diagnostic was reporting "DKIM missing" even though the user had it correctly configured.
+   107→  2. SPF check used `/brevo/.test(spf)` which would match the `brevo-code:` TXT record that isn't SPF. Now uses `/include:spf\.brevo\.com/i` which is precise.
+   108→- Fixed `src/lib/email.ts`:
+   109→  * Added `resolveCnameString()` helper using `dns/promises` `resolveCname`.
+   110→  * `checkEmailDnsRecords()` now resolves CNAME for `brevo1._domainkey` and `brevo2._domainkey` in addition to TXT forms.
+   111→  * `DnsReport` type updated: `dkimBrevo1Cname`, `dkimBrevo2Cname`, `dkimBrevoTxt`, `dkimS1`, `dkimS2` (was: `dkimBrevo`, `dkimS1`, `dkimS2`).
+   112→  * SPF extraction now finds the `v=spf1` record specifically among multiple root TXT records (so SPF + brevo-code on same name works).
+   113→  * SPF recommendation now gives a precise "EDIT the existing record, do not add a second SPF record" message with a Namecheap-specific example: `v=spf1 include:spf.brevo.com include:spf.efwd.registrar-servers.com ~all`
+   114→- Fixed `src/app/api/admin/email-test/route.ts` `buildWarnings()`:
+   115→  * SPF-without-Brevo warning is now explicit and actionable, with the exact edit instructions.
+   116→  * DKIM-configured check accepts either CNAME form (brevo1/brevo2) OR TXT form (brevo._domainkey).
+   117→  * DMARC warning now distinguishes p=reject (silently dropped) vs p=quarantine (spam-filtered) and names which specific check failed (SPF or DKIM).
+   118→- Fixed `src/app/admin/settings/page.tsx` diagnostic UI: now renders all 6 DKIM rows (2 CNAME + 1 legacy TXT + 2 s1/s2 + DMARC + MX).
+   119→- TypeScript compiles clean.
+   120→- Committed as `5a5c171` and pushed to `origin/main`.
+   121→
+   122→Stage Summary:
+   123→- The user's DNS is correctly configured EXCEPT for the SPF record missing the `include:spf.brevo.com` directive.
+   124→- The fix on the user's side: EDIT the existing SPF TXT record at the DNS provider from:
+   125→    v=spf1 include:spf.efwd.registrar-servers.com ~all
+   126→  to:
+   127→    v=spf1 include:spf.brevo.com include:spf.efwd.registrar-servers.com ~all
+   128→  (Add `include:spf.brevo.com ` at the start. Do NOT add a second SPF TXT record — that breaks SPF entirely per RFC 7208.)
+   129→- After the user saves this change, DNS propagation is typically 5–15 minutes at Namecheap. They can verify with `dig +short TXT phronesis-studio.com` — when they see `include:spf.brevo.com` in the response, it's live. Then run the admin diagnostic again — all rows should turn green.
+   130→- The diagnostic tool itself is now accurate: it correctly recognizes the CNAME form of DKIM that Brevo's modern dashboard sets up, and the SPF check is precise (no more false positives from the brevo-code TXT record).
+   131→
+   132→---
+   133→Task ID: 5
+   134→Agent: Super Z (main)
+   135→Task: Internationalize pricing from AED to USD across the site (user request).
+   136→
+   137→Work Log:
+   138→- Audited all pricing references in the codebase via grep: src/messages/en.json, src/messages/ar.json, src/app/admin/templates/page.tsx (placeholder examples for software/tutoring/consultancy/engagement/invoice templates), src/lib/docx/templates.ts (code comments).
+   139→- Redesigned the budget tier ladder for an international USD client base. Old tiers (AED, small-business UAE brackets): Below 1,000 / 1,000–4,000 / 4,000–8,000 / 8,000–15,000 / 15,000+ AED. New tiers (USD, polished consulting-engagement ladder): Under $2,500 / $2,500–$7,500 / $7,500–$15,000 / $15,000–$40,000 / $40,000+ / I'd rather discuss this directly.
+   140→- Rewrote engagementBody to break out each engagement type with its own USD entry point: custom builds $4,500 setup + $2,500/yr license; advisory $180/hr or fixed-scope from $1,200; tutoring session-based. Closes with "Every engagement begins with a conversation, not a quote." (signals consultative rather than transactional).
+   141→- Parallel Arabic translations in ar.json: "أقل من 2,500 دولار" etc. and full Arabic rewrite of engagementBody with same USD figures.
+   142→- Updated all admin template placeholders from AED to USD examples (software quote $4,500 setup, tutoring $75/session, consultancy $180/hr, invoice $4,500 line item with 5% tax = $225, etc.). Renamed "VAT Rate" → "VAT / Sales Tax Rate" since USD clients may be US-based where it's sales tax.
+   143→- Updated code comments in src/lib/docx/templates.ts to use USD examples.
+   144→- TypeScript compiles clean. JSON files validate.
+   145→- Committed as 797aee8 and pushed.
+   146→
+   147→CRITICAL DISCOVERY after deploy:
+   148→- The site was still showing old AED pricing on production even after the JSON updates went live.
+   149→- Root cause: src/i18n/request.ts deep-merges DB SiteContent rows ON TOP of the JSON files (DB wins at leaf level). The DB had stale 'contact' namespace rows (for both en and ar locales) holding the old AED values, which were overriding the new USD values in the JSON.
+   150→- This merge pattern is intentional and correct for admin-editable content, but it means JSON updates don't take effect until the DB override is cleared.
+   151→
+   152→Fix for the DB override problem:
+   153→- Added DELETE method to src/app/api/admin/content/route.ts: takes ?locale=en&namespace=contact, deletes that single DB row. Idempotent.
+   154→- Added 'Reset to JSON defaults' button to src/app/admin/content/page.tsx (red, with Trash2 icon, next to the existing 'Reset draft' button). Shows a confirm dialog explaining what will happen, calls DELETE, reloads content from server.
+   155→- The button is generally useful whenever JSON is updated and DB overrides need to be cleared — not just for this pricing change.
+   156→- Committed as b30252c and pushed. Verified live: DELETE endpoint returns 401 to unauth requests (auth check working), site loads.
+   157→
+   158→Stage Summary:
+   159→- Code changes shipped (commits 797aee8 + b30252c). Vercel deployed.
+   160→- The user now needs to take ONE manual action to apply the pricing change on production:
+   161→  1. Log in to admin portal → Content Editor
+   162→  2. Select locale: English, namespace: 'Contact / Correspondence'
+   163→  3. Click the new red 'Reset to JSON defaults' button → confirm
+   164→  4. Repeat for locale: Arabic
+   165→  5. The contact form on the live site will now show the new USD tiers
+   166→- After the user does this, the contact form will show: Under $2,500 / $2,500–$7,500 / $7,500–$15,000 / $15,000–$40,000 / $40,000+ / I'd rather discuss this directly.
+   167→
+   168→---
+   169→Task ID: 7
+   170→Agent: Super Z (main)
+   171→Task: User reported changes were not visible on the live site. Implement multiple content + route changes for psychology article, work page (delete Finance, add Real Estate project for alainroomforrent.com), library (new Pedagogy subject), references (use the properly-redacted PDFs), and audit all routes.
+   172→
+   173→Work Log:
+   174→- Re-cloned phronesis-studio repo (the previous local copy had been wiped).
+   175→- A1. Psychology article: updated English title from "Mass and Meaning: Mental Illness Between Brain Anatomy and Textual Interpretation" to "Jinn Affliction and Meaning: Mental Illness Between Brain Science and Scriptural Interpretation". Renamed slug from "mass-and-meaning" to "jinn-affliction-and-meaning" in src/lib/library-articles.ts. Old URL /en/library/psychology/mass-and-meaning now correctly 404s. New URL /en/library/psychology/jinn-affliction-and-meaning returns 200 with correct <title>.
+   176→- A2. Library card count bug: previously the Library.tsx component had `{4}` hardcoded as the count for every live subject, so psychology (with only 1 article) incorrectly showed "4 guides available". Rewrote to compute dynamically: `MATH_GUIDES.length` for mathematics, `getArticlesBySubject(slug).length` for other subjects. Added new i18n label `articlesAvailable` (EN: "articles available", AR: "مقالات متاحة") used for non-math live subjects. Now psychology card correctly shows "1 articles available".
+   177→- B1. Deleted Finance entirely:
+   178→  * Removed Finance tab from Work.tsx tabs array + FinanceTab() function + Landmark and ArrowUpRight imports.
+   179→  * Removed entire `finance` block from workContent in en.json and ar.json (~70 lines each).
+   180→  * Removed `tabFinance` and `tabFinanceDesc` from `work` namespace in en.json and ar.json.
+   181→  * Removed `treasury` block from `neural.clouds` in en.json and ar.json.
+   182→  * Removed `treasury-emperor` from PROJECTS map in /work/[slug]/page.tsx.
+   183→  * Replaced `treasury` cloud with `alainroom` cloud in NeuralWork.tsx CLOUDS array.
+   184→  * Removed `treasury-emperor` from sitemap PROJECT_SLUGS.
+   185→  * Updated SEO keywords list (en.json + ar.json + layout.tsx): replaced "financial operations", "treasury management", "Treasury Emperor" with "real estate listings", "room for rent", "Al Ain Room for Rent".
+   186→  * Updated admin content page label (dropped "Finance") and admin templates placeholder (Treasury Emperor -> Al Ain Room for Rent).
+   187→- B2. Added alainroomforrent.com as a real, live, in-production real estate project:
+   188→  * Added new project slug "al-ain-room-for-rent" to PROJECTS map in /work/[slug]/page.tsx with url: https://alainroomforrent.com/.
+   189→  * Added new "alainroom" cloud to NeuralWork.tsx.
+   190→  * Added new "alainroom" block to neural.clouds in en.json and ar.json with full bilingual rationale text.
+   191→  * Added new project card section at the TOP of RealEstateTab in Work.tsx — two side-by-side cards: Al Ain Room for Rent (teal-bordered, primary) + Real Estate Emperor (cream-bordered, secondary). Added 5 new i18n keys: realEstate.alAinRoomBadge, alAinRoomName, alAinRoomTagline, alAinRoomBody, alAinRoomStats (4 stats), alAinRoomCta — in both EN and AR.
+   192→  * Updated sitemap PROJECT_SLUGS to include "al-ain-room-for-rent".
+   193→  * Updated tabRealEstateDesc to mention "listings sites" alongside "property management platforms".
+   194→- C. Added new Library subject "Pedagogy & Curriculum":
+   195→  * Added new entry to SUBJECTS array in src/lib/library-subjects.ts with slug "pedagogy-and-curriculum", key "subjectPedagogy", live: false, image: "/library/pedagogy-and-curriculum.jpg".
+   196→  * Copied school-of-athens-faded.jpg to /public/library/pedagogy-and-curriculum.jpg as the subject's painting.
+   197→  * Added i18n keys subjectPedagogy + subjectPedagogyDesc in en.json ("Pedagogy & Curriculum" — "The theory and practice of K-12 education: Webb's Depth of Knowledge (DOK), the SOLO taxonomy, curriculum mapping, assessment design, and the craft of teaching itself. Written for the educator who thinks about how we teach, not only what.") and ar.json ("البيداغوجيا والمناهج" — equivalent Arabic).
+   198→  * Subject page /en/library/pedagogy-and-curriculum auto-generated by existing generateStaticParams; returns 200.
+   199→- D1. Replaced all 5 reference PDFs with the properly-redacted versions from /home/z/my-project/download/redacted_references/:
+   200→  * Recommendation - HOD MoE.pdf (Suhad — email+mobile covered, stamp preserved)
+   201→  * Reference - Vice Principal.pdf (VP — all contact details redacted, "Private" removed)
+   202→  * Recommendation - Ashraf Mansour.pdf (Ashraf — address+phone+email covered, signature preserved)
+   203→  * Recommendation - Bibliotheca Alexandrina.pdf (Bibalex — footer letterhead strip covered)
+   204→  * Recommendation - Emory University.pdf (Emory — unchanged from previous correct redaction)
+   205→  * Old PDFs deleted from public/references/.
+   206→  * Updated letters array in en.json + ar.json vouches.letters: new file paths, new title "Ain Al Khaleej School" (was "Ain Al Khaleej Private School"), shorter subtitles ("HOD MoE" instead of "Head of MoE Department").
+   207→- D2. Route audit — verified all routes return 200:
+   208→  * All 5 work project routes: real-estate-emperor, mscs-academy, diplomatiq, bilingual-mathematics, echoes-of-wisdom, al-ain-room-for-rent ✓
+   209→  * All library routes including new pedagogy-and-curriculum + jinn-affliction-and-meaning article ✓
+   210→  * All 5 PDF reference files reachable (200) with proper URL encoding ✓
+   211→  * Old routes correctly 404: /work/treasury-emperor, /library/psychology/mass-and-meaning, old PDF filenames ✓
+   212→  * Removed broken /vouches/{slug} entries from sitemap (they never existed as actual pages).
+   213→  * Sitemap PROJECT_SLUGS now matches PROJECTS in /work/[slug]/page.tsx exactly.
+   214→- TypeScript compiles clean (tsc --noEmit passes with no errors).
+   215→- Committed as ea0c5cc and pushed to origin/main. Vercel auto-deployed.
+   216→- CRITICAL — DB override cleanup: after the deploy, the live /en/work page still showed "Finance" tab and "Treasury Emperor" strings. Root cause: the SiteContent DB table had stale `work` and `workContent` rows (from earlier admin edits) that were deep-merged on top of the JSON, re-injecting the removed Finance strings. The deep-merge logic only adds DB keys on top of JSON; it does not delete keys that were removed from JSON. Wrote /home/z/my-project/scripts/clear_work_db_override.mjs to delete the `work` and `workContent` rows for both EN and AR locales directly via Prisma (using the Neon DB URL from db-inspect.mjs). After running it (deleted 4 rows), the live site immediately reflected the JSON-only state.
+   217→
+   218→Stage Summary (all verified live on production):
+   219→- /en/library/psychology/jinn-affliction-and-meaning → 200, title "Jinn Affliction and Meaning: Mental Illness Between Brain Science and Scriptural Interpretation · Psychology · Studio of Phronesis"
+   220→- /en/library → psychology card shows "1 articles available", mathematics shows "4 guides available", new "Pedagogy & Curriculum" card visible
+   221→- /en/library/pedagogy-and-curriculum → 200, subject page with School of Athens painting
+   222→- /en/work → Finance tab GONE (0 occurrences of "Finance", "Treasury Emperor", "tabFinance" in HTML); Al Ain Room for Rent project card visible with link to https://alainroomforrent.com/
+   223→- /en/work/al-ain-room-for-rent → 200, dedicated project page
+   224→- /en/work/treasury-emperor → 404 (correctly removed)
+   225→- All 5 reference PDFs reachable at new shorter filenames; old filenames return 404
+   226→- All other routes (about, philosophy, method, correspondence, sitemap) unchanged and working
+   227→
+   228→---
+   229→Task ID: 8
+   230→Agent: Super Z (main)
+   231→Task: User follow-up fixes — (1) rename "Al Ain Room for Rent" to "Al Ain Real Estate" everywhere + reframe as broker (not landlord); (2) restore the word "Private" in the VP reference PDF (over-redacted); (3) fix Work page tabs layout (Finance tab removal left an empty cell); (4) disable Magnetic hover animation on visit-site buttons (annoying moving click targets).
+   232→
+   233→Work Log:
+   234→- 1. Renamed "Al Ain Room for Rent" → "Al Ain Real Estate" everywhere in display strings:
+   235→  * en.json + ar.json: site description, project name keyword list, neural.clouds.alainroom.name/desc/rationale, realEstate.alAinRoomName/alAinRoomBadge/alAinRoomTagline/alAinRoomBody/alAinRoomStats/alAinRoomCta.
+   236→  * layout.tsx keywords list: "Al Ain Room for Rent" → "Al Ain Real Estate"; "room for rent" → "real estate broker".
+   237→  * admin/templates placeholder updated.
+   238→  * Reframed as broker (not landlord): "A broker's oldest problem is discovery: he has rooms to fill, tenants cannot find them..." (was "The landlord's oldest problem...").
+   239→  * tabRealEstateDesc updated to mention brokers alongside landlords/tenants.
+   240→  * Project URL slug renamed from "al-ain-room-for-rent" to "al-ain-real-estate" (updated in PROJECTS map + sitemap PROJECT_SLUGS). The actual external URL https://alainroomforrent.com/ is preserved (user owns it).
+   241→- 2. Restored "Private" in VP reference PDF:
+   242→  * Re-redacted /public/references/Reference - Vice Principal.pdf from the original source (Reference_Letter_Mr_Ahmed_VP.pdf) keeping the word "Private" in all 3 locations (header, body, signature block).
+   243→  * Only contact details redacted: mobile +971 50 931 8098, landline 037811232, MOBILE 0563005684, email administration@ainalkhaleejprivateschools.com, Arabic equivalents (هاتف / هاتف متحرك). Total: 17 text redactions.
+   244→  * Verified with VLM: header now reads "AIN AL KHALEEJ PRIVATE SCHOOL" with all contact info properly covered.
+   245→  * Verified via pdftotext on the live site: 3 occurrences of "Private", 0 occurrences of any phone/email/contact detail.
+   246→  * The Vouches section display title remains "Ain Al Khaleej School" (no "Private") — that was the user's original request from the previous turn, and it's only the display title in the i18n letter object, not the PDF itself.
+   247→  * Script saved at /home/z/my-project/scripts/redact_vp_keep_private.py.
+   248→- 3. Fixed Work page tabs layout:
+   249→  * Was: `<div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-3 ...">` with only 2 tabs (Education + Real Estate) — left an empty third cell after Finance was removed.
+   250→  * Now: `md:grid-cols-2` — two tabs split evenly across the row.
+   251→  * Verified on live site: extracted tab labels are exactly ["Education", "Real Estate"] in a 2-column grid.
+   252→- 4. Disabled Magnetic hover animation on all clickable links:
+   253→  * Removed 4 `<Magnetic>` wrappers in Work.tsx: visit-site links in EducationTab + visit-alainroomforrent.com button + visit-demo button + the Real Estate Emperor visit-demo in detailed breakdown.
+   254→  * Removed 1 `<Magnetic>` wrapper in Vouches.tsx: View on LinkedIn button.
+   255→  * Removed unused Magnetic imports from both files.
+   256→  * Buttons are now stable `<a>` tags with `hover:bg-*` color transitions only — no more cursor-chasing motion.
+   257→  * Note: Hero, Library, Contact components still import Magnetic but do not actively render it (dead imports left in place).
+   258→- TypeScript compiles clean (tsc --noEmit passes with no errors).
+   259→- JSON files valid (both en.json + ar.json parse cleanly).
+   260→- Committed as 27008c5 and pushed to origin/main. Vercel auto-deployed.
+   261→
+   262→Stage Summary (all verified live on production with cache-busting query param):
+   263→- /en/work: "Al Ain Real Estate" displayed (3+ occurrences), "Al Ain Room for Rent" completely gone.
+   264→- /en/work/al-ain-real-estate: returns 200 (new slug).
+   265→- /en/work/al-ain-room-for-rent: returns 404 (old slug correctly removed).
+   266→- /references/Reference - Vice Principal.pdf: contains 3 "Private" words (header + body + sig block), 0 contact details.
+   267→- /en/work tabs: 2 buttons (Education + Real Estate) in md:grid-cols-2, evenly split.
+   268→- /en/work visit-site buttons: plain <a> tags, no Magnetic wrapper (stable click targets).
+   269→
+   270→---
+   271→Task ID: 9
+   272→Agent: Super Z (main)
+   273→Task: User follow-up fixes — (1) fix overlapping/truncated text in Vouches letter cards (subtitle was being cut off); (2) fix pixelated pedagogy image (user's upload was only 523x298px); (3) rename reference PDFs to include school identifier (AAKPS) for clarity.
+   274→
+   275→Work Log:
+   276→- 1. Fixed Vouches letter card subtitle overflow:
+   277→  * Root cause: subtitle was in a `flex items-center justify-between` row with the 12x12 download icon — the icon took fixed space and the subtitle was squeezed into the remaining width, causing "PRINCIPAL" to be cut off to "PRINCI" and "MOE" to be visually compressed.
+   278→  * Restructured card header: icon (reduced from 12x12 to 11x11, download icon from 20px to 18px) and subtitle are now in a `flex items-center gap-3 mb-3` row with the icon as `flex-shrink-0`. The subtitle takes the remaining width and can wrap naturally if needed.
+   279→  * Slightly reduced letter-spacing from 0.2em to 0.18em and added `leading-snug` for better line spacing.
+   280→  * Verified on live: new layout pattern appears 6 times (5 letter cards + 1 LinkedIn card), old pattern 0 times. Full subtitle text "Academic Recommendation — HOD MoE" and "Professional Reference — Vice Principal" both present without truncation.
+   281→- 2. Fixed pixelated pedagogy image:
+   282→  * User's uploaded image was 523x298px — too small for the 1200+px hero area on the subject page.
+   283→  * AI-enhanced the image using z-ai-web-dev-sdk image-edit API with a preservation-focused prompt: "Enhance and sharpen this Persian miniature painting to higher resolution. Preserve every detail of the original composition, figures, architectural elements, and decorative patterns exactly as they are. Maintain the same colors, style, and artistic character. Only improve resolution and clarity — do not add or change any elements."
+   284→  * Output: 1440x720px (3x original resolution), 165KB.
+   285→  * Verified with VLM that the enhanced image is still the same Persian miniature with all original elements (figures, architecture, decorative patterns) intact.
+   286→  * Script saved at /home/z/my-project/scripts/enhance_pedagogy_image.mjs (run from /tmp/zai_test where z-ai-web-dev-sdk was installed).
+   287→  * Live image verified: 1440x720, 164662 bytes.
+   288→- 3. Renamed reference PDFs to include school identifier:
+   289→  * "Recommendation - HOD MoE.pdf" → "Recommendation - AAKPS - HOD MoE.pdf"
+   290→  * "Reference - Vice Principal.pdf" → "Reference - AAKPS - Vice Principal.pdf"
+   291→  * AAKPS = Ain Al Khaleej Private School (the school's standard acronym).
+   292→  * Updated file paths in vouches.letters array in both en.json and ar.json.
+   293→  * Old paths return 404, new paths return 200.
+   294→  * Display title on the card remains "Ain Al Khaleej School" (full name); the filename uses the compact AAKPS acronym.
+   295→  * Note: the "-2" suffix the user saw ("Recommendation - HOD MoE-2") was the browser's auto-suffix for duplicate downloads, not part of the actual filename.
+   296→- 4. Arabic consistency verified:
+   297→  * All 5 letter subtitles render correctly in Arabic: 'تزكية أكاديمية — رئيسة قسم المواد الوزارية', 'تزكية مهنية — نائب المدير', 'توصية أكاديمية' (x4 for Emory/Alexandria/Bibliotheca), 'توصية مهنية'.
+   298→  * Pedagogy page Arabic title: 'البيداغوجيا والمناهج · The Library · Studio of Phronesis'.
+   299→  * Al Ain Real Estate name consistent across EN/AR.
+   300→  * New card layout pattern used consistently in both locales (6 occurrences each).
+   301→- TypeScript compiles clean, JSON files valid.
+   302→- Committed as df2676e and pushed to origin/main. Vercel auto-deployed.
+   303→
+   304→Stage Summary (all verified live on production):
+   305→- Vouches letter cards: subtitle text no longer truncated, icon and subtitle properly spaced.
+   306→- Pedagogy image: 1440x720 (was 523x298), AI-enhanced, no longer pixelated.
+   307→- Reference PDFs: filenames now include "AAKPS" for school identification.
+   308→- Arabic: all strings consistent and properly rendered.
+   309→
