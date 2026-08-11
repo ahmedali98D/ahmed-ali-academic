@@ -1,0 +1,688 @@
+     1→'use client'
+     2→
+     3→import { useEffect, useState, useRef } from 'react'
+     4→import { motion, useInView, AnimatePresence } from 'framer-motion'
+     5→import { QRCodeSVG } from 'qrcode.react'
+     6→import StarField from '@/components/StarField'
+     7→import AmbientMusic from '@/components/AmbientMusic'
+     8→import LanguageSwitcher from '@/components/LanguageSwitcher'
+     9→import { translations, RTL_LANGS, type LangCode } from '@/i18n/translations'
+    10→
+    11→// ─── Animation Variants ──────────────────────────────────
+    12→const fadeInUp = {
+    13→  hidden: { opacity: 0, y: 40 },
+    14→  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+    15→}
+    16→
+    17→const stagger = {
+    18→  visible: { transition: { staggerChildren: 0.1 } },
+    19→}
+    20→
+    21→const scaleIn = {
+    22→  hidden: { opacity: 0, scale: 0.8 },
+    23→  visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: 'easeOut' } },
+    24→}
+    25→
+    26→// ─── Section Wrapper ─────────────────────────────────────
+    27→function AnimatedSection({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+    28→  const ref = useRef(null)
+    29→  const isInView = useInView(ref, { once: true, margin: '-50px' })
+    30→
+    31→  return (
+    32→    <motion.div
+    33→      ref={ref}
+    34→      initial="hidden"
+    35→      animate={isInView ? 'visible' : 'hidden'}
+    36→      variants={stagger}
+    37→      className={className}
+    38→    >
+    39→      {children}
+    40→    </motion.div>
+    41→  )
+    42→}
+    43→
+    44→// ─── QR Code Section ─────────────────────────────────────
+    45→function QRCodeSection({ t }: { t: typeof translations.en }) {
+    46→  const [showQR, setShowQR] = useState(false)
+    47→  const currentUrl = 'https://mr-ahmed-ali.vercel.app'
+    48→
+    49→  return (
+    50→    <motion.div variants={fadeInUp} className="flex flex-col items-center gap-4">
+    51→      <button
+    52→        onClick={() => setShowQR(!showQR)}
+    53→        className="glass-card-hover rounded-2xl px-6 py-3 flex items-center gap-3 cursor-pointer group"
+    54→      >
+    55→        <svg className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+    56→          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+    57→          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+    58→        </svg>
+    59→        <span className="text-white/80 group-hover:text-white transition-colors text-sm font-medium">
+    60→          {showQR ? t.hideQR : t.showQR}
+    61→        </span>
+    62→      </button>
+    63→
+    64→      <AnimatePresence>
+    65→        {showQR && (
+    66→          <motion.div
+    67→            initial={{ opacity: 0, scale: 0.8, height: 0 }}
+    68→            animate={{ opacity: 1, scale: 1, height: 'auto' }}
+    69→            exit={{ opacity: 0, scale: 0.8, height: 0 }}
+    70→            transition={{ duration: 0.4, ease: 'easeOut' }}
+    71→            className="flex flex-col items-center gap-3"
+    72→          >
+    73→            <div className="glass-card rounded-2xl p-6 golden-border">
+    74→              <QRCodeSVG
+    75→                value={currentUrl}
+    76→                size={180}
+    77→                bgColor="transparent"
+    78→                fgColor="#d4af37"
+    79→                level="H"
+    80→                includeMargin={false}
+    81→              />
+    82→            </div>
+    83→            <p className="text-xs text-white/40 text-center">{t.scanToOpen}</p>
+    84→          </motion.div>
+    85→        )}
+    86→      </AnimatePresence>
+    87→    </motion.div>
+    88→  )
+    89→}
+    90→
+    91→// ─── Typing Effect Quote ─────────────────────────────────
+    92→function TypingQuote({ text }: { text: string }) {
+    93→  const [displayed, setDisplayed] = useState('')
+    94→  const [started, setStarted] = useState(false)
+    95→
+    96→  useEffect(() => {
+    97→    const timer = setTimeout(() => setStarted(true), 2000)
+    98→    return () => clearTimeout(timer)
+    99→  }, [])
+   100→
+   101→  // Reset the typing animation whenever the text (language) changes
+   102→  useEffect(() => {
+   103→    setDisplayed('')
+   104→  }, [text])
+   105→
+   106→  useEffect(() => {
+   107→    if (!started) return
+   108→    if (displayed.length < text.length) {
+   109→      const timer = setTimeout(() => {
+   110→        setDisplayed(text.slice(0, displayed.length + 1))
+   111→      }, 50)
+   112→      return () => clearTimeout(timer)
+   113→    }
+   114→  }, [displayed, started, text])
+   115→
+   116→  return (
+   117→    <span>
+   118→      {displayed}
+   119→      {displayed.length < text.length && started && (
+   120→        <span className="animate-typing-cursor text-amber-400">|</span>
+   121→      )}
+   122→    </span>
+   123→  )
+   124→}
+   125→
+   126→// ─── Particle Ring around profile ────────────────────────
+   127→function OrbitRing() {
+   128→  return (
+   129→    <div className="absolute inset-0 pointer-events-none">
+   130→      <div className="absolute inset-[-12px] rounded-full border border-amber-500/10 animate-rotate-slow" />
+   131→      <div className="absolute inset-[-24px] rounded-full border border-amber-500/5" style={{ animation: 'rotate-slow 30s linear infinite reverse' }} />
+   132→      <div className="absolute inset-[-12px] animate-rotate-slow">
+   133→        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-400/60" />
+   134→      </div>
+   135→      <div className="absolute inset-[-24px]" style={{ animation: 'rotate-slow 30s linear infinite reverse' }}>
+   136→        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-1.5 rounded-full bg-amber-300/40" />
+   137→      </div>
+   138→    </div>
+   139→  )
+   140→}
+   141→
+   142→// ─── Social Links Data ───────────────────────────────────
+   143→const SOCIALS = [
+   144→  {
+   145→    name: 'LinkedIn',
+   146→    handle: 'Ahmed Mahmoud Saeed Ahmed Ali',
+   147→    url: 'https://www.linkedin.com/in/ahmedmahmoudsaeedahmedali',
+   148→    icon: (
+   149→      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+   150→        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+   151→      </svg>
+   152→    ),
+   153→    color: 'from-blue-600 to-blue-400',
+   154→  },
+   155→  {
+   156→    name: 'WhatsApp',
+   157→    handle: '+971 56 166 9766',
+   158→    url: 'https://wa.me/971561669766',
+   159→    icon: (
+   160→      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+   161→        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+   162→      </svg>
+   163→    ),
+   164→    color: 'from-green-500 to-green-400',
+   165→  },
+   166→  {
+   167→    name: 'Email',
+   168→    handle: 'ahmed.ali.academic@gmail.com',
+   169→    url: 'mailto:ahmed.ali.academic@gmail.com',
+   170→    icon: (
+   171→      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+   172→        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+   173→      </svg>
+   174→    ),
+   175→    color: 'from-amber-500 to-yellow-400',
+   176→  },
+   177→  {
+   178→    name: 'Phone',
+   179→    handle: '+971 56 166 9766',
+   180→    url: 'tel:+971561669766',
+   181→    icon: (
+   182→      <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+   183→        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+   184→      </svg>
+   185→    ),
+   186→    color: 'from-emerald-500 to-teal-400',
+   187→  },
+   188→]
+   189→
+   190→// ─── Section Header Component ────────────────────────────
+   191→function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }) {
+   192→  return (
+   193→    <div className="flex items-center gap-3 mb-4">
+   194→      <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+   195→        {icon}
+   196→      </div>
+   197→      <h3 className="text-xl font-semibold golden-text">{title}</h3>
+   198→    </div>
+   199→  )
+   200→}
+   201→
+   202→// ─── Main Page ───────────────────────────────────────────
+   203→export default function Home() {
+   204→  const [imgLoaded, setImgLoaded] = useState(false)
+   205→  const [lang, setLang] = useState<LangCode>('en')
+   206→
+   207→  useEffect(() => {
+   208→    const saved = localStorage.getItem('lang') as LangCode | null
+   209→    if (saved && translations[saved]) {
+   210→      setLang(saved)
+   211→    }
+   212→  }, [])
+   213→
+   214→  const handleSetLang = (code: LangCode) => {
+   215→    setLang(code)
+   216→    localStorage.setItem('lang', code)
+   217→  }
+   218→
+   219→  const t = translations[lang]
+   220→  const isRTL = RTL_LANGS.includes(lang)
+   221→
+   222→  const stats = [
+   223→    { label: t.statYearsLabel, value: '8+', sub: t.statYearsSub },
+   224→    { label: t.statGradeLabel, value: '1–12', sub: t.statGradeSub },
+   225→    { label: t.statIeltsLabel, value: '7', sub: t.statIeltsSub },
+   226→    { label: t.statStudioLabel, value: 'studio', sub: t.statStudioSub, isStudio: true },
+   227→  ]
+   228→
+   229→  const education = [
+   230→    { label: t.edu1Label, detail: t.edu1Detail },
+   231→    { label: t.edu2Label, detail: t.edu2Detail },
+   232→  ]
+   233→
+   234→  const teaching = [
+   235→    {
+   236→      title: t.teach1Title,
+   237→      period: t.teach1Period,
+   238→      org: t.teach1Org,
+   239→      desc: t.teach1Desc,
+   240→      bullets: [] as string[],
+   241→    },
+   242→    {
+   243→      title: t.teach2Title,
+   244→      period: t.teach2Period,
+   245→      org: t.teach2Org,
+   246→      desc: t.teach2Desc,
+   247→      bullets: t.teach2Bullets ? t.teach2Bullets.split('\n') : [],
+   248→    },
+   249→    {
+   250→      title: t.teach3Title,
+   251→      period: t.teach3Period,
+   252→      org: t.teach3Org,
+   253→      desc: t.teach3Desc,
+   254→      bullets: [] as string[],
+   255→    },
+   256→  ]
+   257→
+   258→  const certifications = [
+   259→    { label: t.cert1Label, detail: t.cert1Detail },
+   260→    { label: t.cert2Label, detail: t.cert2Detail },
+   261→    { label: t.cert3Label, detail: t.cert3Detail },
+   262→    { label: t.cert4Label, detail: t.cert4Detail },
+   263→    { label: t.cert5Label, detail: t.cert5Detail },
+   264→    { label: t.cert6Label, detail: t.cert6Detail },
+   265→    { label: t.cert7Label, detail: t.cert7Detail },
+   266→    { label: t.cert8Label, detail: t.cert8Detail },
+   267→    { label: t.cert9Label, detail: t.cert9Detail },
+   268→  ]
+   269→
+   270→  const skills = [
+   271→    t.skill1, t.skill2, t.skill3, t.skill4, t.skill5,
+   272→    t.skill6, t.skill7, t.skill8, t.skill9,
+   273→  ]
+   274→
+   275→  const leadership = [
+   276→    { title: t.lead1Title, period: t.lead1Period, org: t.lead1Org, desc: t.lead1Desc },
+   277→    { title: t.lead2Title, period: t.lead2Period, org: t.lead2Org, desc: t.lead2Desc },
+   278→    { title: t.lead3Title, period: t.lead3Period, org: t.lead3Org, desc: t.lead3Desc },
+   279→    { title: t.lead4Title, period: t.lead4Period, org: t.lead4Org, desc: t.lead4Desc },
+   280→  ]
+   281→
+   282→  const spokenLanguages = [
+   283→    { name: t.langArabic, level: t.langArabicLevel },
+   284→    { name: t.langEnglish, level: t.langEnglishLevel },
+   285→    { name: t.langUrdu, level: t.langUrduLevel },
+   286→    { name: t.langSpanish, level: t.langSpanishLevel },
+   287→  ]
+   288→
+   289→  const affiliations = [
+   290→    { name: t.aff1Name, period: t.aff1Period },
+   291→  ]
+   292→
+   293→  const additional = [
+   294→    { label: t.add1Label, detail: t.add1Detail },
+   295→    { label: t.add2Label, detail: t.add2Detail },
+   296→  ]
+   297→
+   298→  return (
+   299→    <div className="relative min-h-screen overflow-x-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+   300→      {/* Star Field Background */}
+   301→      <StarField />
+   302→
+   303→      {/* Ambient Music Toggle */}
+   304→      <AmbientMusic />
+   305→
+   306→      {/* Language Switcher */}
+   307→      <LanguageSwitcher lang={lang} setLang={handleSetLang} />
+   308→
+   309→      {/* Main Content */}
+   310→      <main className="relative z-10 flex flex-col items-center px-4 py-8 sm:py-12 max-w-2xl mx-auto gap-10">
+   311→
+   312→        {/* ── Hero Section ── */}
+   313→        <motion.section
+   314→          initial={{ opacity: 0, y: 60 }}
+   315→          animate={{ opacity: 1, y: 0 }}
+   316→          transition={{ duration: 1, ease: 'easeOut' }}
+   317→          className="flex flex-col items-center gap-6 text-center mt-4"
+   318→        >
+   319→          {/* Profile Photo */}
+   320→          <div className="relative">
+   321→            <OrbitRing />
+   322→            <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden animate-pulse-glow golden-border bg-gradient-to-br from-amber-900/40 to-amber-800/20">
+   323→              <picture>
+   324→                <source srcSet="/profile.webp" type="image/webp" />
+   325→                <img
+   326→                  src="/profile.jpg"
+   327→                  alt="Ahmed Ali"
+   328→                  fetchPriority="high"
+   329→                  className={`w-full h-full object-cover transition-opacity duration-500 ${imgLoaded ? 'opacity-100' : 'opacity-80'}`}
+   330→                  onLoad={() => setImgLoaded(true)}
+   331→                  onError={(e) => { setImgLoaded(true); (e.target as HTMLImageElement).style.display = 'none'; }}
+   332→                />
+   333→              </picture>
+   334→              <div className="absolute inset-0 bg-gradient-to-t from-amber-600/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+   335→            </div>
+   336→          </div>
+   337→
+   338→          {/* Name & Title */}
+   339→          <div className="space-y-3">
+   340→            <h1 className="text-3xl sm:text-4xl font-bold golden-text tracking-tight">
+   341→              Ahmed Ali
+   342→            </h1>
+   343→            <h2 className="text-base sm:text-lg text-white/80 font-light tracking-wide">
+   344→              {t.title}
+   345→            </h2>
+   346→
+   347→            {/* Location */}
+   348→            <div className="flex items-center justify-center gap-1.5 text-white/50 text-sm">
+   349→              <svg className="w-4 h-4 text-amber-400/70" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+   350→                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+   351→                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+   352→              </svg>
+   353→              <span>{t.location}</span>
+   354→            </div>
+   355→          </div>
+   356→
+   357→          {/* Quote with typing effect */}
+   358→          <div className="glass-card rounded-xl px-6 py-3 max-w-md">
+   359→            <p className="text-amber-300/90 text-sm sm:text-base font-light italic tracking-wide">
+   360→              <TypingQuote text={t.quote} />
+   361→            </p>
+   362→          </div>
+   363→        </motion.section>
+   364→
+   365→        {/* ── Stats Section ── */}
+   366→        <AnimatedSection className="w-full">
+   367→          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+   368→            {stats.map((stat) => {
+   369→              const content = (
+   370→                <>
+   371→                  <div className="flex items-center justify-center mb-1">
+   372→                    {stat.isStudio ? (
+   373→                      // eslint-disable-next-line @next/next/no-img-element
+   374→                      <img src="/phronesis-logo.png" alt="Studio of Phronesis" className="w-9 h-9 object-contain group-hover:scale-110 transition-transform duration-300" />
+   375→                    ) : (
+   376→                      <div className="text-2xl sm:text-3xl font-bold golden-text">{stat.value}</div>
+   377→                    )}
+   378→                  </div>
+   379→                  <div className="text-xs sm:text-sm text-white/70 font-medium">{stat.label}</div>
+   380→                  <div className="text-[10px] text-white/40 mt-0.5">{stat.sub}</div>
+   381→                </>
+   382→              )
+   383→              return stat.isStudio ? (
+   384→                <motion.a
+   385→                  key={stat.label}
+   386→                  href="https://phronesis-studio.com"
+   387→                  target="_blank"
+   388→                  rel="noopener noreferrer"
+   389→                  variants={scaleIn}
+   390→                  className="glass-card rounded-xl p-4 text-center group hover:border-amber-500/30 transition-all duration-300 cursor-pointer"
+   391→                >
+   392→                  {content}
+   393→                </motion.a>
+   394→              ) : (
+   395→                <motion.div
+   396→                  key={stat.label}
+   397→                  variants={scaleIn}
+   398→                  className="glass-card rounded-xl p-4 text-center group hover:border-amber-500/30 transition-all duration-300"
+   399→                >
+   400→                  {content}
+   401→                </motion.div>
+   402→              )
+   403→            })}
+   404→          </div>
+   405→        </AnimatedSection>
+   406→
+   407→        {/* ── About Section ── */}
+   408→        <AnimatedSection className="w-full">
+   409→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8 space-y-4">
+   410→            <SectionHeader
+   411→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" /></svg>}
+   412→              title={t.aboutMe}
+   413→            />
+   414→            <p className="text-white/75 text-sm leading-relaxed text-justify">{t.about1}</p>
+   415→            <p className="text-white/75 text-sm leading-relaxed text-justify">{t.about2}</p>
+   416→            <p className="text-white/75 text-sm leading-relaxed text-justify">{t.about3}</p>
+   417→            <p className="text-white/75 text-sm leading-relaxed text-justify">{t.about4}</p>
+   418→            <p className="text-white/75 text-sm leading-relaxed text-justify">{t.about5}</p>
+   419→          </motion.div>
+   420→        </AnimatedSection>
+   421→
+   422→        {/* ── Teaching Experience Section ── */}
+   423→        <AnimatedSection className="w-full">
+   424→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   425→            <SectionHeader
+   426→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>}
+   427→              title={t.teachingExperience}
+   428→            />
+   429→            <div className="grid gap-4">
+   430→              {teaching.map((item) => (
+   431→                <div key={item.title} className={`border-l-2 border-amber-500/30 pl-4 py-1 ${isRTL ? 'border-l-0 border-r-2 pr-4 pl-0' : ''}`}>
+   432→                  <div className="text-white/90 text-sm font-semibold">{item.title}</div>
+   433→                  <div className="flex flex-wrap items-center gap-2 mt-0.5 mb-1.5">
+   434→                    <span className="text-amber-400/70 text-xs font-medium">{item.period}</span>
+   435→                    <span className="text-white/30">·</span>
+   436→                    <span className="text-white/50 text-xs">{item.org}</span>
+   437→                  </div>
+   438→                  <p className="text-white/60 text-xs leading-relaxed text-justify mb-2">{item.desc}</p>
+   439→                  {item.bullets.length > 0 && (
+   440→                    <div className="grid gap-1.5 mt-2">
+   441→                      {item.bullets.map((b, i) => (
+   442→                        <div key={i} className="flex items-start gap-2">
+   443→                          <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 shrink-0 mt-1.5" />
+   444→                          <span className="text-white/60 text-xs leading-relaxed">{b}</span>
+   445→                        </div>
+   446→                      ))}
+   447→                    </div>
+   448→                  )}
+   449→                </div>
+   450→              ))}
+   451→            </div>
+   452→          </motion.div>
+   453→        </AnimatedSection>
+   454→
+   455→        {/* ── Education Section ── */}
+   456→        <AnimatedSection className="w-full">
+   457→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   458→            <SectionHeader
+   459→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" /></svg>}
+   460→              title={t.education}
+   461→            />
+   462→            <div className="grid gap-3">
+   463→              {education.map((edu) => (
+   464→                <div key={edu.label} className="flex items-start gap-3 py-2 border-b border-white/5 last:border-0">
+   465→                  <div className="w-2 h-2 rounded-full bg-amber-400/80 shrink-0 mt-1.5" />
+   466→                  <div>
+   467→                    <div className="text-white/90 text-sm font-semibold">{edu.label}</div>
+   468→                    <div className="text-white/50 text-xs mt-0.5">{edu.detail}</div>
+   469→                  </div>
+   470→                </div>
+   471→              ))}
+   472→            </div>
+   473→          </motion.div>
+   474→        </AnimatedSection>
+   475→
+   476→        {/* ── Certifications Section ── */}
+   477→        <AnimatedSection className="w-full">
+   478→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   479→            <SectionHeader
+   480→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>}
+   481→              title={t.certifications}
+   482→            />
+   483→            <div className="grid gap-1.5">
+   484→              {certifications.map((cert) => (
+   485→                <div key={cert.label} className="flex items-center gap-3 py-1.5 border-b border-white/5 last:border-0">
+   486→                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 shrink-0" />
+   487→                  <div className="flex-1 min-w-0">
+   488→                    <span className="text-white/80 text-sm">{cert.label}</span>
+   489→                    <span className="text-white/40 text-xs ml-2">— {cert.detail}</span>
+   490→                  </div>
+   491→                </div>
+   492→              ))}
+   493→            </div>
+   494→          </motion.div>
+   495→        </AnimatedSection>
+   496→
+   497→        {/* ── Skills Section ── */}
+   498→        <AnimatedSection className="w-full">
+   499→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   500→            <SectionHeader
+   501→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>}
+   502→              title={t.coreCompetencies}
+   503→            />
+   504→            <div className="flex flex-wrap gap-2">
+   505→              {skills.map((skill) => (
+   506→                <span
+   507→                  key={skill}
+   508→                  className="px-3 py-1.5 rounded-full text-xs font-medium border border-amber-500/20 text-amber-300/80 bg-amber-500/5 hover:bg-amber-500/15 hover:border-amber-500/40 transition-all duration-300"
+   509→                >
+   510→                  {skill}
+   511→                </span>
+   512→              ))}
+   513→            </div>
+   514→          </motion.div>
+   515→        </AnimatedSection>
+   516→
+   517→        {/* ── Leadership Initiatives Section ── */}
+   518→        <AnimatedSection className="w-full">
+   519→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   520→            <SectionHeader
+   521→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605" /></svg>}
+   522→              title={t.leadershipInitiatives}
+   523→            />
+   524→            <div className="grid gap-4">
+   525→              {leadership.map((item) => (
+   526→                <div key={item.title} className={`border-l-2 border-amber-500/30 pl-4 py-1 ${isRTL ? 'border-l-0 border-r-2 pr-4 pl-0' : ''}`}>
+   527→                  <div className="text-white/90 text-sm font-semibold">{item.title}</div>
+   528→                  <div className="flex items-center gap-2 mt-0.5 mb-1.5">
+   529→                    <span className="text-amber-400/70 text-xs font-medium">{item.period}</span>
+   530→                    <span className="text-white/30">·</span>
+   531→                    <span className="text-white/50 text-xs">{item.org}</span>
+   532→                  </div>
+   533→                  <p className="text-white/60 text-xs leading-relaxed text-justify">{item.desc}</p>
+   534→                </div>
+   535→              ))}
+   536→            </div>
+   537→          </motion.div>
+   538→        </AnimatedSection>
+   539→
+   540→        {/* ── Languages Section ── */}
+   541→        <AnimatedSection className="w-full">
+   542→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8">
+   543→            <SectionHeader
+   544→              icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802" /></svg>}
+   545→              title={t.languages}
+   546→            />
+   547→            <div className="flex flex-wrap gap-3">
+   548→              {spokenLanguages.map((lang) => (
+   549→                <div key={lang.name} className="flex items-center gap-2 glass-card rounded-lg px-4 py-2">
+   550→                  <span className="text-white/90 text-sm font-medium">{lang.name}</span>
+   551→                  <span className="text-amber-400/70 text-xs">—</span>
+   552→                  <span className="text-white/60 text-xs">{lang.level}</span>
+   553→                </div>
+   554→              ))}
+   555→            </div>
+   556→          </motion.div>
+   557→        </AnimatedSection>
+   558→
+   559→        {/* ── Affiliations & Additional Info Section ── */}
+   560→        <AnimatedSection className="w-full">
+   561→          <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 sm:p-8 space-y-5">
+   562→            {/* Affiliations */}
+   563→            <div>
+   564→              <SectionHeader
+   565→                icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>}
+   566→                title={t.affiliations}
+   567→              />
+   568→              {affiliations.map((aff) => (
+   569→                <div key={aff.name} className="flex items-center gap-3 py-1.5">
+   570→                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 shrink-0" />
+   571→                  <span className="text-white/80 text-sm">{aff.name}</span>
+   572→                  <span className="text-white/40 text-xs ml-auto">{aff.period}</span>
+   573→                </div>
+   574→              ))}
+   575→            </div>
+   576→
+   577→            <div className="h-px bg-white/5" />
+   578→
+   579→            {/* Additional Info */}
+   580→            <div>
+   581→              <SectionHeader
+   582→                icon={<svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" /></svg>}
+   583→                title={t.additional}
+   584→              />
+   585→              {additional.map((item) => (
+   586→                <div key={item.label} className="flex items-start gap-3 py-1.5">
+   587→                  <div className="w-1.5 h-1.5 rounded-full bg-amber-400/60 shrink-0 mt-1.5" />
+   588→                  <div>
+   589→                    <span className="text-white/80 text-sm font-medium">{item.label}</span>
+   590→                    <span className="text-white/40 text-xs ml-2">— {item.detail}</span>
+   591→                  </div>
+   592→                </div>
+   593→              ))}
+   594→            </div>
+   595→          </motion.div>
+   596→        </AnimatedSection>
+   597→
+   598→        {/* ── Social Links Section ── */}
+   599→        <AnimatedSection className="w-full">
+   600→          <motion.div variants={fadeInUp} className="space-y-3">
+   601→            <div className="flex items-center gap-3 mb-4 px-2">
+   602→              <div className="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center">
+   603→                <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+   604→                  <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+   605→                </svg>
+   606→              </div>
+   607→              <h3 className="text-xl font-semibold golden-text">{t.connectWithMe}</h3>
+   608→            </div>
+   609→            <div className="grid gap-3">
+   610→              {SOCIALS.map((social) => (
+   611→                <motion.a
+   612→                  key={social.name}
+   613→                  href={social.url}
+   614→                  target="_blank"
+   615→                  rel="noopener noreferrer"
+   616→                  variants={fadeInUp}
+   617→                  className="social-link glass-card rounded-xl p-4 flex items-center gap-4 group cursor-pointer"
+   618→                >
+   619→                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${social.color} flex items-center justify-center shrink-0 text-white shadow-lg`}>
+   620→                    {social.icon}
+   621→                  </div>
+   622→                  <div className="flex-1 min-w-0">
+   623→                    <div className="text-white/90 text-sm font-semibold">{social.name}</div>
+   624→                    <div className="text-white/50 text-xs truncate">{social.handle}</div>
+   625→                  </div>
+   626→                  <svg className="w-4 h-4 text-white/30 group-hover:text-amber-400 transition-colors shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+   627→                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+   628→                  </svg>
+   629→                </motion.a>
+   630→              ))}
+   631→            </div>
+   632→          </motion.div>
+   633→        </AnimatedSection>
+   634→
+   635→        {/* ── Resume Download ── */}
+   636→        <AnimatedSection className="w-full">
+   637→          <motion.a
+   638→            href="/resume.pdf"
+   639→            download="Ahmed_Ali_Resume.pdf"
+   640→            variants={fadeInUp}
+   641→            className="w-full glass-card rounded-xl p-4 flex items-center gap-4 group cursor-pointer social-link block"
+   642→          >
+   643→            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-amber-600 to-amber-400 flex items-center justify-center shrink-0 text-white shadow-lg">
+   644→              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+   645→                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+   646→              </svg>
+   647→            </div>
+   648→            <div className="flex-1 min-w-0">
+   649→              <div className="text-white/90 text-sm font-semibold">{t.downloadResume}</div>
+   650→              <div className="text-white/50 text-xs">{t.resumeDetail}</div>
+   651→            </div>
+   652→            <svg className="w-5 h-5 text-amber-400/60 group-hover:text-amber-400 transition-colors shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+   653→              <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+   654→            </svg>
+   655→          </motion.a>
+   656→        </AnimatedSection>
+   657→
+   658→        {/* ── QR Code Section ── */}
+   659→        <AnimatedSection className="w-full">
+   660→          <QRCodeSection t={t} />
+   661→        </AnimatedSection>
+   662→
+   663→        {/* ── Footer ── */}
+   664→        <motion.footer
+   665→          initial={{ opacity: 0 }}
+   666→          animate={{ opacity: 1 }}
+   667→          transition={{ delay: 2, duration: 1 }}
+   668→          className="text-center py-8 space-y-2"
+   669→        >
+   670→          <div className="flex items-center justify-center gap-2">
+   671→            <div className="h-px w-12 bg-gradient-to-r from-transparent to-amber-500/30" />
+   672→            <svg className="w-4 h-4 text-amber-400/40" fill="currentColor" viewBox="0 0 24 24">
+   673→              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+   674→            </svg>
+   675→            <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-500/30" />
+   676→          </div>
+   677→          <p className="text-white/30 text-xs">
+   678→            {t.footerLine1}
+   679→          </p>
+   680→          <p className="text-white/20 text-[10px]">
+   681→            {t.footerLine2}
+   682→          </p>
+   683→        </motion.footer>
+   684→      </main>
+   685→    </div>
+   686→  )
+   687→}
+   688→

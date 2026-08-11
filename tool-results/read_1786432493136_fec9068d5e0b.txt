@@ -1,0 +1,1411 @@
+     1→export type LangCode = 'en' | 'ar' | 'fa' | 'ur' | 'es' | 'fr' | 'ru' | 'zh' | 'tl' | 'tr'
+     2→
+     3→export const RTL_LANGS: LangCode[] = ['ar', 'fa', 'ur']
+     4→
+     5→export const LANGUAGES: { code: LangCode; label: string; flag: string }[] = [
+     6→  { code: 'en', label: 'English', flag: '🇬🇧' },
+     7→  { code: 'ar', label: 'العربية', flag: '🇦🇪' },
+     8→  { code: 'fa', label: 'فارسی', flag: '🇮🇷' },
+     9→  { code: 'ur', label: 'اردو', flag: '🇵🇰' },
+    10→  { code: 'es', label: 'Español', flag: '🇪🇸' },
+    11→  { code: 'fr', label: 'Français', flag: '🇫🇷' },
+    12→  { code: 'ru', label: 'Русский', flag: '🇷🇺' },
+    13→  { code: 'zh', label: '中文', flag: '🇨🇳' },
+    14→  { code: 'tl', label: 'Tagalog', flag: '🇵🇭' },
+    15→  { code: 'tr', label: 'Türkçe', flag: '🇹🇷' },
+    16→]
+    17→
+    18→type TranslationSet = {
+    19→  // Section headers
+    20→  aboutMe: string
+    21→  education: string
+    22→  certifications: string
+    23→  coreCompetencies: string
+    24→  leadershipInitiatives: string
+    25→  languages: string
+    26→  affiliations: string
+    27→  additional: string
+    28→  connectWithMe: string
+    29→
+    30→  // Profile
+    31→  title: string
+    32→  location: string
+    33→  quote: string
+    34→  about1: string
+    35→  about2: string
+    36→  about3: string
+    37→  about4: string
+    38→  about5: string
+    39→
+    40→  // Stats
+    41→  statYearsLabel: string
+    42→  statYearsSub: string
+    43→  statGradeLabel: string
+    44→  statGradeSub: string
+    45→  statIeltsLabel: string
+    46→  statIeltsSub: string
+    47→  statMunLabel: string
+    48→  statMunSub: string
+    49→  statStudioLabel: string
+    50→  statStudioSub: string
+    51→
+    52→  // Education
+    53→  edu1Label: string
+    54→  edu1Detail: string
+    55→  edu2Label: string
+    56→  edu2Detail: string
+    57→
+    58→  // Certifications
+    59→  cert1Label: string
+    60→  cert1Detail: string
+    61→  cert2Label: string
+    62→  cert2Detail: string
+    63→  cert3Label: string
+    64→  cert3Detail: string
+    65→  cert4Label: string
+    66→  cert4Detail: string
+    67→  cert5Label: string
+    68→  cert5Detail: string
+    69→  cert6Label: string
+    70→  cert6Detail: string
+    71→  cert7Label: string
+    72→  cert7Detail: string
+    73→  cert8Label: string
+    74→  cert8Detail: string
+    75→  cert9Label: string
+    76→  cert9Detail: string
+    77→
+    78→  // Skills
+    79→  skill1: string
+    80→  skill2: string
+    81→  skill3: string
+    82→  skill4: string
+    83→  skill5: string
+    84→  skill6: string
+    85→  skill7: string
+    86→  skill8: string
+    87→  skill9: string
+    88→
+    89→  // Leadership
+    90→  lead1Title: string
+    91→  lead1Period: string
+    92→  lead1Org: string
+    93→  lead1Desc: string
+    94→  lead2Title: string
+    95→  lead2Period: string
+    96→  lead2Org: string
+    97→  lead2Desc: string
+    98→  lead3Title: string
+    99→  lead3Period: string
+   100→  lead3Org: string
+   101→  lead3Desc: string
+   102→  lead4Title: string
+   103→  lead4Period: string
+   104→  lead4Org: string
+   105→  lead4Desc: string
+   106→
+   107→  // Spoken Languages
+   108→  langArabic: string
+   109→  langArabicLevel: string
+   110→  langEnglish: string
+   111→  langEnglishLevel: string
+   112→  langUrdu: string
+   113→  langUrduLevel: string
+   114→  langSpanish: string
+   115→  langSpanishLevel: string
+   116→
+   117→  // Affiliations
+   118→  aff1Name: string
+   119→  aff1Period: string
+   120→
+   121→  // Additional
+   122→  add1Label: string
+   123→  add1Detail: string
+   124→  add2Label: string
+   125→  add2Detail: string
+   126→
+   127→  // Teaching Experience
+   128→  teachingExperience: string
+   129→  teach1Title: string
+   130→  teach1Period: string
+   131→  teach1Org: string
+   132→  teach1Desc: string
+   133→  teach2Title: string
+   134→  teach2Period: string
+   135→  teach2Org: string
+   136→  teach2Desc: string
+   137→  teach2Bullets: string
+   138→  teach3Title: string
+   139→  teach3Period: string
+   140→  teach3Org: string
+   141→  teach3Desc: string
+   142→
+   143→  // UI
+   144→  showQR: string
+   145→  hideQR: string
+   146→  scanToOpen: string
+   147→  downloadResume: string
+   148→  resumeDetail: string
+   149→  footerLine1: string
+   150→  footerLine2: string
+   151→}
+   152→
+   153→export const translations: Record<LangCode, TranslationSet> = {
+   154→
+   155→// ──────────────────────────────────────────────────────────────
+   156→// ENGLISH — Source language
+   157→// ──────────────────────────────────────────────────────────────
+   158→en: {
+   159→  aboutMe: 'About Me',
+   160→  education: 'Education',
+   161→  certifications: 'Certifications & Professional Development',
+   162→  coreCompetencies: 'Core Competencies',
+   163→  leadershipInitiatives: 'Leadership Initiatives & Projects',
+   164→  languages: 'Languages',
+   165→  affiliations: 'Affiliations',
+   166→  additional: 'Additional',
+   167→  connectWithMe: 'Connect With Me',
+   168→
+   169→  title: 'Humanities Educator',
+   170→  location: 'Abu Dhabi, UAE',
+   171→  quote: '"Educating Minds, Shaping Futures"',
+   172→  about1: 'As a philosopher-educator, I view teaching as a human art: a space where intellect, ethics, and empathy converge.',
+   173→  about2: 'I am a licensed UAE educator with ADEK approval in Moral, Social, and Cultural Studies (MSC) and Islamic Education, qualified to deliver both subjects in Arabic-medium and English-medium classrooms (native Arabic speaker, Academic IELTS Band 7).',
+   174→  about3: 'My classroom practice spans Grades 1 to 12 in the American Curriculum, with direct subject mapping to IB MYP Individuals and Societies, Cambridge Global Perspectives, IB Diploma Theory of Knowledge, and A-Level Philosophy. These pathways are naturally supported by my BA in Philosophy from the University of Alexandria and Postgraduate Diploma in Education from Al-Azhar University.',
+   175→  about4: 'My pedagogy is grounded in the Aristotelian concept of phronesis: practical wisdom, the trained capacity to perceive the right action in the right moment. I cultivate this in students through inquiry-based learning, structured differentiation for diverse learner profiles (ELLs, gifted learners, students of determination), and the integration of educational technology as an amplifier of personalised learning rather than a substitute for human judgement.',
+   176→  about5: 'As Faculty Head for Model United Nations, I coach students in diplomatic reasoning, research writing, and public speaking, cultivating the same harmony between thought and action that I continue to seek as an educator, learner, and human being.',
+   177→
+   178→  statYearsLabel: 'Years of Experience',
+   179→  statYearsSub: 'UAE, UK & Egypt',
+   180→  statGradeLabel: 'Grade Coverage',
+   181→  statGradeSub: 'All grade levels',
+   182→  statIeltsLabel: 'IELTS Score',
+   183→  statIeltsSub: 'Academic Band',
+   184→  statMunLabel: 'MUN Leadership',
+   185→  statMunSub: 'Faculty Head',
+   186→  statStudioLabel: 'Studio of Phronesis',
+   187→  statStudioSub: 'Custom systems & learning platforms',
+   188→
+   189→  edu1Label: 'Postgraduate Diploma in Education',
+   190→  edu1Detail: 'Al-Azhar University (Sep 2024 – Sep 2025)',
+   191→  edu2Label: 'Bachelor of Arts in Philosophy',
+   192→  edu2Detail: 'Alexandria University (Sep 2016 – May 2021)',
+   193→
+   194→  cert1Label: 'UAE Teaching License (Social Studies – Cycle 3)',
+   195→  cert1Detail: 'Valid until Feb 2029',
+   196→  cert2Label: 'IELTS Academic Band 7',
+   197→  cert2Detail: 'Valid until Aug 2027',
+   198→  cert3Label: 'HMH — Prepare For Your First Two Weeks & Differentiate with Small Groups and Centers',
+   199→  cert3Detail: 'Apr 2026',
+   200→  cert4Label: 'Certified in AI for Educators (Level 1) — Teachy',
+   201→  cert4Detail: 'Oct 2025',
+   202→  cert5Label: 'Network Fundamentals & Network Security — Mahara Tech & MCIT, Egypt',
+   203→  cert5Detail: 'Jun 2025',
+   204→  cert6Label: 'Certified Advanced Person-in-Charge (PIC) — Dubai Municipality',
+   205→  cert6Detail: 'May 2025',
+   206→  cert7Label: 'Fire Warden Training (Level 2) — Dubai Civil Defence',
+   207→  cert7Detail: 'Valid until Aug 2026',
+   208→  cert8Label: 'Verification of Manuscripts in Philosophy & Theology — Bibliotheca Alexandrina',
+   209→  cert8Detail: 'Nov 2021',
+   210→  cert9Label: 'Critical Thinking and Decision Making — LinkedIn Learning',
+   211→  cert9Detail: 'Jul 2021',
+   212→
+   213→  skill1: 'Curriculum Design & Academic Quality Assurance',
+   214→  skill2: 'Differentiated Instruction & Inclusive Education',
+   215→  skill3: 'Inquiry-Based Learning & Student-Centered Instruction',
+   216→  skill4: 'Safeguarding & Child Protection Awareness',
+   217→  skill5: 'Team Leadership, Coaching & Performance Management',
+   218→  skill6: 'EdTech Integration & Digital Transformation',
+   219→  skill7: 'MUN Programme Leadership',
+   220→  skill8: 'Podcasting & Educational Content Creation',
+   221→  skill9: 'Bilingual Communication — English (C1) & Native Arabic',
+   222→
+   223→  lead1Title: 'Creator & Host — "Echoes of Wisdom" Podcast',
+   224→  lead1Period: '2026 – Present',
+   225→  lead1Org: 'Independent Educational Initiative',
+   226→  lead1Desc: 'Produces and hosts a podcast dedicated to promoting philosophy as an accessible field of education with practical relevance to everyday life, critical thinking, and personal development. Bridges academic philosophy and public discourse, making complex ideas in ethics, logic, and epistemology understandable and actionable for diverse audiences.',
+   227→  lead2Title: 'Co-Founder & Member — Educational Youth Club',
+   228→  lead2Period: 'Feb 2015 – Feb 2017',
+   229→  lead2Org: 'Bibliotheca Alexandrina, Alexandria, Egypt',
+   230→  lead2Desc: 'Co-founded an educational youth club in partnership with Bibliotheca Alexandrina to promote environmental awareness, critical thinking, and community engagement among high school students. Participated in YESBU, LYM, and ALYM programmes.',
+   231→  lead3Title: 'General Coordinator — Waste Segregation Initiative',
+   232→  lead3Period: 'Feb 2015 – Feb 2017',
+   233→  lead3Org: 'Bibliotheca Alexandrina & Alexandria Governorate, Egypt',
+   234→  lead3Desc: 'Managed logistics and outreach for a citywide environmental awareness initiative targeting youth and local schools, collaborating with local government and educators.',
+   235→  lead4Title: 'Co-Organiser — 3rd Annual International Conference, Dept. of Philosophy',
+   236→  lead4Period: 'November 2017',
+   237→  lead4Org: 'Alexandria University, Egypt',
+   238→  lead4Desc: 'Co-organised the international conference on philosophical reading, creativity, and critical criticism.',
+   239→
+   240→  langArabic: 'Arabic',
+   241→  langArabicLevel: 'Native',
+   242→  langEnglish: 'English',
+   243→  langEnglishLevel: 'Fluent (C1 – IELTS 7)',
+   244→  langUrdu: 'Urdu',
+   245→  langUrduLevel: 'Beginner',
+   246→  langSpanish: 'Spanish',
+   247→  langSpanishLevel: 'Beginner',
+   248→
+   249→  aff1Name: 'Member, British Philosophical Association (BPA)',
+   250→  aff1Period: '2025 – Present',
+   251→
+   252→  add1Label: 'Sports Coaching',
+   253→  add1Detail: 'Strength & Conditioning Coach, Swift Football Academy, Al Ain (2023–2024)',
+   254→  add2Label: 'IT Skills',
+   255→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+   256→
+   257→
+   258→  teachingExperience: 'Teaching Experience',
+   259→  teach1Title: 'English Social Studies Teacher',
+   260→  teach1Period: 'Aug 2026 – Present',
+   261→  teach1Org: 'Al Nahda National School for Boys, Abu Dhabi, UAE',
+   262→  teach1Desc: 'Teaching English Social Studies at Al Nahda National School for Boys, commencing the 2026/2027 academic year.',
+   263→  teach2Title: 'MSC Studies and Islamic Education B Teacher and Lead of Non-Arabic Speaking Section',
+   264→  teach2Period: 'Sep 2025 – July 2026',
+   265→  teach2Org: 'Ain Al Khaleej School, American Division, UAE',
+   266→  teach2Desc: 'Joined as Subject Teacher of MSC for Cycles 2 and 3 and Islamic Education B for Cycle 1, and was promoted in Term 2 to Lead of the Non-Arabic Speaking Section.',
+   267→  teach2Bullets: 'Delivered MSC Studies and Islamic Education B through English-medium instruction, ensuring ADEK and Irtiqa\'a compliance\nMentored department teachers in differentiated instruction, educational technology integration, safeguarding, inclusive education, and UAE national identity\nAppointed Faculty Head for Model United Nations in Term 2, taking charge of the school delegation programme\nCoached the delegation to win Best School at MANORMUN V 2026, developing students\' diplomatic reasoning, research writing, and public speaking\nActive contributor to the school\'s "Student First" initiative and a campus-wide source of mentorship and emotional support for students beyond his own classes',
+   268→  teach3Title: 'Research Assistant and Translator',
+   269→  teach3Period: '2017',
+   270→  teach3Org: 'Emory University (with Dr. Rahimjon Abdugafurov)',
+   271→  teach3Desc: 'Transcribed and analyzed historical manuscripts in Islamic Civilization for Emory University research.',
+   272→  showQR: 'Show QR Code',
+   273→  hideQR: 'Hide QR Code',
+   274→  scanToOpen: 'Scan to open this digital card',
+   275→  downloadResume: 'Download My Resume',
+   276→  resumeDetail: 'PDF — Full CV & Experience',
+   277→  footerLine1: 'Licensed UAE Educator · Abu Dhabi Department of Education and Knowledge (ADEK) Approved',
+   278→  footerLine2: 'Crafted with philosophy & purpose',
+   279→},
+   280→ar: {
+   281→  aboutMe: 'في التَّعريف بصاحب هذه السِّيرة',
+   282→  education: 'التَّحصيل العلميّ',
+   283→  certifications: 'الإجازات والتَّطوُّر المهنيّ',
+   284→  coreCompetencies: 'الملكات الأصليَّة',
+   285→  leadershipInitiatives: 'مبادرات القيادة والمشاريع',
+   286→  languages: 'اللُّغات',
+   287→  affiliations: 'العضويَّات المهنيَّة',
+   288→  additional: 'معلومات إضافيَّة',
+   289→  connectWithMe: 'وسائل التواصل',
+   290→
+   291→  title: 'مربٍّ في العلوم الإنسانيَّة',
+   292→  location: 'أبوظبي، الإمارات',
+   293→  quote: '"تعليمُ العقولِ، وصياغةُ المستقبل"',
+   294→  about1: 'أرى، بما أنا مشتغلٌ بالفلسفة والتربية، أنَّ التعليم ليس صناعةً تُؤدَّى، بل هو فنٌّ إنسانيٌّ تلتقي فيه قوى العقل، ومكارم الأخلاق، ورقَّة الوجدان؛ إذ به يُستخرج كمال المتعلِّم، ويُنمَّى استعدادُه، ويُهذَّب فكرُه وسلوكُه.',
+   295→  about2: 'وأنا معلِّمٌ مرخَّصٌ في دولة الإمارات العربية المتحدة، حاصلٌ على اعتماد دائرة التعليم والمعرفة (ADEK) لتدريس مادَّتي الدراسات الأخلاقية والاجتماعية والثقافية، والتربية الإسلامية، مؤهَّلٌ لتدريسهما في البيئات التعليمية الناطقة بالعربية والناطقة بالإنجليزية، مستندًا إلى كوني عربيَّ اللسان، وحاصلًا على درجة السابعة في اختبار IELTS الأكاديمي.',
+   296→  about3: 'وقد امتدَّت ممارستي التعليمية لتشمل الصفوف من الأول إلى الثاني عشر في المنهج الأمريكي، مع توافقٍ علميٍّ مباشرٍ مع مساقات الأفراد والمجتمعات في برنامج السنوات المتوسطة للبكالوريا الدولية (IB MYP)، وبرنامج كامبردج للمنظورات العالمية، ومادة نظرية المعرفة في برنامج الدبلوم للبكالوريا الدولية (IB TOK)، والفلسفة في المرحلة المتقدمة (A-Level). ويعضد هذا التأهيلَ العلميَّ حصولي على درجة البكالوريوس في الفلسفة من جامعة الإسكندرية، ودبلوم الدراسات العليا في التربية من جامعة الأزهر.',
+   297→  about4: 'وأُقيم منهجي في التعليم على ما عبَّر عنه أرسطو بالحكمة العملية (Phronesis)، وهي ملكةٌ راسخةٌ يُدرك بها المرءُ وجهَ الصواب في موضعه، ويهتدي إلى الفعل اللائق في أوانه. وأسعى إلى غرس هذه الملكة في طلابي من خلال التعلُّم القائم على الاستقصاء، والتمايز المنهجي الذي يراعي اختلاف أنماط المتعلمين واحتياجاتهم، من متعلمي اللغة الإنجليزية، والطلبة الموهوبين، وأصحاب الهمم، مع الإفادة من التقنيات التعليمية بوصفها وسيلةً لتقوية التعلُّم الشخصي، لا بديلًا عن البصيرة التربوية والحكم المهني.',
+   298→  about5: 'وأتولى كذلك رئاسة الهيئة الأكاديمية لنموذج الأمم المتحدة، فأُعنى بتدريب الطلبة على فقه الخطاب الدبلوماسي، ومنهجية البحث العلمي، وصناعة الحجج، وفنون الإلقاء والمحاورة. وما أزال أبتغي في جميع ذلك أن يتحقق الاتساق بين الفكر والعمل، وأن يثمر العلمُ خُلُقًا، كما يثمر الخُلُقُ عملًا، وهي الغاية التي أطلبها لنفسي معلِّمًا، ومتعلِّمًا، وإنسانًا.',
+   299→
+   300→  statYearsLabel: 'سنون التَّجربة',
+   301→  statYearsSub: 'الإمارات وبريطانيا ومصر',
+   302→  statGradeLabel: 'مراحل التَّدريس',
+   303→  statGradeSub: 'جميع الحلقات الدِّراسيَّة',
+   304→  statIeltsLabel: 'درجة IELTS',
+   305→  statIeltsSub: 'الفرقة الأكاديميَّة',
+   306→  statMunLabel: 'قيادة نموذج الأمم المتحدة',
+   307→  statMunSub: 'رئيس الهيئة التَّدريسيَّة',
+   308→  statStudioLabel: 'استوديو الفرُونِسِس',
+   309→  statStudioSub: 'أنظمةٌ مُفصَّلةٌ ومنصَّاتُ تعلُّم',
+   310→
+   311→  edu1Label: 'دبلومٌ عالٍ في التَّربية',
+   312→  edu1Detail: 'جامعة الأزهر (سبتمبر 2024 - سبتمبر 2025)',
+   313→  edu2Label: 'إجازةٌ في الآداب، فلسفة',
+   314→  edu2Detail: 'جامعة الإسكندريَّة (سبتمبر 2016 - مايو 2021)',
+   315→
+   316→  cert1Label: 'رخصة التَّدريس في الإمارات (الدِّراسات الاجتماعيَّة - الحلقة 3)',
+   317→  cert1Detail: 'ساريٌ إلى فبراير 2029',
+   318→  cert2Label: 'IELTS الأكاديمي - الفرقة 7',
+   319→  cert2Detail: 'ساريٌ إلى أغسطس 2027',
+   320→  cert3Label: 'HMH - الاستعداد لأسبوعيك الأولين والتَّمايز مع المجموعات الصَّغيرة والمراكز',
+   321→  cert3Detail: 'أبريل 2026',
+   322→  cert4Label: 'إجازة الذَّكاء الاصطناعيِّ للمعلِّمين (المستوى 1) - Teachy',
+   323→  cert4Detail: 'أكتوبر 2025',
+   324→  cert5Label: 'أساسيَّات الشَّبكات وأمنُها - Mahara Tech ووزارة الاتِّصالات، مصر',
+   325→  cert5Detail: 'يونيو 2025',
+   326→  cert6Label: 'إجازة الشخص المسؤول المتقدِّمة (PIC) - بلديَّة دبي',
+   327→  cert6Detail: 'مايو 2025',
+   328→  cert7Label: 'تدريب مسؤول الإطفاء (المستوى 2) - الدِّفاع المدني بدبي',
+   329→  cert7Detail: 'ساريٌ إلى أغسطس 2026',
+   330→  cert8Label: 'التَّحقُّق من المخطوطات في الفلسفة واللَّاهوت - مكتبة الإسكندريَّة',
+   331→  cert8Detail: 'نوفمبر 2021',
+   332→  cert9Label: 'التَّفكير النَّقديُّ واتِّخاذ القرار - LinkedIn Learning',
+   333→  cert9Detail: 'يوليو 2021',
+   334→
+   335→  skill1: 'تصميمُ المناهج وضمان الجودة الأكاديميَّة',
+   336→  skill2: 'التَّعليمُ المتمايز والتَّعليمُ الشَّامل',
+   337→  skill3: 'التَّعلُّمُ القائمُ على الاستقصاء والتَّعليمُ المتمحورُ حول المتعلِّم',
+   338→  skill4: 'الحمايةُ والرَّعايةُ الواعيةُ للطِّفل',
+   339→  skill5: 'قيادةُ الفِرق والتَّوجيه المهنيُّ وإدارةُ الأداء',
+   340→  skill6: 'إدماجُ التِّقنيات التَّعليميَّة والتَّحوُّل الرَّقميّ',
+   341→  skill7: 'قيادةُ برنامج نموذج الأمم المتحدة',
+   342→  skill8: 'البثُّ الصَّوتيُّ وإنتاج المحتوى التَّعليميّ',
+   343→  skill9: 'المخاطبةُ ثنائيَّة اللُّغة - الإنجليزيَّة (C1) والعربيَّة لسانًا',
+   344→
+   345→  lead1Title: 'المنشئ والمقدِّم - بودكاست «أصداء الحكمة»',
+   346→  lead1Period: '2026 - الآن',
+   347→  lead1Org: 'مبادرة تعليميَّة مستقلَّة',
+   348→  lead1Desc: 'إنتاجُ وبثِّ بودكاستٍ مكرَّسٍ لإحياء الفلسفة حيِّزًا تعليميًّا متاحًا، ذي صلةٍ عمليَّةٍ بالحياة اليوميَّة والتَّفكير النَّقديِّ والتَّطوُّر الشَّخصيِّ. يصل بين الفلسفة الأكاديميَّة والخطاب العامِّ، جاعلًا الأفكارَ المركَّبة في الأخلاق والمنطق ونظريَّة المعرفة مفهومةً وقابلةً للتَّطبيق لجماهيرَ متنوِّعةٍ.',
+   349→  lead2Title: 'شريكٌ مؤسِّسٌ وعضو - النَّادي الشَّبابيِّ التَّعليميّ',
+   350→  lead2Period: 'فبراير 2015 - فبراير 2017',
+   351→  lead2Org: 'مكتبة الإسكندريَّة، الإسكندريَّة، مصر',
+   352→  lead2Desc: 'تأسيسُ نادٍ شبابيٍّ تعليميٍّ بالشَّراكة مع مكتبة الإسكندريَّة لتعزيز الوعي البيئيِّ والتَّفكير النَّقديِّ والمشاركة المجتمعيَّة بين طلاب المرحلة الثَّانويَّة. والمشاركةُ في برامج YESBU و LYM و ALYM.',
+   353→  lead3Title: 'المنسِّق العامُّ - مبادرة فصل النُّفايات',
+   354→  lead3Period: 'فبراير 2015 - فبراير 2017',
+   355→  lead3Org: 'مكتبة الإسكندريَّة ومحافظة الإسكندريَّة، مصر',
+   356→  lead3Desc: 'إدارةُ اللوجستيَّات والتَّوعية لمبادرةٍ بيئيَّةٍ على مستوى المدينة، تستهدف الشَّبابَ والمدارس المحلِّيَّة، بالتَّعاون مع الجهات الحُكوميَّة والمربِّين.',
+   357→  lead4Title: 'شريكُ التَّنظيم - المؤتمر الدَّوليُّ السَّنويُّ الثَّالث، قسم الفلسفة',
+   358→  lead4Period: 'نوفمبر 2017',
+   359→  lead4Org: 'جامعة الإسكندريَّة، مصر',
+   360→  lead4Desc: 'المشاركةُ في تنظيم المؤتمر الدَّوليِّ حول القراءة الفلسفيَّة والإبداع والنَّقد.',
+   361→
+   362→  langArabic: 'العربيَّة',
+   363→  langArabicLevel: 'لسانٌ أمٌّ',
+   364→  langEnglish: 'الإنجليزيَّة',
+   365→  langEnglishLevel: 'متقدِّم (C1 - IELTS 7)',
+   366→  langUrdu: 'الأرديَّة',
+   367→  langUrduLevel: 'مبتدئ',
+   368→  langSpanish: 'الإسبانيَّة',
+   369→  langSpanishLevel: 'مبتدئ',
+   370→
+   371→  aff1Name: 'عضو، الجمعيَّة الفلسفيَّة البريطانيَّة (BPA)',
+   372→  aff1Period: '2025 - الآن',
+   373→
+   374→  add1Label: 'التَّدريب الرِّياضيّ',
+   375→  add1Detail: 'مدرِّبُ القُوَّة والتَّكييف، أكاديميَّة Swift لكرة القدم، العين (2023-2024)',
+   376→  add2Label: 'الملكات الرَّقميَّة',
+   377→  add2Detail: 'CompTIA (A+ و Network+ و Linux+) | Microsoft Office',
+   378→
+   379→
+   380→  teachingExperience: 'خبرات التدريس',
+   381→  teach1Title: 'مُعلِّم الدِّراسات الاجتماعيَّة بالإنجليزيَّة',
+   382→  teach1Period: 'أغسطس 2026 – الآن',
+   383→  teach1Org: 'مدرسة النَّهضة الوطنيَّة للبنين، أبوظبي، الإمارات',
+   384→  teach1Desc: 'تدريس الدِّراسات الاجتماعيَّة بالإنجليزيَّة في مدرسة النَّهضة الوطنيَّة للبنين، ابتداءً من العام الدِّراسيّ 2026/2027.',
+   385→  teach2Title: 'مُعلِّم مادَّتي MSC والتربية الإسلاميَّة (ب) ورئيس قسم غير الناطقين بالعربية',
+   386→  teach2Period: 'سبتمبر 2025 – يوليو 2026',
+   387→  teach2Org: 'مدرسة عين الخليج، القسم الأمريكي، الإمارات',
+   388→  teach2Desc: 'الالتحاق كمُعلِّم مادَّة MSC للحلقتين 2 و3 ولمادَّة التربية الإسلاميَّة (ب) للحلقة 1، ثم الترقية في الفصل الدِّراسيّ الثَّاني إلى رئيس قسم غير الناطقين بالعربية.',
+   389→  teach2Bullets: 'تدريس مادَّتي MSC والتربية الإسلاميَّة (ب) باللُّغة الإنجليزيَّة، ضامناً الامتثال لمعايير ADEK و Irtiqa\'a\nتوجيه المعلِّمين داخل القسم في التَّعليم المُتفاوِت، وإدماج التِّقنيات التَّعليميَّة، والحماية، والتَّعليم الشَّامل، والهوية الوطنيَّة الإماراتيَّة\nتولِّي رئاسة الهيئة التَّدريسيَّة لنموذج الأمم المتحدة في الفصل الدِّراسيّ الثَّاني، والإشراف على برنامج وفد المدرسة\nتدريب الوفد على الفوز بجائزة أفضل مدرسة في MANORMUN V 2026، وتنمية ملكات التَّفكير الدِّبلوماسيِّ والكتابة البحثيَّة ومهارات الإلقاء لدى الطلبة\nمساهمٌ فاعلٌ في مبادرة «الطالب أولاً»، ومرشدٌ ومصدرُ دعمٍ نفسيٍّ واجتماعيٍّ للطلبة على مستوى الحرم المدرسيّ، لا يقتصر على تلاميذه في الصف',
+   390→  teach3Title: 'مُساعد بحثٍ ومترجم',
+   391→  teach3Period: '2017',
+   392→  teach3Org: 'جامعة Emory (مع الدكتور رحيمجان عبدالغفوروف)',
+   393→  teach3Desc: 'نسخ وتحليل المخطوطات التاريخية في الحضارة الإسلامية لصالح بحث جامعة Emory.',
+   394→  showQR: 'عرض رمز الاستجابة السَّريعة',
+   395→  hideQR: 'إخفاء رمز الاستجابة السَّريعة',
+   396→  scanToOpen: 'امسح الرَّمز لفتح البطاقة الرَّقميَّة',
+   397→  downloadResume: 'تحميل السِّيرة الذَّاتيَّة',
+   398→  resumeDetail: 'PDF - السِّيرة الذَّاتيَّة والخبرات الكاملة',
+   399→  footerLine1: 'مربٍّ مرخَّصٌ في الإمارات · معتمدٌ من دائرة التَّعليم والمعرفة - أبوظبي',
+   400→  footerLine2: 'صُنع بالفلسفة والغاية',
+   401→},
+   402→// ──────────────────────────────────────────────────────────────
+   403→// PERSIAN — In the literary register of Hafez Shirazi
+   404→// ──────────────────────────────────────────────────────────────
+   405→fa: {
+   406→  aboutMe: 'از سرّ خود',
+   407→  education: 'کتاب و قلم',
+   408→  certifications: 'نشان و نام‌نامه‌ها',
+   409→  coreCompetencies: 'خردورزی‌های بنیادین',
+   410→  leadershipInitiatives: 'کارهای بزرگ و خرد',
+   411→  languages: 'زبان‌ها',
+   412→  affiliations: 'هم‌نشینان و انجمن‌ها',
+   413→  additional: 'در حاشیه',
+   414→  connectWithMe: 'گفت‌وگو با من',
+   415→
+   416→  title: 'مربّی علوم انسانی',
+   417→  location: 'ابوظبی، امارات',
+   418→  quote: '"تعقل بیاموز و فردا را بساز"',
+   419→  about1: 'مرا اعتقاد آن است که تعلیم، پیشه‌ای صرف نیست، بلکه هنری انسانی است که در آن خرد و فضیلت و شفقت به یکدیگر می‌پیوندند، و از این پیوند، جانِ آدمی به کمالِ خویش راه می‌جوید. آموزگار، اگر به نور معرفت و گرمیِ مهر آراسته باشد، نه الفاظ آموزد، بلکه جان‌ها را به راه حقیقت رهنمون گردد.',
+   420→  about2: 'اینجانب آموزگاری دارای پروانهٔ رسمی تدریس در امارات متحدهٔ عربی و مورد تأیید ادارهٔ آموزش و دانش ابوظبی (ADEK) در دروس مطالعات اخلاقی، اجتماعی و فرهنگی و نیز تعلیمات اسلامی هستم، و شایستگی تدریس این دو حوزه را در کلاس‌های عربی‌زبان و انگلیسی‌زبان دارم؛ چه زبان مادری‌ام عربی است و در آزمون آکادمیک IELTS نیز نمرهٔ هفت را احراز کرده‌ام.',
+   421→  about3: 'دامنهٔ تجربهٔ آموزشی‌ام از پایهٔ نخست تا دوازدهم در نظام آموزشی آمریکایی امتداد یافته و با برنامه‌های افراد و جوامع در دورهٔ میانی دیپلم بین‌المللی (IB MYP)، دیدگاه‌های جهانی کمبریج، نظریهٔ معرفت در برنامهٔ دیپلم IB، و فلسفه در دورهٔ A-Level هم‌آهنگی علمی دارد. این راه، بر بنیاد دانش فلسفی‌ای استوار است که از دانشگاه اسکندریه در مقطع کارشناسی فلسفه اندوخته‌ام و نیز بر دیپلم تحصیلات تکمیلی در آموزش و پرورش از دانشگاه الازهر.',
+   422→  about4: 'شیوهٔ تعلیم مرا بنیان بر آن حکمت عملی است که ارسطو آن را «فرونسیس» نام نهاد؛ آن ملکه‌ای که آدمی را توانِ شناختِ کردارِ شایسته در زمانِ شایسته می‌بخشد. در پرورش این خصلت، راهِ پرسش و کاوش را برمی‌گزینم، تفاوت‌های استعداد و نیازِ شاگردان را پاس می‌دارم، از زبان‌آموزان تا دانش‌آموزان مستعد و دانش‌آموزان دارای نیازهای آموزشی ویژه، و فناوری آموزشی را خادمی برای آموزشِ شخصی‌شده می‌شمارم، نه جانشینی برای بصیرت و داوریِ آموزگار.',
+   423→  about5: 'در کنار این مسئولیت‌ها، سرپرستی هیئت علمی برنامهٔ مدل سازمان ملل متحد را نیز بر عهده دارم و دانش‌آموزان را در آیینِ استدلال دیپلماتیک، نگارش پژوهشی و هنرِ سخنوری پرورش می‌دهم. امید آن دارم که اندیشه و کردار در وجودِ ایشان به آشتی رسد، چنان‌که خود نیز همواره در راهِ این هم‌آهنگی گام می‌زنم؛ نه تنها به عنوان آموزگار، بلکه به عنوان جویندهٔ دانش و رهروِ طریقِ انسانیت.',
+   424→
+   425→  statYearsLabel: 'سال‌ها در راه',
+   426→  statYearsSub: 'امارات، بریتانیا و مصر',
+   427→  statGradeLabel: 'پوششِ مقاطع',
+   428→  statGradeSub: 'همه‌ی پایه‌ها',
+   429→  statIeltsLabel: 'نمره‌ی IELTS',
+   430→  statIeltsSub: 'بند آکادمیک',
+   431→  statMunLabel: 'رهبریِ Model UN',
+   432→  statMunSub: 'سرپرست هیئت علمی',
+   433→  statStudioLabel: 'استودیوی فرُونِسیس',
+   434→  statStudioSub: 'سامانه‌های اختصاصی و سکوهای یادگیری',
+   435→
+   436→  edu1Label: 'دیپلمِ تحصیلاتِ تکمیلی در آموزش',
+   437→  edu1Detail: 'دانشگاه الازهر (سپتامبر ۲۰۲۴ - سپتامبر ۲۰۲۵)',
+   438→  edu2Label: 'کارشناسی هنر در فلسفه',
+   439→  edu2Detail: 'دانشگاه اسکندریه (سپتامبر ۲۰۱۶ - مه ۲۰۲۱)',
+   440→
+   441→  cert1Label: 'مجوز تدریس امارات (مطالعات اجتماعی - دوره ۳)',
+   442→  cert1Detail: 'معتبر تا فوریه ۲۰۲۹',
+   443→  cert2Label: 'IELTS آکادمیک بند ۷',
+   444→  cert2Detail: 'معتبر تا اوت ۲۰۲۷',
+   445→  cert3Label: 'HMH - آمادگی برای دو هفته‌ی نخست و تفاوت‌گذاری با گروه‌های کوچک و مراکز',
+   446→  cert3Detail: 'آوریل ۲۰۲۶',
+   447→  cert4Label: 'گواهی هوش مصنوعی برای مربیان (سطح ۱) - Teachy',
+   448→  cert4Detail: 'اکتبر ۲۰۲۵',
+   449→  cert5Label: 'مبانی شبکه و امنیت شبکه - Mahara Tech و MCIT، مصر',
+   450→  cert5Detail: 'ژوئن ۲۰۲۵',
+   451→  cert6Label: 'گواهی پیشرفته‌ی فرد مسئول (PIC) - شهرداری دبی',
+   452→  cert6Detail: 'مه ۲۰۲۵',
+   453→  cert7Label: 'آموزش مسئول آتش‌نشانی (سطح ۲) - دفاع مدنی دبی',
+   454→  cert7Detail: 'معتبر تا اوت ۲۰۲۶',
+   455→  cert8Label: 'احراز نسخه‌های خطی در فلسفه و الهیات - کتابخانه اسکندریه',
+   456→  cert8Detail: 'نوامبر ۲۰۲۱',
+   457→  cert9Label: 'تفکر انتقادی و تصمیم‌گیری - LinkedIn Learning',
+   458→  cert9Detail: 'جولای ۲۰۲۱',
+   459→
+   460→  skill1: 'طراحیِ برنامه‌ی درسی و نگاهداشتِ کیفیتِ آکادمیک',
+   461→  skill2: 'آموزشِ تفاضلی و آموزشِ گشوده‌بر همگان',
+   462→  skill3: 'یادگیریِ پرسش‌محور و آموزشِ دانش‌آموز-مرکز',
+   463→  skill4: 'نگاهِ بیدار بر مراقبت و پاسداشتِ کودک',
+   464→  skill5: 'رهبریِ تیم، مربی‌گری و مدیریتِ عملکرد',
+   465→  skill6: 'درآمیختنِ فناوری‌های آموزشی و دگردیسیِ دیجیتال',
+   466→  skill7: 'رهبریِ برنامه‌ی Model UN',
+   467→  skill8: 'پادکست و آفرینشِ محتوای آموزشی',
+   468→  skill9: 'گفت‌وگوی دوزبانه - انگلیسی (C1) و عربی (زبان مادری)',
+   469→
+   470→  lead1Title: 'آفریننده و میزبان - پادکست «پژواک‌های حکمت»',
+   471→  lead1Period: '۲۰۲۶ - اکنون',
+   472→  lead1Org: 'مبادره‌ی آموزشی مستقل',
+   473→  lead1Desc: 'آفرینش و میزبانیِ پادکستی که به فلسفه چون حوزه‌ای آموزشیِ دسترس‌پذیر جان می‌بخشد، با خاستگاهی عملی برای زندگی روزمره، تفکر انتقادی و بالندگی درون. این برنامه پلی می‌سازد میان فلسفه‌ی آکادمیک و گفت‌وگوی همگانی، و اندیشه‌های دشوارِ اخلاق، منطق و معرفت‌شناسی را به زبانی زنده و کاربردی برای شنوندگانی دگرگون می‌سازد.',
+   474→  lead2Title: 'هم‌بنیان‌گذار و عضو - باشگاه جوانان آموزشی',
+   475→  lead2Period: 'فوریه ۲۰۱۵ - فوریه ۲۰۱۷',
+   476→  lead2Org: 'کتابخانه اسکندریه، اسکندریه، مصر',
+   477→  lead2Desc: 'هم‌بنیان‌گذاری باشگاه جوانان آموزشی با همکاریِ کتابخانه اسکندریه برای بیدارساختن آگاهی زیست‌محیطی، تفکر انتقادی و خدمت اجتماعی در میان دانش‌آموزان دبیرستانی. حضور فعال در برنامه‌های YESBU و LYM و ALYM.',
+   478→  lead3Title: 'هماهنگ‌کننده‌ی کل - طرح جداسازی پسماند',
+   479→  lead3Period: 'فوریه ۲۰۱۵ - فوریه ۲۰۱۷',
+   480→  lead3Org: 'کتابخانه اسکندریه و استانداری اسکندریه، مصر',
+   481→  lead3Desc: 'مدیریت لجستیک و آگاهی‌بخشی طرح زیست‌محیطی شهری، با محوریت جوانان و مدارس محلی، در همکاری با نهادهای محلی و مربیان.',
+   482→  lead4Title: 'هم‌سازنده - سومین کنفرانس بین‌المللی سالانه، گروه فلسفه',
+   483→  lead4Period: 'نوامبر ۲۰۱۷',
+   484→  lead4Org: 'دانشگاه اسکندریه، مصر',
+   485→  lead4Desc: 'همکاری در برگزاری کنفرانس بین‌المللی درباره خوانش فلسفی، خلاقیت و نقد.',
+   486→
+   487→  langArabic: 'عربی',
+   488→  langArabicLevel: 'زبان مادری',
+   489→  langEnglish: 'انگلیسی',
+   490→  langEnglishLevel: 'تسلط کامل (C1 - IELTS 7)',
+   491→  langUrdu: 'اردو',
+   492→  langUrduLevel: 'مبتدی',
+   493→  langSpanish: 'اسپانیایی',
+   494→  langSpanishLevel: 'مبتدی',
+   495→
+   496→  aff1Name: 'عضو، انجمن فلسفی بریتانیا (BPA)',
+   497→  aff1Period: '۲۰۲۵ - اکنون',
+   498→
+   499→  add1Label: 'مربی‌گری ورزشی',
+   500→  add1Detail: 'مربی قدرت و آمادگی جسمانی، آکادمی فوتبال Swift، العین (۲۰۲۳-۲۰۲۴)',
+   501→  add2Label: 'مهارت‌های فناوری',
+   502→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+   503→
+   504→
+   505→  teachingExperience: 'تجربه‌های آموزشی',
+   506→  teach1Title: 'معلّم مطالعات اجتماعی به زبان انگلیسی',
+   507→  teach1Period: 'اوت ۲۰۲۶ – اکنون',
+   508→  teach1Org: 'مدرسه ملی النهده برای پسران، ابوظبی، امارات',
+   509→  teach1Desc: 'آموزش مطالعات اجتماعی به زبان انگلیسی در مدرسه ملی النهده برای پسران، از سال تحصیلی ۲۰۲۶/۲۰۲۷.',
+   510→  teach2Title: 'معلّم مطالعات MSC و آموزش اسلامی (ب) و سرپرست بخش غیرعربی‌زبانان',
+   511→  teach2Period: 'سپتامبر ۲۰۲۵ – ژوئیه ۲۰۲۶',
+   512→  teach2Org: 'مدرسه عین الخلیج، بخش آمریکایی، امارات',
+   513→  teach2Desc: 'پیوستن به عنوان معلّم MSC برای دوره‌های ۲ و ۳ و آموزش اسلامی (ب) برای دوره ۱، و ارتقا در ترم دوم به سرپرست بخش غیرعربی‌زبانان.',
+   514→  teach2Bullets: 'ارائه مطالعات MSC و آموزش اسلامی (ب) به زبان انگلیسی، با تضمین انطباق با استانداردهای ADEK و Irtiqa\'a\nراهنمایی معلّمان بخش در آموزش تفاضلی، ادغام فناوری‌های آموزشی، حفاظت از کودکان، آموزش فراگیر و هویت ملی امارات\nانتخاب به عنوان رئیس هیئت علمی مدل سازمان ملل متحد در ترم دوم و پذیرش مسئولیت برنامه نمایندگی مدرسه\nمربی‌گری نمایندگی برای کسب جایزه بهترین مدرسه در MANORMUN V 2026، و توسعه استدلال دیپلماتیک، نگارش پژوهشی و مهارت‌های سخنوری دانش‌آموزان\nمشارکت‌کننده فعال در ابتکار «دانش‌آموز اول» و منبع راهنمایی و حمایت عاطفی برای دانش‌آموزان در سراسر مدرسه، فراتر از کلاس‌های خود',
+   515→  teach3Title: 'دستیار پژوهش و مترجم',
+   516→  teach3Period: '۲۰۱۷',
+   517→  teach3Org: 'دانشگاه اموری (با دکتر رحیمجان عبدالغفوروف)',
+   518→  teach3Desc: 'رونویسی و تحلیل نسخه‌های خطی تاریخی در تمدن اسلامی برای پژوهش دانشگاه اموری.',
+   519→  showQR: 'نمایش کد QR',
+   520→  hideQR: 'پنهان کردن کد QR',
+   521→  scanToOpen: 'برای گشودن این کارت دیجیتال، بنگرید',
+   522→  downloadResume: 'بارگیریِ رزومه‌ی من',
+   523→  resumeDetail: 'PDF - رزومه و سوابقِ کامل',
+   524→  footerLine1: 'مربّی دارای مجوز امارات · تأییدشده از اداره آموزش و دانش ابوظبی',
+   525→  footerLine2: 'ساخته‌شده با فلسفه و خواست',
+   526→},
+   527→
+   528→// ──────────────────────────────────────────────────────────────
+   529→// URDU — Professionally localized for Pakistani/Emirati academic context
+   530→// ──────────────────────────────────────────────────────────────
+   531→ur: {
+   532→  aboutMe: 'میرے بارے میں',
+   533→  education: 'تعلیمی اسناد',
+   534→  certifications: 'سرٹیفکیٹس اور پیشہ ورانہ ترقی',
+   535→  coreCompetencies: 'بنیادی مہارتیں',
+   536→  leadershipInitiatives: 'قیادتی اقدامات اور منصوبے',
+   537→  languages: 'زبانیں',
+   538→  affiliations: 'پیشہ ورانہ رکنیتیں',
+   539→  additional: 'اضافی معلومات',
+   540→  connectWithMe: 'مجھ سے رابطہ کریں',
+   541→
+   542→  title: 'انسانیت کے مربّی',
+   543→  location: 'ابوظبی، متحدہ عرب امارات',
+   544→  quote: '"ذہنوں کی تعلیم، مستقبل کی تشکیل"',
+   545→  about1: 'ایک فلسفی-معلم کی حیثیت سے، میں تدریس کو ایک انسانی فن سمجھتا ہوں: ایک ایسی جگہ جہاں عقل، اخلاقیات اور ہمدلی یکجا ہوتی ہیں، اور انسانی ذہن کی تشکیل ہوتی ہے۔',
+   546→  about2: 'میں متحدہ عرب امارات کا لائسنس یافتہ معلم ہوں، جسے دائرہ التعليم والمعرفة (ADEK) نے اخلاقی، سماجی اور ثقافتی مطالعات (MSC) اور اسلامی تعلیم کی تدریس کی منظوری دی ہے۔ میں ان دونوں مضامین کو عربی اور انگریزی زبان کے ذریعے تدریس کے لیے اہل ہوں (عربی مادری زبان، اکیڈمک IELTS بینڈ 7)۔',
+   547→  about3: 'میری تدریسی مشق امریکی نصاب میں گریڈ 1 سے 12 تک پھیلی ہوئی ہے، جس کا براہ راست مطابقت IB MYP کے Individuals and Societies، Cambridge Global Perspectives، IB Diploma کے Theory of Knowledge، اور A-Level Philosophy سے ہے۔ ان راستوں کی قدرتی تائید جامعہ اسکندریہ سے فلسفہ میں بی اے اور جامعہ الازہر سے تعلیم میں پوسٹ گریجویٹ ڈپلومہ حاصل کرنے نے کی ہے۔',
+   548→  about4: 'میری تدریس کا طریقہ ارسطو کے تصور phronesis (عملی حکمت) پر مبنی ہے: وہ تربیت یافتہ صلاحیت جو صحیح وقت میں صحیح عمل کو سمجھتی ہے۔ میں اسے طلباء میں استفسار پر مبنی تعلیم، مختلف سیکھنے والوں کے لیے منظم تفریق (انگریزی سیکھنے والے، باصلاحیت طلباء، خصوصی ضروریات کے طلباء)، اور تعلیمی ٹیکنالوجی کو ذاتی تعلیم کو بڑھانے والے ذریعے کے طور پر شامل کرتا ہوں، نہ کہ انسانی فیصلے کا متبادل۔',
+   549→  about5: 'نموذج اقوام متحدہ کے لیے Faculty Head کی حیثیت سے، میں طلباء کو سفارتی استدلال، تحقیقی تحریر، اور عوامی تقریر میں تربیت دیتا ہوں، وہی ہم آہنگی فکر اور عمل کے درمیان پیدا کرتا ہوں جسے میں بطور معلم، سیکھنے والے اور انسان تلاش کرتا رہتا ہوں۔',
+   550→
+   551→  statYearsLabel: 'تجربے کے سال',
+   552→  statYearsSub: 'امارات، برطانیہ اور مصر',
+   553→  statGradeLabel: 'جماعتوں کا احاطہ',
+   554→  statGradeSub: 'تمام تعلیمی مراحل',
+   555→  statIeltsLabel: 'آئلٹس اسکور',
+   556→  statIeltsSub: 'اکیڈمک بینڈ',
+   557→  statMunLabel: 'اقوام متحدہ نمونہ کی قیادت',
+   558→  statMunSub: 'فیکلٹی سربراہ',
+   559→  statStudioLabel: 'اسٹوڈیو آف فرُونِسِس',
+   560→  statStudioSub: 'مخصوص نظام اور سیکھنے کے پلیٹ فارم',
+   561→
+   562→  edu1Label: 'تعلیم میں پوسٹ گریجویٹ ڈپلومہ',
+   563→  edu1Detail: 'الازہر یونیورسٹی (ستمبر ۲۰۲۴ – ستمبر ۲۰۲۵)',
+   564→  edu2Label: 'فلسفہ میں بیچلر آف آرٹس',
+   565→  edu2Detail: 'اسکندریہ یونیورسٹی (ستمبر ۲۰۱۶ – مئی ۲۰۲۱)',
+   566→
+   567→  cert1Label: 'یو اے ای ٹیچنگ لائسنس (سماجی مطالعات – سائکل ۳)',
+   568→  cert1Detail: 'فروری ۲۰۲۹ تک موثر',
+   569→  cert2Label: 'آئلٹس اکیڈمک بینڈ ۷',
+   570→  cert2Detail: 'اگست ۲۰۲۷ تک موثر',
+   571→  cert3Label: 'HMH — پہلے دو ہفتوں کی تیاری اور چھوٹے گروپوں اور مراکز کے ساتھ تفریق',
+   572→  cert3Detail: 'اپریل ۲۰۲۶',
+   573→  cert4Label: 'مربیان کے لیے اے آئی سرٹیفائڈ (لیول ۱) — Teachy',
+   574→  cert4Detail: 'اکتوبر ۲۰۲۵',
+   575→  cert5Label: 'نیٹ ورک بنیادیات اور نیٹ ورک سیکیورٹی — Mahara Tech اور MCIT، مصر',
+   576→  cert5Detail: 'جون ۲۰۲۵',
+   577→  cert6Label: 'ایڈوانسڈ پرسن ان چارج (PIC) سرٹیفائڈ — دبی بلدیہ',
+   578→  cert6Detail: 'مئی ۲۰۲۵',
+   579→  cert7Label: 'فائر وارڈن ٹریننگ (لیول ۲) — دبی سول ڈیفنس',
+   580→  cert7Detail: 'اگست ۲۰۲۶ تک موثر',
+   581→  cert8Label: 'فلسفہ اور الٰہیات میں مخطوطات کی توثیق — بائبلوتیکا الاسکندریہ',
+   582→  cert8Detail: 'نومبر ۲۰۲۱',
+   583→  cert9Label: 'تنقیدی سوچ اور فیصلہ سازی — LinkedIn Learning',
+   584→  cert9Detail: 'جولائی ۲۰۲۱',
+   585→
+   586→  skill1: 'نصاب ڈیزائن اور تعلیمی معیار کی یقین دہانی',
+   587→  skill2: 'تفریقی تدریس اور شامل تعلیم',
+   588→  skill3: 'تحقیقی بنیاد پر سیکھنا اور طالب علم مرکوز تدریس',
+   589→  skill4: 'بچوں کی حفاظت اور تحفظ کی آگاہی',
+   590→  skill5: 'ٹیم قیادت، کوچنگ اور پرفارمنس مینجمنٹ',
+   591→  skill6: 'تعلیمی ٹیکنالوجی کا انتگر اور ڈیجیٹل تبدیلی',
+   592→  skill7: 'اقوام متحدہ نمونہ پروگرام کی قیادت',
+   593→  skill8: 'پوڈکاسٹنگ اور تعلیمی مواد کی تخلیق',
+   594→  skill9: 'دوزبانی مواصلت — انگریزی (C1) اور عربی مادری زبان',
+   595→
+   596→  lead1Title: 'بانی اور میزبان — پوڈکاسٹ «حکمت کی گونج»',
+   597→  lead1Period: '۲۰۲۶ – حال',
+   598→  lead1Org: 'آزاد تعلیمی اقدام',
+   599→  lead1Desc: 'فلسفہ کو روزمرہ زندگی، تنقیدی سوچ اور ذاتی ترقی سے عملی تعلق رکھنے والے قابل رسائی تعلیمی میدان کے طور پر فروغ دینے کے لیے ایک پوڈکاسٹ تیار اور میزبانی کرنا۔ علمی فلسفہ اور عوامی گفتگو کے درمیان پل بنانا اور اخلاقیات، منطق اور علمیات کے پیچیدہ خیالات کو متنوع سامعین کے لیے قابل فہم اور عملی بنانا.',
+   600→  lead2Title: 'شریک بانی اور رکن — تعلیمی یوتھ کلب',
+   601→  lead2Period: 'فروری ۲۰۱۵ – فروری ۲۰۱۷',
+   602→  lead2Org: 'بائبلوتیکا الاسکندریہ، اسکندریہ، مصر',
+   603→  lead2Desc: 'بائبلوتیکا الاسکندریہ کے ساتھ شراکت میں ہائی اسکول کے طلباء میں ماحولیاتی آگاہی، تنقیدی سوچ اور سماجی شرکت کو فروغ دینے کے لیے تعلیمی یوتھ کلب کی شریک بنیاد رکھی۔ YESBU، LYM اور ALYM پروگراموں میں حصہ لیا.',
+   604→  lead3Title: 'جنرل کوآرڈینیٹر — کچرے کی علیحدگی کا اقدام',
+   605→  lead3Period: 'فروری ۲۰۱۵ – فروری ۲۰۱۷',
+   606→  lead3Org: 'بائبلوتیکا الاسکندریہ اور اسکندریہ گورنریٹ، مصر',
+   607→  lead3Desc: 'نوجوانوں اور مقامی اسکولوں کو ہدف بناتے ہوئے شہر بھر میں ماحولیاتی آگاہی کے اقدام کی لاجسٹکس اور آؤٹ ریچ کا نظم کیا، مقامی حکومت اور مربیان کے ساتھ تعاون میں.',
+   608→  lead4Title: 'شریک منتظم — تیسرا سالانہ بین الاقوامی کانفرنس، فلسفہ شعبہ',
+   609→  lead4Period: 'نومبر ۲۰۱۷',
+   610→  lead4Org: 'اسکندریہ یونیورسٹی، مصر',
+   611→  lead4Desc: 'فلسفیانہ مطالعہ، تخلیق اور تنقیدی نقد پر بین الاقوامی کانفرنس کی شریک تنظیم کی.',
+   612→
+   613→  langArabic: 'عربی',
+   614→  langArabicLevel: 'مادری زبان',
+   615→  langEnglish: 'انگریزی',
+   616→  langEnglishLevel: 'روان (C1 – آئلٹس ۷)',
+   617→  langUrdu: 'اردو',
+   618→  langUrduLevel: 'ابتدائی',
+   619→  langSpanish: 'ہسپانوی',
+   620→  langSpanishLevel: 'ابتدائی',
+   621→
+   622→  aff1Name: 'رکن، برٹش فلاسفیکل ایسوسی ایشن (BPA)',
+   623→  aff1Period: '۲۰۲۵ – حال',
+   624→
+   625→  add1Label: 'کھیل کوچنگ',
+   626→  add1Detail: 'طاقت اور کنڈیشنگ کوچ، سوئفٹ فٹ بال اکیڈمی، العین (۲۰۲۳–۲۰۲۴)',
+   627→  add2Label: 'آئ ٹی مہارتیں',
+   628→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+   629→
+   630→
+   631→  teachingExperience: 'تدریسی تجربات',
+   632→  teach1Title: 'انگریزی سماجی مطالعات کا استاد',
+   633→  teach1Period: 'اگست ۲۰۲۶ – حال',
+   634→  teach1Org: 'النہدہ نیشنل اسکول فار بوائز، ابوظبی، متحدہ عرب امارات',
+   635→  teach1Desc: 'النہدہ نیشنل اسکول فار بوائز میں انگریزی سماجی مطالعات پڑھانا، 2026/2027 تعلیمی سال سے آغاز۔',
+   636→  teach2Title: 'MSC اسٹڈیز اور اسلامی تعلیم (ب) کے استاد اور غیر عربی بولنے والوں کے سیکشن کے لیڈ',
+   637→  teach2Period: 'ستمبر ۲۰۲۵ – جولائی ۲۰۲۶',
+   638→  teach2Org: 'عین الخلیج اسکول، امریکن ڈویژن، متحدہ عرب امارات',
+   639→  teach2Desc: 'سیکل 2 اور 3 کے لیے MSC کے مضمون کے استاد اور سائکل 1 کے لیے اسلامی تعلیم (ب) کے استاد کی حیثیت سے شمولیت، اور دوسری سمسٹر میں غیر عربی بولنے والوں کے سیکشن کے لیڈ کے عہدے پر ترقی۔',
+   640→  teach2Bullets: 'انگریزی ذریعہ تعلیم کے ساتھ MSC اسٹڈیز اور اسلامی تعلیم (ب) پڑھانا، ADEK اور Irtiqa\'a کے معیارات کی پابندی کو یقینی بنانا\nڈیپارٹمنٹ کے اساتذہ کو تفریقی تعلیم، تعلیمی ٹیکنالوجی کے انضمام، بچوں کی حفاظت، شامل تعلیم اور متحدہ عرب امارات کی قومی شناخت میں رہنمائی\nدوسری سمسٹر میں ماڈل یونائیٹڈ نیشنز کے فیکلٹی ہیڈ کے طور پر تقرری، اسکول وفد پروگرام کی ذمہ داری سنبھالنا\nوفد کو MANORMUN V 2026 میں بہترین اسکول کا اعزاز دلانا، طلبا میں سفارتی استدلال، تحقیقی تحریر اور عوامی تقریر کی مہارتوں کی ترقی\nاسکول کی «طالب علم سب سے پہلے» Initiative میں فعال شراکت، اور اپنے ہی کلاسوں سے ماورا طلبا کے لیے کیمپس بھر میں رہنمائی اور جذباتی معاونت کا سرچشمہ',
+   641→  teach3Title: 'ریسرچ اسسٹنٹ اور مترجم',
+   642→  teach3Period: '۲۰۱۷',
+   643→  teach3Org: 'ایموری یونیورسٹی (ڈاکٹر رحیم جان عبد الغفوروف کے ساتھ)',
+   644→  teach3Desc: 'اسلامی تہذیب میں تاریخی مخطوطات کی نقل اور تجزیہ ایموری یونیورسٹی کی تحقیق کے لیے۔',
+   645→  showQR: 'QR کوڈ دکھائیں',
+   646→  hideQR: 'QR کوڈ چھپائیں',
+   647→  scanToOpen: 'ڈیجیٹل کارڈ کھولنے کے لیے اسکین کریں',
+   648→  downloadResume: 'میری رزومے ڈاؤن لوڈ کریں',
+   649→  resumeDetail: 'PDF — مکمل سی وی اور تجربہ',
+   650→  footerLine1: 'لائسنس یافتہ یو اے ای مربّی · ابوظبی محکمہ تعلیم اور علم (ADEK) منظور',
+   651→  footerLine2: 'فلسفہ اور مقصد سے تخلیق شدہ',
+   652→},
+   653→// ──────────────────────────────────────────────────────────────
+   654→// SPANISH — In the literary register of Gabriel García Márquez
+   655→// ──────────────────────────────────────────────────────────────
+   656→es: {
+   657→  aboutMe: 'De mi propia mano',
+   658→  education: 'Letras y oficios',
+   659→  certifications: 'Títulos y aprendizajes continuos',
+   660→  coreCompetencies: 'Facultades mayores',
+   661→  leadershipInitiatives: 'Empresas y obras',
+   662→  languages: 'Lenguas',
+   663→  affiliations: 'Pertenencias y gremios',
+   664→  additional: 'Al margen',
+   665→  connectWithMe: 'Entrar en trato',
+   666→
+   667→  title: 'Educador humanista',
+   668→  location: 'Abu Dabi, Emiratos Árabes Unidos',
+   669→  quote: '"Instruir las mentes, forjar los destinos"',
+   670→  about1: 'Como filósofo y educador, concibo la enseñanza no como un oficio común, sino como un arte profundamente humano donde la inteligencia, la ética y la empatía se encuentran en un mismo espacio invisible, como ríos que confluyen para dar forma al espíritu del ser humano.',
+   671→  about2: 'Soy educador licenciado en los Emiratos Árabes Unidos, con aprobación oficial de la Autoridad de Educación y Conocimiento de Abu Dabi (ADEK) para la enseñanza de Estudios Morales, Sociales y Culturales, así como Educación Islámica. Estoy habilitado para impartir estas materias tanto en contextos de lengua árabe como inglesa, siendo hablante nativo de árabe y poseedor de una certificación académica IELTS nivel 7.',
+   672→  about3: 'Mi experiencia docente abarca desde el primer hasta el duodécimo grado dentro del currículo estadounidense, con una correspondencia natural con los programas del Bachillerato Internacional (IB MYP – Individuals and Societies, Theory of Knowledge), las Perspectivas Globales de Cambridge y la Filosofía de nivel A-Level. Este recorrido académico se sustenta en una Licenciatura en Filosofía por la Universidad de Alejandría y un Diploma de Posgrado en Educación por la Universidad de Al-Azhar.',
+   673→  about4: 'Mi pedagogía se fundamenta en la noción aristotélica de phronesis, esa sabiduría práctica que permite reconocer la acción correcta en el momento preciso. Busco cultivar esta facultad en mis estudiantes a través del aprendizaje por investigación, la diferenciación estructurada según los diversos perfiles de aprendizaje —incluyendo estudiantes de inglés como segundo idioma, alumnos con altas capacidades y estudiantes con necesidades educativas especiales—, y la integración de la tecnología educativa como un instrumento que amplifica el aprendizaje personalizado sin sustituir nunca el juicio humano.',
+   674→  about5: 'Además, como Director de la Facultad del programa Modelo de Naciones Unidas, formo a los estudiantes en el arte del pensamiento diplomático, la investigación académica, la escritura analítica y la oratoria. En todas estas tareas persigo una misma intuición: la unión entre el pensamiento y la acción, como si ambos fueran dos caras de una misma realidad, donde el conocimiento deja de ser simple información para convertirse en una forma de transformación humana.',
+   675→
+   676→  statYearsLabel: 'Años de travesía',
+   677→  statYearsSub: 'Emiratos, Reino Unido y Egipto',
+   678→  statGradeLabel: 'Ciclos enseñados',
+   679→  statGradeSub: 'Todos los niveles',
+   680→  statIeltsLabel: 'Puntaje IELTS',
+   681→  statIeltsSub: 'Banda académica',
+   682→  statMunLabel: 'Dirección del Model UN',
+   683→  statMunSub: 'Jefe de facultad',
+   684→  statStudioLabel: 'Estudio de Phronesis',
+   685→  statStudioSub: 'Sistemas a medida y plataformas de aprendizaje',
+   686→
+   687→  edu1Label: 'Diplomado de posgrado en educación',
+   688→  edu1Detail: 'Universidad de Al-Azhar (sep. 2024 - sep. 2025)',
+   689→  edu2Label: 'Licenciatura en filosofía',
+   690→  edu2Detail: 'Universidad de Alejandría (sep. 2016 - may. 2021)',
+   691→
+   692→  cert1Label: 'Licencia de enseñanza EAU (estudios sociales - ciclo 3)',
+   693→  cert1Detail: 'Válida hasta feb. 2029',
+   694→  cert2Label: 'IELTS Académico banda 7',
+   695→  cert2Detail: 'Válido hasta ago. 2027',
+   696→  cert3Label: 'HMH - Preparación para las primeras dos semanas y diferenciación con grupos reducidos y centros',
+   697→  cert3Detail: 'Abr. 2026',
+   698→  cert4Label: 'Certificado «Inteligencia artificial para educadores» (nivel 1) - Teachy',
+   699→  cert4Detail: 'Oct. 2025',
+   700→  cert5Label: 'Fundamentos de redes y seguridad de redes - Mahara Tech y MCIT, Egipto',
+   701→  cert5Detail: 'Jun. 2025',
+   702→  cert6Label: 'Certificación avanzada de Persona Responsable (PIC) - Municipio de Dubái',
+   703→  cert6Detail: 'May. 2025',
+   704→  cert7Label: 'Formación de guardia contra incendios (nivel 2) - Defensa Civil de Dubái',
+   705→  cert7Detail: 'Válido hasta ago. 2026',
+   706→  cert8Label: 'Verificación de manuscritos en filosofía y teología - Bibliotheca Alexandrina',
+   707→  cert8Detail: 'Nov. 2021',
+   708→  cert9Label: 'Pensamiento crítico y toma de decisiones - LinkedIn Learning',
+   709→  cert9Detail: 'Jul. 2021',
+   710→
+   711→  skill1: 'Concepción de programas y cuidado de la calidad académica',
+   712→  skill2: 'Enseñanza diferenciada y educación abierta a todos',
+   713→  skill3: 'Aprendizaje por la indagación y pedagogía centrada en el estudiante',
+   714→  skill4: 'Mirada atenta sobre la protección y el resguardo del niño',
+   715→  skill5: 'Conducción de equipos, mentoría y gobierno del desempeño',
+   716→  skill6: 'Integración de tecnologías educativas y transformación digital',
+   717→  skill7: 'Dirección del programa Model UN',
+   718→  skill8: 'Palabra que suena y creación de contenido educativo',
+   719→  skill9: 'Comunicación bilingüe - inglés (C1) y árabe (lengua materna)',
+   720→
+   721→  lead1Title: 'Creador y conductor - podcast «Ecos de la Sabiduría»',
+   722→  lead1Period: '2026 - presente',
+   723→  lead1Org: 'Iniciativa educativa independiente',
+   724→  lead1Desc: 'Creación y conducción de un podcast dedicado a hacer de la filosofía un campo de enseñanza accesible, con pertinencia viva para la vida cotidiana, el pensamiento crítico y el perfeccionamiento interior. El programa tiende un puente entre la filosofía académica y la palabra dirigida a todos, traduciendo a lengua viva las ideas difíciles de la ética, la lógica y la teoría del conocimiento, para los auditorios más diversos.',
+   725→  lead2Title: 'Cofundador y miembro - Club Juvenil Educativo',
+   726→  lead2Period: 'Feb. 2015 - feb. 2017',
+   727→  lead2Org: 'Bibliotheca Alexandrina, Alejandría, Egipto',
+   728→  lead2Desc: 'Cofundación de un club juvenil educativo en alianza con la Bibliotheca Alexandrina, para despertar la conciencia ecológica, el pensamiento crítico y el servicio comunitario entre los estudiantes de secundaria. Participación en los programas YESBU, LYM y ALYM.',
+   729→  lead3Title: 'Coordinador general - Iniciativa de separación de residuos',
+   730→  lead3Period: 'Feb. 2015 - feb. 2017',
+   731→  lead3Org: 'Bibliotheca Alexandrina y gobernación de Alejandría, Egipto',
+   732→  lead3Desc: 'Manejo de la logística y la sensibilización de una iniciativa ecológica a escala de ciudad, dirigida a la juventud y a las escuelas locales, en concierto con las autoridades y los educadores.',
+   733→  lead4Title: 'Cofundador del arreglo - Tercer congreso internacional anual, departamento de filosofía',
+   734→  lead4Period: 'Noviembre 2017',
+   735→  lead4Org: 'Universidad de Alejandría, Egipto',
+   736→  lead4Desc: 'Coorganización del congreso internacional consagrado a la lectura filosófica, la creación y la crítica.',
+   737→
+   738→  langArabic: 'Árabe',
+   739→  langArabicLevel: 'Lengua materna',
+   740→  langEnglish: 'Inglés',
+   741→  langEnglishLevel: 'Fluido (C1 - IELTS 7)',
+   742→  langUrdu: 'Urdu',
+   743→  langUrduLevel: 'Principiante',
+   744→  langSpanish: 'Español',
+   745→  langSpanishLevel: 'Principiante',
+   746→
+   747→  aff1Name: 'Miembro de la Asociación Filosófica Británica (BPA)',
+   748→  aff1Period: '2025 - presente',
+   749→
+   750→  add1Label: 'Guiar en el deporte',
+   751→  add1Detail: 'Entrenador de fuerza y acondicionamiento, Swift Football Academy, Al Ain (2023-2024)',
+   752→  add2Label: 'Aptitudes digitales',
+   753→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+   754→
+   755→
+   756→  teachingExperience: 'Experiencia Docente',
+   757→  teach1Title: 'Profesor de Estudios Sociales en Inglés',
+   758→  teach1Period: 'Ago 2026 – Presente',
+   759→  teach1Org: 'Al Nahda National School for Boys, Abu Dabi, EAU',
+   760→  teach1Desc: 'Enseñanza de Estudios Sociales en inglés en Al Nahda National School for Boys, comenzando el año académico 2026/2027.',
+   761→  teach2Title: 'Profesor de Estudios Sociales MSC y Educación Islámica B y Líder de la Sección de No Arabohablantes',
+   762→  teach2Period: 'Sep 2025 – Jul 2026',
+   763→  teach2Org: 'Escuela Ain Al Khaleej, División Americana, EAU',
+   764→  teach2Desc: 'Incorporación como Profesor de MSC para los Ciclos 2 y 3 y de Educación Islámica B para el Ciclo 1, y promoción en el segundo trimestre a Líder de la Sección de No Arabohablantes.',
+   765→  teach2Bullets: 'Impartición de Estudios Sociales MSC y Educación Islámica B en inglés, garantizando el cumplimiento de los estándares ADEK e Irtiqa\'a\nMentoría a los docentes del departamento en instrucción diferenciada, integración de tecnologías educativas, salvaguarda, educación inclusiva e identidad nacional de los EAU\nDesignado Líder de Facultad para Model United Nations en el segundo trimestre, haciéndose cargo del programa de delegación escolar\nPreparación de la delegación para ganar Mejor Escuela en MANORMUN V 2026, desarrollando el razonamiento diplomático, la escritura de investigaciones y la oratoria de los estudiantes\nContribuyente activo de la iniciativa «Estudiante Primero» y fuente de mentoría y apoyo emocional para los estudiantes en todo el campus, más allá de sus propias clases',
+   766→  teach3Title: 'Asistente de Investigación y Traductor',
+   767→  teach3Period: '2017',
+   768→  teach3Org: 'Universidad de Emory (con el Dr. Rahimjon Abdugafurov)',
+   769→  teach3Desc: 'Transcripción y análisis de manuscritos históricos de la Civilización Islámica para la investigación de la Universidad de Emory.',
+   770→  showQR: 'Mostrar el código QR',
+   771→  hideQR: 'Ocultar el código QR',
+   772→  scanToOpen: 'Escanea para abrir esta tarjeta digital',
+   773→  downloadResume: 'Descargar mi currículum',
+   774→  resumeDetail: 'PDF - trayecto y experiencia completos',
+   775→  footerLine1: 'Educador con licencia EAU · Aprobado por el Departamento de Educación y Conocimiento de Abu Dabi',
+   776→  footerLine2: 'Forjado con filosofía y propósito',
+   777→},
+   778→
+   779→// ──────────────────────────────────────────────────────────────
+   780→// FRENCH — In the literary register of Victor Hugo
+   781→// ──────────────────────────────────────────────────────────────
+   782→fr: {
+   783→  aboutMe: 'De moi-même',
+   784→  education: 'Lettres et diplômes',
+   785→  certifications: 'Titres et formations continues',
+   786→  coreCompetencies: 'Facultés maîtresses',
+   787→  leadershipInitiatives: 'Entreprises et œuvres',
+   788→  languages: 'Idiomes',
+   789→  affiliations: 'Corps et appartenances',
+   790→  additional: 'En marge',
+   791→  connectWithMe: 'Entrer en relation',
+   792→
+   793→  title: 'Éducateur humaniste',
+   794→  location: 'Abu Dhabi, Émirats arabes unis',
+   795→  quote: '"Instruire les esprits, façonner l’avenir"',
+   796→  about1: 'En tant que philosophe et éducateur, je considère l’enseignement non comme un simple métier, mais comme un art profondément humain, où l’intelligence, la conscience morale et la sensibilité se rencontrent et se répondent, formant ainsi l’âme même de l’éducation.',
+   797→  about2: 'Je suis un éducateur agréé aux Émirats arabes unis, bénéficiant de l’approbation officielle de l’Autorité de l’Éducation et des Connaissances d’Abou Dhabi (ADEK) pour l’enseignement des Études morales, sociales et culturelles ainsi que de l’Éducation islamique. Je suis habilité à enseigner ces disciplines aussi bien en milieu arabophone qu’anglophone, étant locuteur natif de la langue arabe et titulaire d’un score académique IELTS de niveau 7.',
+   798→  about3: 'Mon expérience pédagogique s’étend du premier au douzième niveau dans le système éducatif américain, avec une articulation directe avec les programmes du Baccalauréat International (IB MYP — Individuals and Societies, IB Theory of Knowledge), les Perspectives globales de Cambridge, ainsi que la philosophie du niveau A-Level. Ce parcours est soutenu par une licence en philosophie obtenue à l’Université d’Alexandrie et un diplôme de troisième cycle en éducation de l’Université d’Al-Azhar.',
+   799→  about4: 'Ma pédagogie s’enracine dans la notion aristotélicienne de phronesis, cette sagesse pratique qui permet de discerner, en chaque circonstance, l’action juste au moment juste. Je m’efforce de transmettre cette faculté à mes élèves à travers un apprentissage par l’enquête, une différenciation structurée selon les profils d’apprenants — apprenants de langue anglaise, élèves doués, et élèves à besoins éducatifs particuliers — ainsi que par l’intégration des technologies éducatives, conçues non comme un substitut au jugement humain, mais comme un amplificateur de l’apprentissage personnalisé.',
+   800→  about5: 'Par ailleurs, en ma qualité de responsable du corps professoral du programme de Modèle des Nations Unies, je forme les élèves à la pensée diplomatique, à la recherche académique et à l’art de l’éloquence. En toutes ces fonctions, je poursuis une même aspiration : l’unité de la pensée et de l’action, afin que le savoir ne demeure pas stérile abstraction, mais devienne force vivante de transformation humaine.',
+   801→
+   802→  statYearsLabel: 'Années de labeur',
+   803→  statYearsSub: 'Émirats, Royaume-Uni et Égypte',
+   804→  statGradeLabel: 'Classes enseignées',
+   805→  statGradeSub: 'Tous les niveaux',
+   806→  statIeltsLabel: 'Score IELTS',
+   807→  statIeltsSub: 'Bande académique',
+   808→  statMunLabel: 'Direction du Model UN',
+   809→  statMunSub: 'Chef de faculté',
+   810→  statStudioLabel: 'Studio de Phronesis',
+   811→  statStudioSub: 'Systèmes sur mesure et plateformes d’apprentissage',
+   812→
+   813→  edu1Label: 'Diplôme d’études supérieures en éducation',
+   814→  edu1Detail: 'Université Al-Azhar (sep. 2024 - sep. 2025)',
+   815→  edu2Label: 'Licence ès lettres, philosophie',
+   816→  edu2Detail: 'Université d’Alexandrie (sep. 2016 - mai 2021)',
+   817→
+   818→  cert1Label: 'Licence d’enseignement EAU (sciences sociales - cycle 3)',
+   819→  cert1Detail: 'Valide jusqu’en fév. 2029',
+   820→  cert2Label: 'IELTS Académique bande 7',
+   821→  cert2Detail: 'Valide jusqu’en août 2027',
+   822→  cert3Label: 'HMH - Préparation aux deux premières semaines et différenciation avec petits groupes et ateliers',
+   823→  cert3Detail: 'Avr. 2026',
+   824→  cert4Label: 'Certificat « Intelligence artificielle pour éducateurs » (niveau 1) - Teachy',
+   825→  cert4Detail: 'Oct. 2025',
+   826→  cert5Label: 'Fondamentaux des réseaux et sécurité réseau - Mahara Tech et MCIT, Égypte',
+   827→  cert5Detail: 'Juin 2025',
+   828→  cert6Label: 'Certificat avancé de Personne Responsable (PIC) - Municipalité de Dubaï',
+   829→  cert6Detail: 'Mai 2025',
+   830→  cert7Label: 'Formation de gardien anti-incendie (niveau 2) - Défense civile de Dubaï',
+   831→  cert7Detail: 'Valide jusqu’en août 2026',
+   832→  cert8Label: 'Vérification de manuscrits en philosophie et théologie - Bibliotheca Alexandrina',
+   833→  cert8Detail: 'Nov. 2021',
+   834→  cert9Label: 'Pensée critique et prise de décision - LinkedIn Learning',
+   835→  cert9Detail: 'Juil. 2021',
+   836→
+   837→  skill1: 'Conception des programmes et souci de la qualité académique',
+   838→  skill2: 'Enseignement différencié et éducation inclusive',
+   839→  skill3: 'Apprentissage par l’enquête et pédagogie centrée sur l’élève',
+   840→  skill4: 'Vigilance en matière de protection et de sauvegarde de l’enfant',
+   841→  skill5: 'Direction d’équipe, mentorat et conduite des performances',
+   842→  skill6: 'Intégration des technologies éducatives et transformation numérique',
+   843→  skill7: 'Direction du programme Model UN',
+   844→  skill8: 'Diffusion sonore et création de contenu éducatif',
+   845→  skill9: 'Communication bilingue - anglais (C1) et arabe (langue maternelle)',
+   846→
+   847→  lead1Title: 'Créateur et animateur - podcast « Échos de la Sagesse »',
+   848→  lead1Period: '2026 - présent',
+   849→  lead1Org: 'Initiative éducative indépendante',
+   850→  lead1Desc: 'Création et animation d’un podcast voué à faire de la philosophie un domaine d’enseignement accessible, en prise directe avec la vie quotidienne, la pensée critique et le perfectionnement intérieur. L’émission jette un pont entre la philosophie académique et le discours adressé à tous, traduisant en parole vivante les idées difficiles de l’éthique, de la logique et de la théorie de la connaissance, pour des auditoires les plus divers.',
+   851→  lead2Title: 'Cofondateur et membre - Club éducatif de la jeunesse',
+   852→  lead2Period: 'Févr. 2015 - févr. 2017',
+   853→  lead2Org: 'Bibliotheca Alexandrina, Alexandrie, Égypte',
+   854→  lead2Desc: 'Cofondation d’un club éducatif de jeunesse en partenariat avec la Bibliotheca Alexandrina, pour éveiller la conscience écologique, la pensée critique et l’engagement civique parmi les élèves du secondaire. Participation aux programmes YESBU, LYM et ALYM.',
+   855→  lead3Title: 'Coordinateur général - Initiative de tri des déchets',
+   856→  lead3Period: 'Fév. 2015 - fév. 2017',
+   857→  lead3Org: 'Bibliotheca Alexandrina et gouvernorat d’Alexandrie, Égypte',
+   858→  lead3Desc: 'Gestion de la logistique et de la sensibilisation d’une initiative écologique à l’échelle d’une ville, destinée à la jeunesse et aux écoles locales, en concertation avec les autorités et les éducateurs.',
+   859→  lead4Title: 'Cofondateur de l’organisation - Troisième congrès international annuel, département de philosophie',
+   860→  lead4Period: 'Novembre 2017',
+   861→  lead4Org: 'Université d’Alexandrie, Égypte',
+   862→  lead4Desc: 'Co-organisation du congrès international consacré à la lecture philosophique, à la création et à la critique.',
+   863→
+   864→  langArabic: 'Arabe',
+   865→  langArabicLevel: 'Langue maternelle',
+   866→  langEnglish: 'Anglais',
+   867→  langEnglishLevel: 'Courant (C1 - IELTS 7)',
+   868→  langUrdu: 'Ourdou',
+   869→  langUrduLevel: 'Débutant',
+   870→  langSpanish: 'Espagnol',
+   871→  langSpanishLevel: 'Débutant',
+   872→
+   873→  aff1Name: 'Membre de la British Philosophical Association (BPA)',
+   874→  aff1Period: '2025 - présent',
+   875→
+   876→  add1Label: 'Encadrement sportif',
+   877→  add1Detail: 'Entraîneur de force et de conditionnement physique, Swift Football Academy, Al Ain (2023-2024)',
+   878→  add2Label: 'Aptitudes numériques',
+   879→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+   880→
+   881→
+   882→  teachingExperience: 'Expérience d\'Enseignement',
+   883→  teach1Title: 'Professeur d\'Études Sociales en Anglais',
+   884→  teach1Period: 'Août 2026 – Présent',
+   885→  teach1Org: 'Al Nahda National School for Boys, Abu Dhabi, EAU',
+   886→  teach1Desc: 'Enseignement des Études Sociales en anglais à Al Nahda National School for Boys, à partir de l\'année académique 2026/2027.',
+   887→  teach2Title: 'Professeur d\'Études Sociales MSC et d\'Éducation Islamique B et Responsable de la Section Non-Arabophones',
+   888→  teach2Period: 'Sep 2025 – Juil 2026',
+   889→  teach2Org: 'École Ain Al Khaleej, Section Américaine, EAU',
+   890→  teach2Desc: 'Recrutement comme Professeur de MSC pour les Cycles 2 et 3 et d\'Éducation Islamique B pour le Cycle 1, puis promotion au second trimestre au poste de Responsable de la Section Non-Arabophones.',
+   891→  teach2Bullets: 'Enseignement des Études Sociales MSC et de l\'Éducation Islamique B en anglais, garantissant la conformité aux normes ADEK et Irtiqa\'a\nMentorat des enseignants du département en pédagogie différenciée, intégration des technologies éducatives, protection des élèves, éducation inclusive et identité nationale des EAU\nNommé Responsable Pédagogique du programme Model United Nations au second trimestre, en charge de la délégation scolaire\nCoaching de la délégation lauréate du prix Meilleure École à MANORMUN V 2026, développant le raisonnement diplomatique, la rédaction de recherches et la prise de parole des élèves\nContributeur actif de l\'initiative « Étudiant d\'Abord » et source d\'encadrement et de soutien émotionnel pour les élèves sur l\'ensemble du campus, au-delà de ses propres classes',
+   892→  teach3Title: 'Assistant de Recherche et Traducteur',
+   893→  teach3Period: '2017',
+   894→  teach3Org: 'Université Emory (avec le Dr Rahimjon Abdugafurov)',
+   895→  teach3Desc: 'Transcription et analyse de manuscrits historiques de la Civilisation Islamique pour la recherche de l\'Université Emory.',
+   896→  showQR: 'Afficher le code QR',
+   897→  hideQR: 'Masquer le code QR',
+   898→  scanToOpen: 'Scannez pour ouvrir cette carte numérique',
+   899→  downloadResume: 'Télécharger mon curriculum vitae',
+   900→  resumeDetail: 'PDF - parcours et expérience complets',
+   901→  footerLine1: 'Éducateur titulaire d’une licence EAU · Agréé par le Département de l’Éducation et du Savoir d’Abu Dhabi',
+   902→  footerLine2: 'Façonné avec philosophie et dessein',
+   903→},
+   904→
+   905→// ──────────────────────────────────────────────────────────────
+   906→// RUSSIAN — In the literary register of Fyodor Dostoevsky
+   907→// ──────────────────────────────────────────────────────────────
+   908→ru: {
+   909→  aboutMe: 'О себе',
+   910→  education: 'Образование',
+   911→  certifications: 'Свидетельства и профессиональное развитие',
+   912→  coreCompetencies: 'Существенные способности',
+   913→  leadershipInitiatives: 'Начинания и предприятия',
+   914→  languages: 'Языки',
+   915→  affiliations: 'Принадлежность к сообществам',
+   916→  additional: 'Дополнительно',
+   917→  connectWithMe: 'Связаться со мной',
+   918→
+   919→  title: 'Наставник-гуманитарий',
+   920→  location: 'Абу-Даби, Объединённые Арабские Эмираты',
+   921→  quote: '"Наставляя умы, созидаем грядущее"',
+   922→  about1: 'Как философ и педагог, я рассматриваю преподавание не как простое ремесло, но как человеческое искусство, в котором разум, нравственность и сострадание сходятся в едином пространстве, формируя внутренний мир человека и направляя его к более высокому пониманию себя и мира.',
+   923→  about2: 'Я являюсь сертифицированным педагогом в Объединённых Арабских Эмиратах, имеющим официальное одобрение Департамента образования и знаний Абу-Даби (ADEK) для преподавания дисциплин моральных, социальных и культурных исследований, а также исламского образования. Я уполномочен преподавать эти предметы как в арабоязычной, так и в англоязычной среде; арабский язык является моим родным, а также я обладаю академическим сертификатом IELTS уровня 7.',
+   924→  about3: 'Мой педагогический опыт охватывает обучение с 1 по 12 классы по американской образовательной системе, с содержательной и методологической корреляцией с программами IB MYP (Individuals and Societies), Cambridge Global Perspectives, IB Diploma Theory of Knowledge, а также курсом философии A-Level. Этот путь опирается на моё академическое образование: степень бакалавра философии Университета Александрийского и последипломный диплом по педагогике Университета Аль-Азхар.',
+   925→  about4: 'Моя педагогическая позиция основана на аристотелевском понятии phronesis — практической мудрости, способности распознавать верное действие в верный момент. Я стремлюсь развивать это качество в учениках через исследовательское обучение, структурированную дифференциацию для различных образовательных потребностей (включая изучающих английский язык, одарённых учащихся и учащихся с особыми образовательными потребностями), а также через использование образовательных технологий как инструмента усиления индивидуального обучения, а не замены человеческого суждения.',
+   926→  about5: 'Кроме того, я являюсь руководителем факультетской программы «Модель Организации Объединённых Наций», где обучаю студентов дипломатическому мышлению, исследовательскому письму и искусству публичного выступления. Во всех этих ролях я стремлюсь к тому же внутреннему единству мысли и действия, к которому стремлюсь как педагог, ученик и человек — к состоянию, в котором знание становится не только инструментом, но и нравственным выбором.',
+   927→
+   928→  statYearsLabel: 'Лет труду',
+   929→  statYearsSub: 'ОАЭ, Великобритания, Египет',
+   930→  statGradeLabel: 'Охват классов',
+   931→  statGradeSub: 'Все ступени обучения',
+   932→  statIeltsLabel: 'Балл IELTS',
+   933→  statIeltsSub: 'Академический разряд',
+   934→  statMunLabel: 'Руководство программой Model UN',
+   935→  statMunSub: 'Наставник преподавательского состава',
+   936→  statStudioLabel: 'Студия Фронезиса',
+   937→  statStudioSub: 'Кастомные системы и обучающие платформы',
+   938→
+   939→  edu1Label: 'Диплом последипломного образования в области педагогики',
+   940→  edu1Detail: 'Университет Аль-Азхар (сент. 2024 - сент. 2025)',
+   941→  edu2Label: 'Степень бакалавра философии',
+   942→  edu2Detail: 'Александрийский университет (сент. 2016 - май 2021)',
+   943→
+   944→  cert1Label: 'Лицензия преподавателя ОАЭ (обществоведение - цикл 3)',
+   945→  cert1Detail: 'Действительна до февр. 2029',
+   946→  cert2Label: 'IELTS Academic, балл 7',
+   947→  cert2Detail: 'Действителен до авг. 2027',
+   948→  cert3Label: 'HMH - Подготовка к первым двум неделям; дифференциация с малыми группами и учебными центрами',
+   949→  cert3Detail: 'Апр. 2026',
+   950→  cert4Label: 'Свидетельство «Искусственный интеллект для наставников» (уровень 1) - Teachy',
+   951→  cert4Detail: 'Окт. 2025',
+   952→  cert5Label: 'Основы сетей и сетевая безопасность - Mahara Tech и MCIT, Египет',
+   953→  cert5Detail: 'Июнь 2025',
+   954→  cert6Label: 'Свидетельство ответственного лица повышенного уровня (PIC) - Муниципалитет Дубая',
+   955→  cert6Detail: 'Май 2025',
+   956→  cert7Label: 'Подготовка пожарного надзирателя (уровень 2) - Гражданская оборона Дубая',
+   957→  cert7Detail: 'Действителен до авг. 2026',
+   958→  cert8Label: 'Свидетельство об экспертизе рукописей по философии и богословию - Библиотека Александрина',
+   959→  cert8Detail: 'Нояб. 2021',
+   960→  cert9Label: 'Критическое мышление и решение задач - LinkedIn Learning',
+   961→  cert9Detail: 'Июль 2021',
+   962→
+   963→  skill1: 'Устроение учебных программ и попечение об академическом качестве',
+   964→  skill2: 'Дифференцированное наставничество и обучение, открытое каждому',
+   965→  skill3: 'Познание через вопрошание и наставничество, обращённое к самому учащемуся',
+   966→  skill4: 'Зрение в деле защиты и попечения о детях',
+   967→  skill5: 'Начальствование над людьми, наставничество и управление мерою труда',
+   968→  skill6: 'Приобщение образовательных технологий и цифровое преображение',
+   969→  skill7: 'Руководство программой Model UN',
+   970→  skill8: 'Звучащее слово и созидание просветительского содержания',
+   971→  skill9: 'Двуязычное общение - английский (C1) и арабский (язык отеческий)',
+   972→
+   973→  lead1Title: 'Учредитель и ведущий - подкаст «Эхо мудрости»',
+   974→  lead1Period: '2026 - настоящее время',
+   975→  lead1Org: 'Самостоятельное просветительское начинание',
+   976→  lead1Desc: 'Созидание и ведение подкаста, посвящённого тому, чтобы философия сделалась доступною областью просвещения, имеющею живое и практическое касательство к повседневности, критической мысли и внутреннему созреванию человека. Программа перекидывает мост между философией академической и философиею, обращённою к обществу, облекая сложные умозрения этики, логики и теории познания в слово, понятное и приложимое для самых разнообразных слушателей.',
+   977→  lead2Title: 'Соучредитель и участник - Просветительский молодёжный клуб',
+   978→  lead2Period: 'Февр. 2015 - февр. 2017',
+   979→  lead2Org: 'Библиотека Александрина, Александрия, Египет',
+   980→  lead2Desc: 'Соучреждение молодёжного просветительского клуба совместно с Библиотекою Александрина в целях пробуждения экологического сознания, критической мысли и общественного служения среди учащихся старших классов. Участие в программах YESBU, LYM и ALYM.',
+   981→  lead3Title: 'Главный распорядитель - Начинание по раздельному сбору отходов',
+   982→  lead3Period: 'Февр. 2015 - февр. 2017',
+   983→  lead3Org: 'Библиотека Александрина и губернаторство Александрии, Египет',
+   984→  lead3Desc: 'Управление хозяйством и просвещением в рамках городской экологической инициативы, обращённой к молодёжи и местным школам, при сотрудничестве с властями и наставниками.',
+   985→  lead4Title: 'Соучредитель по устройству - Третий ежегодный международный конгресс, кафедра философии',
+   986→  lead4Period: 'Ноябрь 2017',
+   987→  lead4Org: 'Александрийский университет, Египет',
+   988→  lead4Desc: 'Соучреждение международного конгресса, посвящённого философскому чтению, созиданию и критике.',
+   989→
+   990→  langArabic: 'Арабский',
+   991→  langArabicLevel: 'Язык отеческий',
+   992→  langEnglish: 'Английский',
+   993→  langEnglishLevel: 'Свободный (C1 - IELTS 7)',
+   994→  langUrdu: 'Урду',
+   995→  langUrduLevel: 'Начальный',
+   996→  langSpanish: 'Испанский',
+   997→  langSpanishLevel: 'Начальный',
+   998→
+   999→  aff1Name: 'Член Британской философской ассоциации (BPA)',
+  1000→  aff1Period: '2025 - настоящее время',
+  1001→
+  1002→  add1Label: 'Наставничество в спорте',
+  1003→  add1Detail: 'Тренер по силовой и общефизической подготовке, Swift Football Academy, Эль-Айн (2023-2024)',
+  1004→  add2Label: 'Цифровые навыки',
+  1005→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+  1006→
+  1007→
+  1008→  teachingExperience: 'Опыт преподавания',
+  1009→  teach1Title: 'Учитель английских общественных наук',
+  1010→  teach1Period: 'Авг 2026 – настоящее время',
+  1011→  teach1Org: 'Al Nahda National School for Boys, Абу-Даби, ОАЭ',
+  1012→  teach1Desc: 'Преподавание английских общественных наук в Al Nahda National School for Boys, начиная с учебного года 2026/2027.',
+  1013→  teach2Title: 'Учитель общественных наук MSC и исламского воспитания B и руководитель секции неарабоязычных учащихся',
+  1014→  teach2Period: 'Сен 2025 – Июл 2026',
+  1015→  teach2Org: 'Школа Ain Al Khaleej, Американское отделение, ОАЭ',
+  1016→  teach2Desc: 'Принят как учитель MSC для циклов 2 и 3 и исламского воспитания B для цикла 1, с повышением во втором триместре до руководителя секции неарабоязычных учащихся.',
+  1017→  teach2Bullets: 'Преподавание общественных наук MSC и исламского воспитания B на английском языке с обеспечением соответствия стандартам ADEK и Irtiqa\'a\nНаставничество преподавателей кафедры в области дифференцированного обучения, интеграции образовательных технологий, защиты детей, инклюзивного образования и национальной идентичности ОАЭ\nНазначен научным руководителем программы Model United Nations во втором триместре, приняв на себя руководство школьной делегацией\nПодготовка делегации к получению премии «Лучшая школа» на MANORMUN V 2026, развитие у учащихся дипломатического мышления, навыков исследовательской работы и ораторского искусства\nАктивный участник инициативы «Ученик прежде всего» и источник наставничества и эмоциональной поддержки для учащихся всей школы, а не только своих классов',
+  1018→  teach3Title: 'Ассистент-исследователь и переводчик',
+  1019→  teach3Period: '2017',
+  1020→  teach3Org: 'Университет Эмори (с доктором Рахимжоном Абдугафуровым)',
+  1021→  teach3Desc: 'Расшифровка и анализ исторических рукописей по исламской цивилизации для исследования Университета Эмори.',
+  1022→  showQR: 'Показать QR-код',
+  1023→  hideQR: 'Скрыть QR-код',
+  1024→  scanToOpen: 'Снимите код, дабы открыть сию цифровую карточку',
+  1025→  downloadResume: 'Скачать моё резюме',
+  1026→  resumeDetail: 'PDF - полный опыт и поприще',
+  1027→  footerLine1: 'Наставник, имеющий лицензию ОАЭ · Утверждён Департаментом образования и знаний Абу-Даби',
+  1028→  footerLine2: 'Создано с философским помыслом и целию',
+  1029→},
+  1030→
+  1031→// ──────────────────────────────────────────────────────────────
+  1032→// CHINESE — Professionally localized for Chinese academic context
+  1033→// ──────────────────────────────────────────────────────────────
+  1034→zh: {
+  1035→  aboutMe: '关于我',
+  1036→  education: '教育背景',
+  1037→  certifications: '资质认证与专业发展',
+  1038→  coreCompetencies: '核心能力',
+  1039→  leadershipInitiatives: '领导力项目与倡议',
+  1040→  languages: '语言能力',
+  1041→  affiliations: '专业隶属',
+  1042→  additional: '其他信息',
+  1043→  connectWithMe: '与我联系',
+  1044→
+  1045→  title: '人文学科教育者',
+  1046→  location: '阿联酋，阿布扎比',
+  1047→  quote: '"启迪心智，塑造未来"',
+  1048→  about1: '作为一名哲学家-教育者，我将教学视为一门人文艺术：一个智识、伦理与同理心交汇的空间，在这里人的内心世界得以塑造，并被引向对自我和世界更高的理解。',
+  1049→  about2: '我是阿联酋持牌教育者，获得阿布扎比教育与知识部（ADEK）在道德、社会与文化研究（MSC）及伊斯兰教育方面的教学批准。我有资格在阿拉伯语和英语教学环境中教授这两门课程（阿拉伯语母语者，学术雅思Band 7）。',
+  1050→  about3: '我的教学实践涵盖美国课程体系下的1至12年级，与IB MYP个人与社会、剑桥全球视野、IB文凭知识理论（TOK）及A-Level哲学直接对应。这些路径自然得益于我在亚历山大大学获得的哲学学士学位以及在爱资哈尔大学获得的教育学研究生文凭。',
+  1051→  about4: '我的教学法植根于亚里士多德的phronesis概念：实践智慧，一种在恰当时刻识别正确行动的经训练的能力。我通过探究式学习、针对不同学习者画像的结构化差异化教学（英语学习者、资优生、有决心的学生），以及将教育技术作为个性化学习的增强工具而非人类判断的替代品，来培养学生的这种能力。',
+  1052→  about5: '作为模拟联合国（MUN）的教研组长，我指导学生进行外交推理、研究写作和公开演讲，培养思想与行动之间的和谐——这也是我作为教育者、学习者和个人持续追求的和谐。',
+  1053→
+  1054→  statYearsLabel: '工作年限',
+  1055→  statYearsSub: '阿联酋、英国与埃及',
+  1056→  statGradeLabel: '教学覆盖',
+  1057→  statGradeSub: '所有年级',
+  1058→  statIeltsLabel: '雅思成绩',
+  1059→  statIeltsSub: '学术类',
+  1060→  statMunLabel: '模拟联合国领导',
+  1061→  statMunSub: '教师负责人',
+  1062→  statStudioLabel: 'Phronesis 工作室',
+  1063→  statStudioSub: '定制系统与学习平台',
+  1064→
+  1065→  edu1Label: '教育学研究生文凭',
+  1066→  edu1Detail: '艾资哈尔大学（2024年9月 – 2025年9月）',
+  1067→  edu2Label: '哲学文学学士',
+  1068→  edu2Detail: '亚历山大大学（2016年9月 – 2021年5月）',
+  1069→
+  1070→  cert1Label: '阿联酋教师资格证（社会研究 – 第三阶段）',
+  1071→  cert1Detail: '有效期至2029年2月',
+  1072→  cert2Label: '雅思学术类7分',
+  1073→  cert2Detail: '有效期至2027年8月',
+  1074→  cert3Label: 'HMH — 前两周准备及小组与中心差异化教学',
+  1075→  cert3Detail: '2026年4月',
+  1076→  cert4Label: '教育者人工智能认证（一级）— Teachy',
+  1077→  cert4Detail: '2025年10月',
+  1078→  cert5Label: '网络基础与网络安全 — Mahara Tech与埃及通信部',
+  1079→  cert5Detail: '2025年6月',
+  1080→  cert6Label: '高级负责人认证（PIC）— 迪拜市政厅',
+  1081→  cert6Detail: '2025年5月',
+  1082→  cert7Label: '消防督导培训（二级）— 迪拜民防局',
+  1083→  cert7Detail: '有效期至2026年8月',
+  1084→  cert8Label: '哲学与神学手稿考证 — 亚历山大图书馆',
+  1085→  cert8Detail: '2021年11月',
+  1086→  cert9Label: '批判性思维与决策 — LinkedIn Learning',
+  1087→  cert9Detail: '2021年7月',
+  1088→
+  1089→  skill1: '课程设计与学术质量保障',
+  1090→  skill2: '差异化教学与包容性教育',
+  1091→  skill3: '探究式学习与以学生为中心的教学',
+  1092→  skill4: '儿童保护与安全守护意识',
+  1093→  skill5: '团队领导、辅导与绩效管理',
+  1094→  skill6: '教育科技整合与数字化转型',
+  1095→  skill7: '模拟联合国项目领导',
+  1096→  skill8: '播客与教育内容创作',
+  1097→  skill9: '双语沟通 — 英语（C1）与阿拉伯语（母语）',
+  1098→
+  1099→  lead1Title: '创建者与主持 — 播客「智慧的回响」',
+  1100→  lead1Period: '2026年 – 至今',
+  1101→  lead1Org: '独立教育倡议',
+  1102→  lead1Desc: '制作并主持一档致力于推广哲学作为可及的教育领域的播客，关注其在日常生活、批判性思维与个人发展中的实际意义。搭建学术哲学与公共话语之间的桥梁，将伦理学、逻辑学和认识论中的复杂概念转化为多元听众可以理解并付诸实践的思想。',
+  1103→  lead2Title: '联合创始人与成员 — 教育青年俱乐部',
+  1104→  lead2Period: '2015年2月 – 2017年2月',
+  1105→  lead2Org: '亚历山大图书馆，埃及亚历山大',
+  1106→  lead2Desc: '与亚历山大图书馆合作联合创办教育青年俱乐部，旨在促进高中生环境意识、批判性思维和社区参与。参与YESBU、LYM和ALYM项目。',
+  1107→  lead3Title: '总协调人 — 垃圾分类倡议',
+  1108→  lead3Period: '2015年2月 – 2017年2月',
+  1109→  lead3Org: '亚历山大图书馆与亚历山大省，埃及',
+  1110→  lead3Desc: '管理一项面向青年和当地学校的全市环保倡议的后勤与宣传工作，与地方政府及教育工作者合作推进。',
+  1111→  lead4Title: '联合组织者 — 第三届哲学系年度国际会议',
+  1112→  lead4Period: '2017年11月',
+  1113→  lead4Org: '亚历山大大学，埃及',
+  1114→  lead4Desc: '联合组织关于哲学阅读、创造力与批判的国际会议。',
+  1115→
+  1116→  langArabic: '阿拉伯语',
+  1117→  langArabicLevel: '母语',
+  1118→  langEnglish: '英语',
+  1119→  langEnglishLevel: '流利（C1 – 雅思7分）',
+  1120→  langUrdu: '乌尔都语',
+  1121→  langUrduLevel: '入门',
+  1122→  langSpanish: '西班牙语',
+  1123→  langSpanishLevel: '入门',
+  1124→
+  1125→  aff1Name: '英国哲学协会（BPA）会员',
+  1126→  aff1Period: '2025年 – 至今',
+  1127→
+  1128→  add1Label: '体育指导',
+  1129→  add1Detail: '体能与力量教练，Swift Football Academy，艾因（2023–2024）',
+  1130→  add2Label: '信息技术技能',
+  1131→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+  1132→
+  1133→
+  1134→  teachingExperience: '教学经历',
+  1135→  teach1Title: '英语社会研究教师',
+  1136→  teach1Period: '2026年8月 – 至今',
+  1137→  teach1Org: 'Al Nahda National School for Boys，阿布扎比，阿联酋',
+  1138→  teach1Desc: '在Al Nahda National School for Boys教授英语社会研究，自2026/2027学年起任教。',
+  1139→  teach2Title: 'MSC社会研究与伊斯兰教育B教师及非阿拉伯语母语者学部部长',
+  1140→  teach2Period: '2025年9月 – 2026年7月',
+  1141→  teach2Org: 'Ain Al Khaleej学校，美式学部，阿联酋',
+  1142→  teach2Desc: '以MSC学科教师身份入职，负责第二、三学段的MSC教学及第一学段的伊斯兰教育B教学，并于第二学期晋升为非阿拉伯语母语者学部部长。',
+  1143→  teach2Bullets: '以英语为教学语言讲授MSC社会研究与伊斯兰教育B，确保符合ADEK和Irtiqa\'a标准\n指导部门教师在差异化教学、教育科技整合、学生保护、包容性教育及阿联酋国家认同方面的实践\n第二学期被任命为模拟联合国（MUN）教研组长，负责学校代表团项目\n指导代表团在MANORMUN V 2026中荣获最佳学校奖，培养学生的外交思辨能力、研究写作能力和公开演讲技能\n积极参与"学生优先"倡议，并在校园范围内为学生（不仅限于自己班级的学生）提供心理与情感支持',
+  1144→  teach3Title: '研究助理与翻译',
+  1145→  teach3Period: '2017',
+  1146→  teach3Org: '埃默里大学（与Rahimjon Abdugafurov博士合作）',
+  1147→  teach3Desc: '为埃默里大学的研究项目转录并分析伊斯兰文明历史手稿。',
+  1148→  showQR: '显示二维码',
+  1149→  hideQR: '隐藏二维码',
+  1150→  scanToOpen: '扫描打开此数字名片',
+  1151→  downloadResume: '下载我的简历',
+  1152→  resumeDetail: 'PDF — 完整简历与经历',
+  1153→  footerLine1: '阿联酋持牌教育者 · 阿布扎比教育与知识部认证',
+  1154→  footerLine2: '以哲学与使命铸就',
+  1155→},
+  1156→
+  1157→// ──────────────────────────────────────────────────────────────
+  1158→// TAGALOG — Professionally localized for Filipino academic context
+  1159→// ──────────────────────────────────────────────────────────────
+  1160→tl: {
+  1161→  aboutMe: 'Tungkol sa Akin',
+  1162→  education: 'Kaalaman sa Akademya',
+  1163→  certifications: 'Mga Sertipikasyon at Propesyonal na Pagpapaunlad',
+  1164→  coreCompetencies: 'Pangunahing Kakayahan',
+  1165→  leadershipInitiatives: 'Mga Inisyatibo sa Pamumuno at Proyekto',
+  1166→  languages: 'Mga Wika',
+  1167→  affiliations: 'Mga Kaanibang Propesyonal',
+  1168→  additional: 'Karagdagang Impormasyon',
+  1169→  connectWithMe: 'Makipag-ugnayan sa Akin',
+  1170→
+  1171→  title: 'Tagapagturo sa Agham Pantao',
+  1172→  location: 'Abu Dhabi, UAE',
+  1173→  quote: '"Itinuturo ang Isipan, Hinuhubog ang Kinabukasan"',
+  1174→  about1: 'Bilang isang pilosopo-tagapagturo, tinitingnan ko ang pagtuturo bilang isang sangkalang-sining ng tao: isang espasyo kung saan nagkakatipon ang katalinuhan, etika, at empatiya, na hinuhubog ang panloob na mundo ng tao at nagtuturo sa kanya tungo sa mas mataas na pag-unawa sa sarili at sa mundo.',
+  1175→  about2: 'Ako ay isang lisensyadong tagapagturo sa UAE, na may opisyal na pag-apruba mula sa Departamento ng Edukasyon at Kaalaman ng Abu Dhabi (ADEK) para magturo ng Moral, Social, at Cultural Studies (MSC) at Islamic Education. Ako ay kwalipikado na magturo ng dalawang asignaturang ito sa parehong Arabik at Ingles na medium ng pagtuturo (katutubong tagapagsalita ng Arabik, Akademikong IELTS Band 7).',
+  1176→  about3: 'Ang aking kasanayan sa pagtuturo ay sumasaklaw mula Grade 1 hanggang Grade 12 sa kurikulum ng Amerika, na may direktang pag-aangkop sa IB MYP Individuals and Societies, Cambridge Global Perspectives, IB Diploma Theory of Knowledge, at A-Level Philosophy. Ang mga landas na ito ay natural na sinusuportahan ng aking BA sa Pilosopiya mula sa Unibersidad ng Alexandria at Postgraduate Diploma sa Edukasyon mula sa Unibersidad ng Al-Azhar.',
+  1177→  about4: 'Ang aking pedagopiya ay nakaugat sa konseptong Aristoteliano ng phronesis: praktikal na karunungan, ang sanay na kakayahan na makita ang tamang kilos sa tamang sandali. Linilinang ko ito sa mga mag-aaral sa pamamagitan ng pagkatuturo batay sa pagtatanong, istrukturadong diperensiyasyon para sa iba\'t ibang profile ng mag-aaral (mga nag-aaral ng Ingles, mga bihasang mag-aaral, mga mag-aaral ng determinasyon), at ang integrasyon ng teknolohiyang pang-edukasyon bilang pampalakas ng personalized na pagkatuto sa halip na kapalit ng pantao na paghuhusga.',
+  1178→  about5: 'Bilang Faculty Head para sa Model United Nations, ko-coach ko ang mga mag-aaral sa diplomasyang pangangatwiran, pagsusulat ng pananaliksik, at pampublikong pagsasalita, na linilinang ang parehong pagkakatugma ng pag-iisip at pagkilos na patuloy kong hinahanap bilang tagapagturo, mag-aaral, at tao.',
+  1179→
+  1180→  statYearsLabel: 'Taon ng Karanasan',
+  1181→  statYearsSub: 'UAE, UK at Egypt',
+  1182→  statGradeLabel: 'Saklaw ng Baitang',
+  1183→  statGradeSub: 'Lahat ng antas',
+  1184→  statIeltsLabel: 'Iskor sa IELTS',
+  1185→  statIeltsSub: 'Akademikong Band',
+  1186→  statMunLabel: 'Pamumuno sa Model UN',
+  1187→  statMunSub: 'Tagapangulo ng Faculty',
+  1188→  statStudioLabel: 'Studio ng Phronesis',
+  1189→  statStudioSub: 'Custom na sistema at platform ng pag-aaral',
+  1190→
+  1191→  edu1Label: 'Postgraduate Diploma sa Edukasyon',
+  1192→  edu1Detail: 'Al-Azhar University (Set 2024 – Set 2025)',
+  1193→  edu2Label: 'Bachelor of Arts sa Pilosopiya',
+  1194→  edu2Detail: 'Alexandria University (Set 2016 – May 2021)',
+  1195→
+  1196→  cert1Label: 'UAE Teaching License (Social Studies – Cycle 3)',
+  1197→  cert1Detail: 'Balido hanggang Peb 2029',
+  1198→  cert2Label: 'IELTS Academic Band 7',
+  1199→  cert2Detail: 'Balido hanggang Ago 2027',
+  1200→  cert3Label: 'HMH — Paghahanda sa Unang Dalawang Linggo at Diperensyasyon gamit ang Maliit na Grupo at Sentro',
+  1201→  cert3Detail: 'Abr 2026',
+  1202→  cert4Label: 'Sertipikado sa AI para sa mga Tagapagturo (Antas 1) — Teachy',
+  1203→  cert4Detail: 'Okt 2025',
+  1204→  cert5Label: 'Mga Pangunahing Kaalaman sa Network at Network Security — Mahara Tech at MCIT, Egypt',
+  1205→  cert5Detail: 'Hun 2025',
+  1206→  cert6Label: 'Sertipikadong Advanced Person-in-Charge (PIC) — Dubai Municipality',
+  1207→  cert6Detail: 'May 2025',
+  1208→  cert7Label: 'Pagsasanay sa Fire Warden (Antas 2) — Dubai Civil Defence',
+  1209→  cert7Detail: 'Balido hanggang Ago 2026',
+  1210→  cert8Label: 'Pagpapatunay ng mga Manuskrito sa Pilosopiya at Teolohiya — Bibliotheca Alexandrina',
+  1211→  cert8Detail: 'Nob 2021',
+  1212→  cert9Label: 'Kritikal na Pag-iisip at Paggawa ng Desisyon — LinkedIn Learning',
+  1213→  cert9Detail: 'Hul 2021',
+  1214→
+  1215→  skill1: 'Pagdidisenyo ng Kurikulum at Pagtiyak sa Kalidad na Akademiko',
+  1216→  skill2: 'Diperensyadong Pagtuturo at Inklusibong Edukasyon',
+  1217→  skill3: 'Inquiry-Based Learning at Student-Centered na Pagtuturo',
+  1218→  skill4: 'Kamalayan sa Safeguarding at Proteksyon ng Bata',
+  1219→  skill5: 'Pamumuno sa Koponan, Coaching at Pamamahala ng Pagganap',
+  1220→  skill6: 'Pagsasama ng EdTech at Digital na Transpormasyon',
+  1221→  skill7: 'Pamumuno sa Programang Model UN',
+  1222→  skill8: 'Podcasting at Paglikha ng Edukasyonal na Kontent',
+  1223→  skill9: 'Bilingual na Komunikasyon — English (C1) at Native Arabic',
+  1224→
+  1225→  lead1Title: 'Lumikha at Host — Podcast na «Echoes of Wisdom»',
+  1226→  lead1Period: '2026 – Kasalukuyan',
+  1227→  lead1Org: 'Independiyenteng Inisyatibong Pang-edukasyon',
+  1228→  lead1Desc: 'Paglikha at pagho-host ng isang podcast na nakatuon sa pagtataguyod ng pilosopiya bilang isang naaabot na larangan ng edukasyon na may praktikal na kaugnayan sa pang-araw-araw na buhay, kritikal na pag-iisip at personal na pag-unlad. Pagtulay sa akademikong pilosopiya at pampublikong diskurso, ginagawang naiintindihan at mailalapat ang mga kumplikadong ideya sa etika, lohika at epistemolohiya para sa iba\'t ibang madla.',
+  1229→  lead2Title: 'Cofounder at Miyembro — Educational Youth Club',
+  1230→  lead2Period: 'Peb 2015 – Peb 2017',
+  1231→  lead2Org: 'Bibliotheca Alexandrina, Alexandria, Egypt',
+  1232→  lead2Desc: 'Cofounding ng isang edukasyonal na youth club sa pakikipagtulungan sa Bibliotheca Alexandrina upang itaguyod ang kamalayan sa kalikasan, kritikal na pag-iisip at pakikilahok sa komunidad sa mga high school na mag-aaral. Pakikilahok sa mga programang YESBU, LYM at ALYM.',
+  1233→  lead3Title: 'Pangkalahatang Coordinator — Inisyatibo sa Paghihiwalay ng Basura',
+  1234→  lead3Period: 'Peb 2015 – Peb 2017',
+  1235→  lead3Org: 'Bibliotheca Alexandrina at Alexandria Governorate, Egypt',
+  1236→  lead3Desc: 'Pamamahala sa logistics at outreach ng isang citywide na inisyatibo sa kamalayang pangkapaligiran na nakatuon sa kabataan at mga lokal na paaralan, sa pakikipagtulungan sa lokal na pamahalaan at mga tagapagturo.',
+  1237→  lead4Title: 'Co-organizer — Ikatlong Taunang Internasyonal na Kumperensya, Dept. of Pilosopiya',
+  1238→  lead4Period: 'Nobyembre 2017',
+  1239→  lead4Org: 'Alexandria University, Egypt',
+  1240→  lead4Desc: 'Co-organisasyon ng internasyonal na kumperensya sa pilsopikal na pagbabasa, pagkamalikhain at kritisismo.',
+  1241→
+  1242→  langArabic: 'Arabic',
+  1243→  langArabicLevel: 'Katutubo',
+  1244→  langEnglish: 'English',
+  1245→  langEnglishLevel: 'Matalas (C1 – IELTS 7)',
+  1246→  langUrdu: 'Urdu',
+  1247→  langUrduLevel: 'Baguhan',
+  1248→  langSpanish: 'Spanish',
+  1249→  langSpanishLevel: 'Baguhan',
+  1250→
+  1251→  aff1Name: 'Miyembro, British Philosophical Association (BPA)',
+  1252→  aff1Period: '2025 – Kasalukuyan',
+  1253→
+  1254→  add1Label: 'Sports Coaching',
+  1255→  add1Detail: 'Strength & Conditioning Coach, Swift Football Academy, Al Ain (2023–2024)',
+  1256→  add2Label: 'Kakayahan sa IT',
+  1257→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+  1258→
+  1259→
+  1260→  teachingExperience: 'Karanasan sa Pagtuturo',
+  1261→  teach1Title: 'Guro ng English Social Studies',
+  1262→  teach1Period: 'Ago 2026 – Kasalukuyan',
+  1263→  teach1Org: 'Al Nahda National School for Boys, Abu Dhabi, UAE',
+  1264→  teach1Desc: 'Pagtuturo ng English Social Studies sa Al Nahda National School for Boys, mula sa academic year 2026/2027.',
+  1265→  teach2Title: 'Guro ng MSC Studies at Islamic Education B at Lead ng Non-Arabic Speaking Section',
+  1266→  teach2Period: 'Sep 2025 – Hul 2026',
+  1267→  teach2Org: 'Ain Al Khaleej School, American Division, UAE',
+  1268→  teach2Desc: 'Pagsali bilang Subject Teacher ng MSC para sa Cycles 2 at 3 at Islamic Education B para sa Cycle 1, at pag-promote sa Term 2 bilang Lead ng Non-Arabic Speaking Section.',
+  1269→  teach2Bullets: 'Pinagturo ang MSC Studies at Islamic Education B sa pamamagitan ng English-medium na pagtuturo, matiyak ang pagsunod sa ADEK at Irtiqa\'a standards\nNag-mentor sa mga guro ng departamento sa differentiated instruction, integration ng educational technology, safeguarding, inclusive education, at UAE national identity\nNatatalaga bilang Faculty Head para sa Model United Nations sa Term 2, kinuha ang pangangasiwa ng school delegation program\nNagsanay ng delegation para manalo ng Best School sa MANORMUN V 2026, na nag-develop ng diplomatic reasoning, research writing, at public speaking skills ng mga mag-aaral\nAktibong contributor sa “Student First” initiative ng paaralan at pinagkukunan ng mentorship at emotional support ng mga mag-aaral sa buong campus, higit pa sa kanyang sariling mga klase',
+  1270→  teach3Title: 'Research Assistant at Translator',
+  1271→  teach3Period: '2017',
+  1272→  teach3Org: 'Emory University (kasama si Dr. Rahimjon Abdugafurov)',
+  1273→  teach3Desc: 'Pagsulat at pagsusuri ng historical manuscripts sa Islamic Civilization para sa pananaliksik ng Emory University.',
+  1274→  showQR: 'Ipakita ang QR Code',
+  1275→  hideQR: 'Itago ang QR Code',
+  1276→  scanToOpen: 'I-scan upang buksan ang digital na card na ito',
+  1277→  downloadResume: 'I-download ang Aking Resume',
+  1278→  resumeDetail: 'PDF — Buong CV at Karanasan',
+  1279→  footerLine1: 'Lisensyadong Tagapagturo sa UAE · Aprobado ng Kagawaran ng Edukasyon at Kaalaman ng Abu Dhabi',
+  1280→  footerLine2: 'Yari sa pilosopiya at layunin',
+  1281→},
+  1282→
+  1283→// ──────────────────────────────────────────────────────────────
+  1284→// TURKISH — In the literary register of Ottoman-era Turkish prose
+  1285→// ──────────────────────────────────────────────────────────────
+  1286→tr: {
+  1287→  aboutMe: 'Hakkımda',
+  1288→  education: 'Tahsil',
+  1289→  certifications: 'Şehadetnameler ve Meslekî Gelişim',
+  1290→  coreCompetencies: 'Temel Kabiliyetler',
+  1291→  leadershipInitiatives: 'İdari Teşebbüsler ve Projeler',
+  1292→  languages: 'Lisanlar',
+  1293→  affiliations: 'Meslekî Mensubiyetler',
+  1294→  additional: 'İlave Bilgiler',
+  1295→  connectWithMe: 'Benimle İrtibat',
+  1296→
+  1297→  title: 'Beşerî İlimler Muallimi',
+  1298→  location: 'Abu Dhabi, BAE',
+  1299→  quote: '"Akılları talim etmek, istikbali inşa etmek"',
+  1300→
+  1301→  about1: 'Ben bir filozof-terbiyeci olarak, tedrisi sırf bir meslek değil, bilakis akıl, ahlâk ve şefkatin birleştiği yüksek bir insan sanatı olarak telakki ederim. Zira muallimlik, yalnız bilgi nakli değil; insanın iç âlemini inşa eden, onu kemale sevk eden bir irfan ve mesuliyet işidir.',
+  1302→  about2: 'Birleşik Arap Emirlikleri’nde resmî öğretmenlik ruhsatına sahip bulunmaktayım ve Abu Dhabi Eğitim ve Bilgi Dairesi’nin (ADEK) onayı ile Ahlâkî, Sosyal ve Kültürel Çalışmalar ile İslâmî Eğitim derslerini tedris etmekle yetkiliyim. Ana dilim Arapça olup, İngilizce eğitim verilen sınıflarda da ders verebilecek ehliyete sahibim; akademik IELTS puanım 7’dir.',
+  1303→  about3: 'Tedris tecrübem, Amerikan müfredatı çerçevesinde 1. sınıftan 12. sınıfa kadar geniş bir sahayı ihtiva eder. Bu saha, Uluslararası Bakalorya (IB MYP – Individuals and Societies, TOK), Cambridge Global Perspectives ve A-Level felsefe programları ile doğrudan irtibatlıdır. Bu ilmî zemin, İskenderiye Üniversitesi Felsefe Lisansım ve Ezher Üniversitesi’nden aldığım Eğitimde Lisansüstü Diplomam ile takviye edilmiştir.',
+  1304→  about4: 'Talim anlayışım, Aristoteles’in “phronesis” diye adlandırdığı amelî hikmet esasına müstenittir; yani insanın, her hâl ve şartta doğru fiili idrak edebilme kabiliyeti. Bu hikmeti talebelerimde geliştirmek için araştırmaya dayalı öğrenme usulünü, farklı öğrenci profillerine göre yapılandırılmış öğretimi (İngilizce öğrenenler, üstün kabiliyetliler ve özel ihtiyaç sahibi öğrenciler dâhil) ve eğitim teknolojilerini insanî hüküm ve basiretin yerine değil, onu takviye eden bir unsur olarak kullanmayı esas alırım.',
+  1305→  about5: 'Ayrıca, Model Birleşmiş Milletler Fakülte Başkanı olarak öğrencileri diplomatik muhakeme, ilmî araştırma, yazılı ifade ve hitabet sanatında yetiştirmekteyim. Bütün bu faaliyetlerimde gaye, fikir ile amelin ahengini tesis etmek; ilmi kuru bir malumat olmaktan çıkarıp ahlâk ve amel ile birleşen bir hikmete dönüştürmektir.',
+  1306→
+  1307→  statYearsLabel: 'Tecrübe Yılı',
+  1308→  statYearsSub: 'BAE, İngiltere ve Mısır',
+  1309→  statGradeLabel: 'Sınıf Seviyesi',
+  1310→  statGradeSub: 'Tüm kademeler',
+  1311→  statIeltsLabel: 'IELTS Puanı',
+  1312→  statIeltsSub: 'Akademik Bant',
+  1313→  statMunLabel: 'MUN Liderliği',
+  1314→  statMunSub: 'Fakülte Başkanı',
+  1315→  statStudioLabel: 'Phronesis Stüdyosu',
+  1316→  statStudioSub: 'Özel sistemler ve öğrenme platformları',
+  1317→
+  1318→  edu1Label: 'Eğitimde Lisansüstü Diplomasi',
+  1319→  edu1Detail: 'El-Ezher Üniversitesi (Eyl 2024 - Eyl 2025)',
+  1320→  edu2Label: 'Felsefe Lisansı',
+  1321→  edu2Detail: 'İskenderiye Üniversitesi (Eyl 2016 - May 2021)',
+  1322→
+  1323→  cert1Label: 'BAE Öğretmenlik Ruhsatı (Sosyal Bilgiler - Dönem 3)',
+  1324→  cert1Detail: 'Şub 2029\'a kadar geçerli',
+  1325→  cert2Label: 'IELTS Akademik Bant 7',
+  1326→  cert2Detail: 'Ağu 2027\'ye kadar geçerli',
+  1327→  cert3Label: 'HMH - İlk İki Haftaya Hazırlık ve Küçük Gruplar ve Merkezlerle Farklılaştırma',
+  1328→  cert3Detail: 'Nis 2026',
+  1329→  cert4Label: 'Eğitimciler için Yapay Zeka Sertifikası (Seviye 1) - Teachy',
+  1330→  cert4Detail: 'Eki 2025',
+  1331→  cert5Label: 'Ağ Temelleri ve Ağ Güvenliği - Mahara Tech ve MCIT, Mısır',
+  1332→  cert5Detail: 'Haz 2025',
+  1333→  cert6Label: 'Gelişmiş Sorumlu Şahıs (PIC) Sertifikası - Dubai Belediyesi',
+  1334→  cert6Detail: 'May 2025',
+  1335→  cert7Label: 'İtfaiye Görevlisi Eğitimi (Seviye 2) - Dubai Sivil Savunma',
+  1336→  cert7Detail: 'Ağu 2026\'ya kadar geçerli',
+  1337→  cert8Label: 'Felsefe ve İlahiyat El Yazmaları Tahkiki - Bibliotheca Alexandrina',
+  1338→  cert8Detail: 'Kas 2021',
+  1339→  cert9Label: 'Kritik Düşünce ve Karar Verme - LinkedIn Learning',
+  1340→  cert9Detail: 'Tem 2021',
+  1341→
+  1342→  skill1: 'Müfredat Tasarımı ve Akademik Kalite Güvencesi',
+  1343→  skill2: 'Farklılaştırılmış Öğretim ve Kapsayıcı Eğitim',
+  1344→  skill3: 'Sorgulamaya Dayalı Öğrenme ve Öğrenci Merkezli Pedagoji',
+  1345→  skill4: 'Çocuk Koruma ve Güvenlik Farkındalığı',
+  1346→  skill5: 'Takım Liderliği, Mentorluk ve Performans Yönetimi',
+  1347→  skill6: 'Eğitim Teknolojileri Entegrasyonu ve Dijital Dönüşüm',
+  1348→  skill7: 'Model BM Programı Liderliği',
+  1349→  skill8: 'Podcast ve Eğitim İçeriği Üretimi',
+  1350→  skill9: 'İki Dilli İletişim - İngilizce (C1) ve Arapça (Ana Dil)',
+  1351→
+  1352→  lead1Title: 'Mucit ve Sunucu - «Hikmetin Yankıları» Podcast',
+  1353→  lead1Period: '2026 - Günümüz',
+  1354→  lead1Org: 'Müstakil Eğitim İnisiyatifi',
+  1355→  lead1Desc: 'Felsefeyi günlük hayatla, eleştirel düşünceyle ve şahsi gelişimle ilgili erişilebilir bir eğitim alanı olarak tanıtmaya adanmış bir podcastin yaratılması ve sunulması. Akademik felsefe ile kamusal söylem arasında köprü kurarak, etik, mantık ve bilgi teorisinin karmaşık fikirlerini çeşitli dinleyiciler için anlaşılır ve uygulanabilir kavramlara çevirmek.',
+  1356→  lead2Title: 'Kurucu Ortak ve Üye - Eğitim Gençlik Kulübü',
+  1357→  lead2Period: 'Şub 2015 - Şub 2017',
+  1358→  lead2Org: 'Bibliotheca Alexandrina, İskenderiye, Mısır',
+  1359→  lead2Desc: 'Lise öğrencileri arasında çevre bilinci, eleştirel düşünce ve toplumsal katılımı teşvik etmek amacıyla Bibliotheca Alexandrina ile ortaklaşa bir eğitim gençlik kulübünün kurucu ortaklığı. YESBU, LYM ve ALYM programlarına katılım.',
+  1360→  lead3Title: 'Genel Koordinatör - Atık Ayırma Girişimi',
+  1361→  lead3Period: 'Şub 2015 - Şub 2017',
+  1362→  lead3Org: 'Bibliotheca Alexandrina ve İskenderiye Valiliği, Mısır',
+  1363→  lead3Desc: 'Yerel yönetimler ve eğitimcilerle işbirliği içinde, gençleri ve yerel okulları hedefleyen şehir çapında bir çevre bilinci girişiminin lojistik ve bilinçlendirme yönetimi.',
+  1364→  lead4Title: 'Ortak Düzenleyici - 3. Yıllık Uluslararası Konferans, Felsefe Bölümü',
+  1365→  lead4Period: 'Kasım 2017',
+  1366→  lead4Org: 'İskenderiye Üniversitesi, Mısır',
+  1367→  lead4Desc: 'Felsefi okuma, yaratıcılık ve eleştiri üzerine uluslararası konferansın ortak düzenlenmesi.',
+  1368→
+  1369→  langArabic: 'Arapça',
+  1370→  langArabicLevel: 'Ana Dil',
+  1371→  langEnglish: 'İngilizce',
+  1372→  langEnglishLevel: 'Akıcı (C1 - IELTS 7)',
+  1373→  langUrdu: 'Urduca',
+  1374→  langUrduLevel: 'Başlangıç',
+  1375→  langSpanish: 'İspanyolca',
+  1376→  langSpanishLevel: 'Başlangıç',
+  1377→
+  1378→  aff1Name: 'Üye, İngiliz Felsefe Derneği (BPA)',
+  1379→  aff1Period: '2025 - Günümüz',
+  1380→
+  1381→  add1Label: 'Spor Koçluğu',
+  1382→  add1Detail: 'Kuvvet ve Kondisyon Antrenörü, Swift Football Academy, El-Ayn (2023-2024)',
+  1383→  add2Label: 'Dijital Beceriler',
+  1384→  add2Detail: 'CompTIA (A+ & Network+ & Linux+) | Microsoft Office',
+  1385→
+  1386→
+  1387→  teachingExperience: 'Öğretim Tecrübesi',
+  1388→  teach1Title: 'İngilizce Sosyal Bilgiler Öğretmeni',
+  1389→  teach1Period: 'Ağu 2026 – Günümüz',
+  1390→  teach1Org: 'Al Nahda National School for Boys, Abu Dhabi, BAE',
+  1391→  teach1Desc: 'Al Nahda National School for Boys\'ta İngilizce Sosyal Bilgiler öğretmenliği, 2026/2027 akademik yılından itibaren başlamaktadır.',
+  1392→  teach2Title: 'MSC Çalışmaları ve İslam Eğitimi B Öğretmeni ve Arapça Bilmeyenler Bölümü Lideri',
+  1393→  teach2Period: 'Eyl 2025 – Tem 2026',
+  1394→  teach2Org: 'Ain Al Khaleej School, American Division, BAE',
+  1395→  teach2Desc: 'Dönem 2 ve 3 için MSC Ders Öğretmeni ve Dönem 1 için İslam Eğitimi B Öğretmeni olarak göreve başlama, ve 2. dönemde Arapça Bilmeyenler Bölümü Liderliğine terfi.',
+  1396→  teach2Bullets: 'MSC Çalışmaları ve İslam Eğitimi B\'yi İngilizce ortamda sunarak ADEK ve Irtiqa\'a uyumluluğunu sağlamak\nBölüm öğretmenlerine farklılaştırılmış öğretim, eğitim teknolojileri entegrasyonu, çocuk koruma, kapsayıcı eğitim ve BAE ulusal kimliği konusunda mentorluk yapmak\n2. dönemde Model Birleşmiş Milletler Fakülte Başkanı olarak atanmak ve okul heyeti programının sorumluluğunu üstlenmek\nHeyeti MANORMUN V 2026\'da En İyi Okul ödülüne hazırlamak; öğrencilerin diplomatik akıl yürütme, araştırma yazımı ve konuşma becerilerini geliştirmek\nOkulun «Öğrenci Önce» inisiyatifine aktif katkıda bulunmak ve kendi sınıflarının ötesinde kampüs geneli öğrenciler için mentorluk ve duygusal destek kaynağı olmak',
+  1397→  teach3Title: 'Araştırma Asistanı ve Çevirmen',
+  1398→  teach3Period: '2017',
+  1399→  teach3Org: 'Emory Üniversitesi (Dr. Rahimjon Abdugafurov ile)',
+  1400→  teach3Desc: 'Emory Üniversitesi araştırması için İslam Medeniyeti\'ndeki tarihi elyazmalarının transkripsiyonu ve analizi.',
+  1401→  showQR: 'QR kodunu göster',
+  1402→  hideQR: 'QR kodunu gizle',
+  1403→  scanToOpen: 'Bu dijital kartı açmak için tarayın',
+  1404→  downloadResume: 'CV\'imi İndir',
+  1405→  resumeDetail: 'PDF - Tam CV ve Tecrübe',
+  1406→  footerLine1: 'BAE Lisanslı Öğretmen · Abu Dhabi Eğitim ve Bilgi Dairesi Tarafından Onaylı',
+  1407→  footerLine2: 'Felsefe ve maksat ile işlendi',
+  1408→},
+  1409→
+  1410→}
+  1411→

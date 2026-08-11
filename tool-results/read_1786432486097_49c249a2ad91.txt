@@ -1,0 +1,2002 @@
+     1→export type Locale = 'en' | 'ar' | 'fr' | 'es' | 'pt' | 'ru' | 'zh' | 'ur' | 'tr';
+     2→
+     3→export const localeNames: Record<Locale, string> = {
+     4→  en: 'English',
+     5→  ar: 'العربية',
+     6→  fr: 'Français',
+     7→  es: 'Español',
+     8→  pt: 'Português',
+     9→  ru: 'Русский',
+    10→  zh: '中文',
+    11→  ur: 'اردو',
+    12→  tr: 'Türkçe',
+    13→};
+    14→
+    15→export const rtlLocales: Locale[] = ['ar', 'ur'];
+    16→
+    17→export interface Translations {
+    18→  nav: {
+    19→    hero: string;
+    20→    metrics: string;
+    21→    summary: string;
+    22→    timeline: string;
+    23→    competencies: string;
+    24→    certifications: string;
+    25→    leadership: string;
+    26→    education: string;
+    27→    recommendation: string;
+    28→    contact: string;
+    29→  };
+    30→  hero: {
+    31→    title: string;
+    32→    location: string;
+    33→    tagline: string;
+    34→    downloadResume: string;
+    35→    visitStudio: string;
+    36→  };
+    37→  metrics: {
+    38→    experience: string;
+    39→    revenue: string;
+    40→    promotions: string;
+    41→    certified: string;
+    42→    years: string;
+    43→    growth: string;
+    44→    rapid: string;
+    45→    iso: string;
+    46→    studio: string;
+    47→    studioSub: string;
+    48→  };
+    49→  summary: {
+    50→    title: string;
+    51→    text: string;
+    52→  };
+    53→  timeline: {
+    54→    title: string;
+    55→    present: string;
+    56→    experiences: {
+    57→      title: string;
+    58→      org: string;
+    59→      period: string;
+    60→      achievements: string[];
+    61→    }[];
+    62→  };
+    63→  competencies: {
+    64→    title: string;
+    65→    items: string[];
+    66→  };
+    67→  certifications: {
+    68→    title: string;
+    69→    validUntil: string;
+    70→    issued: string;
+    71→    items: {
+    72→      name: string;
+    73→      detail: string;
+    74→    }[];
+    75→  };
+    76→  leadership: {
+    77→    title: string;
+    78→    items: {
+    79→      role: string;
+    80→      org: string;
+    81→      period: string;
+    82→    }[];
+    83→  };
+    84→  education: {
+    85→    title: string;
+    86→    items: {
+    87→      degree: string;
+    88→      institution: string;
+    89→      period: string;
+    90→    }[];
+    91→  };
+    92→  recommendation: {
+    93→    title: string;
+    94→    intro_label: string;
+    95→    date: string;
+    96→    text: string;
+    97→    author: string;
+    98→    role: string;
+    99→    org: string;
+   100→  };
+   101→  contact: {
+   102→    title: string;
+   103→    subtitle: string;
+   104→    email: string;
+   105→    phone: string;
+   106→    linkedin: string;
+   107→    instagram: string;
+   108→    tiktok: string;
+   109→    youtube: string;
+   110→    whatsapp: string;
+   111→    website: string;
+   112→  };
+   113→  music: {
+   114→    play: string;
+   115→    pause: string;
+   116→  };
+   117→}
+   118→
+   119→const en: Translations = {
+   120→  nav: {
+   121→    hero: 'Home',
+   122→    metrics: 'Metrics',
+   123→    summary: 'About',
+   124→    timeline: 'Career',
+   125→    competencies: 'Skills',
+   126→    certifications: 'Certifications',
+   127→    leadership: 'Leadership',
+   128→    education: 'Education',
+   129→    recommendation: 'Recommendation',
+   130→    contact: 'Contact',
+   131→  },
+   132→  hero: {
+   133→    title: 'Operations & Leadership Professional',
+   134→    location: 'United Arab Emirates',
+   135→    tagline: '"Excellence is not a destination : it is a continuous journey of strategic growth, operational precision, and relentless leadership."',
+   136→    downloadResume: 'Download Resume',
+   137→    visitStudio: 'Visit Studio',
+   138→  },
+   139→  metrics: {
+   140→    experience: 'Years Experience',
+   141→    revenue: 'Revenue Growth',
+   142→    promotions: 'Rapid Promotions',
+   143→    certified: 'ISO Trained Auditor',
+   144→    years: '8+',
+   145→    growth: '21%',
+   146→    rapid: '4',
+   147→    iso: '9001 & 45001',
+   148→    studio: 'Studio of Phronesis',
+   149→    studioSub: 'Custom systems & platforms',
+   150→  },
+   151→  summary: {
+   152→    title: 'Professional Summary',
+   153→    text: 'High-impact Operations Leader and Department Head with 8+ years of progressive experience driving operational excellence, revenue growth, and team performance across Academia, Retail, Contact Centers, Telecommunications, and Family Entertainment sectors in the UAE, UK, and Egypt. Proven track record of achieving 21% year-one revenue growth despite a decline in footfall, securing four rapid promotions with three salary increments and early completion of probation within a single organization, and introducing performance frameworks that became organizational benchmarks. Experienced Internal Auditor (ISO 9001 & ISO 45001) with expertise in compliance, process optimization, and multi-site operations. Currently serving as English Social Studies Teacher at Al Nahda National School for Boys, commencing the 2026/2027 academic year, having previously led the MoE Subjects Department for Non-Arabic Speakers at Ain Al Khaleej School across Grades 1 to 12 in alignment with ADEK and Irtiqa\'a standards. Bilingual in Arabic (native) and English (Academic IELTS Band 7), with strong cross-cultural leadership capabilities suited to diverse international markets.',
+   154→  },
+   155→  timeline: {
+   156→    title: 'Career Timeline',
+   157→    present: 'Present',
+   158→    experiences: [      {
+   159→        title: 'English Social Studies Teacher',
+   160→        org: 'Al Nahda National School for Boys, Abu Dhabi, UAE',
+   161→        period: 'Aug 2026 - Present',
+   162→        achievements: ['Teaching English Social Studies at Al Nahda National School for Boys, commencing the 2026/2027 academic year.'],
+   163→      },
+   164→            {
+   165→        title: 'MSC Studies and Islamic Education B Teacher and Lead of Non-Arabic Speaking Section',
+   166→
+   167→
+   168→        org: 'Ain Al Khaleej Private School, UAE',
+   169→
+   170→        period: 'Sep 2025 - July 2026',
+   171→        achievements: [
+   172→          'Delivered MSC Studies and Islamic Education B through English-medium instruction, ensuring ADEK and Irtiqa\'a compliance',
+   173→          'Mentored department teachers in differentiated instruction, educational technology integration, safeguarding, inclusive education, and UAE national identity',
+   174→          'Appointed Faculty Head for Model United Nations in Term 2, taking charge of the school delegation programme',
+   175→          'Coached the delegation to win Best School at MANORMUN V 2026, developing students\' diplomatic reasoning, research writing, and public speaking',
+   176→          'Active contributor to the school\'s "Student First" initiative and a campus-wide source of mentorship and emotional support for students beyond his own classes',
+   177→        ],
+   178→      },
+   179→      {
+   180→        title: 'Branch Operations Manager',
+   181→        org: 'Cheeky Monkeys Playland LLC, UAE',
+   182→        period: 'May 2024 - Sep 2025',
+   183→        achievements: [
+   184→      'Achieved 21% revenue growth in the first year despite a decline in footfall, through optimized service packages and stronger vendor partnerships.',
+   185→      'Earned four rapid promotions, three salary increments, and early completion of probation within one year.',
+   186→      'Directed daily operations of a 1,700 sqm facility with a 12-person cross-functional team, maintaining ISO 9001 & ISO 45001 compliance and an ‘A’ municipal hygiene rating.',
+   187→      ]
+   188→      },
+   189→      {
+   190→        title: 'Sales Executive - Duty Manager',
+   191→        org: 'e& Etisalat UAE, Al Ain Mall Branch',
+   192→        period: 'Jul 2022 - Jun 2024',
+   193→        achievements: [
+   194→          'Highest-performing sales executive across multiple KPIs',
+   195→          'Introduced Net Promoter Score (NPS) framework for customer satisfaction',
+   196→          'Managed duty operations and team performance metrics',
+   197→        ],
+   198→      },
+   199→      {
+   200→        title: 'International Account Advisor',
+   201→        org: 'Vodafone UK, Remote',
+   202→        period: 'Mar 2019 - Jul 2022',
+   203→        achievements: [
+   204→          'Managed high-value international accounts with precision and care',
+   205→          'Delivered consistent performance in a remote, cross-border environment',
+   206→        ],
+   207→      },
+   208→      {
+   209→        title: 'Team Leader',
+   210→        org: 'FEED, Alexandria, Egypt',
+   211→        period: 'Feb 2017 - Feb 2019',
+   212→        achievements: [
+   213→          'Led team operations and coordinated project deliverables',
+   214→          'Built and mentored high-performing teams from the ground up',
+   215→        ],
+   216→      },
+   217→      {
+   218→        title: 'Research Assistant & Translator',
+   219→        org: 'Emory University',
+   220→        period: '2017',
+   221→        achievements: [
+   222→          'Conducted academic research and provided professional translation services',
+   223→          'Supported cross-cultural academic collaboration initiatives',
+   224→        ],
+   225→      }
+   226→    ],
+   227→  },
+   228→  competencies: {
+   229→    title: 'Core Competencies',
+   230→    items: [
+   231→      'Operations & Facility Management',
+   232→      'Strategic Planning & Financial Forecasting',
+   233→      'Sales Strategy & Revenue Growth',
+   234→      'Team Leadership & Coaching',
+   235→      'ISO 9001 & ISO 45001 Internal Audit',
+   236→      'Curriculum Design & Quality Assurance',
+   237→      'Client Acquisition & Stakeholder Management',
+   238→      'Cross-Functional Collaboration',
+   239→      'Vendor Negotiation & Supply Chain',
+   240→      'EdTech Integration & Digital Transformation',
+   241→      'Differentiated Instruction',
+   242→      'Bilingual Communication (English C1 / Native Arabic)',
+   243→    ],
+   244→  },
+   245→  certifications: {
+   246→    title: 'Certifications',
+   247→    validUntil: 'Valid until',
+   248→    issued: 'Issued',
+   249→    items: [
+   250→      { name: 'Certified Professional Teaching License (UAE MoE)', detail: 'Valid until Feb 2029' },
+   251→      { name: 'IELTS Academic Band 7', detail: 'Valid until Aug 2027' },
+   252→      { name: 'Prepare For Your First Two Weeks (HMH)', detail: 'Apr 2026' },
+   253→      { name: 'Ready to Wrestle (United World Wrestling)', detail: 'Feb 2026' },
+   254→      { name: 'AI for Educators Level 1 (Teachy)', detail: 'Oct 2025' },
+   255→      { name: 'Network Fundamentals & Security (Mahara Tech/MCIT)', detail: 'Jun 2025' },
+   256→      { name: 'Advanced PIC (Dubai Municipality)', detail: 'May 2025' },
+   257→      { name: 'Fire Warden Level 2 (Dubai Civil Defence)', detail: 'Valid until Aug 2026' },
+   258→      { name: 'Mastering Sales Excellence (e& Etisalat)', detail: 'Apr 2024' },
+   259→      { name: 'Front Line for Retail Sales (e& Etisalat)', detail: 'Aug 2022' },
+   260→      { name: 'Verification of Manuscripts (Bibliotheca Alexandrina)', detail: 'Nov 2021' },
+   261→      { name: 'Critical Thinking & Decision Making (LinkedIn Learning)', detail: 'Jul 2021' },
+   262→    ],
+   263→  },
+   264→  leadership: {
+   265→    title: 'Leadership Initiatives',
+   266→    items: [
+   267→      {
+   268→        role: 'Creator & Host',
+   269→        org: '"Echoes of Wisdom" Podcast',
+   270→        period: '2026 - Present',
+   271→      },
+   272→      {
+   273→        role: 'Co-Founder & Member',
+   274→        org: 'Educational Youth Club, Bibliotheca Alexandrina',
+   275→        period: 'Oct 2013 - Dec 2018',
+   276→      },
+   277→      {
+   278→        role: 'General Coordinator',
+   279→        org: 'Waste Segregation Initiative',
+   280→        period: 'Feb 2015 - Feb 2017',
+   281→      },
+   282→      {
+   283→        role: 'Co-Organiser',
+   284→        org: '3rd Annual International Conference, Philosophy Dept, Alexandria University',
+   285→        period: 'Nov 2017',
+   286→      },
+   287→    ],
+   288→  },
+   289→  education: {
+   290→    title: 'Education',
+   291→    items: [
+   292→      {
+   293→        degree: 'Postgraduate Diploma in Education',
+   294→        institution: 'Faculty of Education, Al-Azhar University',
+   295→        period: 'Sep 2024 - Sep 2025',
+   296→      },
+   297→      {
+   298→        degree: "Bachelor's Degree in Philosophy",
+   299→        institution: 'Faculty of Arts, Alexandria University',
+   300→        period: 'Sep 2016 - May 2021',
+   301→      },
+   302→    ],
+   303→  },
+   304→  contact: {
+   305→    title: 'Get In Touch',
+   306→    subtitle: 'Ready to connect? Reach out through any of the channels below.',
+   307→    email: 'Email',
+   308→    phone: 'Phone',
+   309→    linkedin: 'LinkedIn',
+   310→    instagram: 'Instagram',
+   311→    tiktok: 'TikTok',
+   312→    youtube: 'YouTube',
+   313→    whatsapp: 'WhatsApp',
+   314→    website: 'Website',
+   315→  },
+   316→  recommendation: {
+   317→    title: 'Professional Recommendation',
+   318→    intro_label: 'LinkedIn Recommendation',
+   319→    date: 'April 7, 2026',
+   320→    text: 'I had the pleasure of working closely with Ahmed during his tenure as Store Manager for our Al Ain branch at Cheeky Monkeys Playland. Ahmed is a high-impact leader who manages with a rare blend of hard work and disciplined oversight.\n\nHe is remarkably results-driven, having achieved a 21% increase in branch sales within a year while boosting 5-star customer feedback by 150%. Beyond the numbers, Ahmed’s greatest strength lies in his uncompromising commitment to operational standards. He utilized a firm, disciplined management style to ensure his team maintained peak performance, consistently securing an ‘A’ rating in municipality food health and safety inspections.\n\nAhmed is a dedicated ISO professional who leads by example. His ability to maintain a high-pressure environment while focusing on hygiene, cleanliness, and team accountability directly translated into enhanced customer satisfaction. I highly recommend Ahmed for any leadership role where operational excellence and measurable growth are the priorities.',
+   321→    author: 'Rehmatullah Baridaie',
+   322→    role: 'Head of Operations, UAE',
+   323→    org: 'Cheeky Monkeys Playland (All UAE Branches)',
+   324→  },
+   325→  music: {
+   326→    play: 'Play Ambient',
+   327→    pause: 'Pause Ambient',
+   328→  },
+   329→};
+   330→
+   331→const ar: Translations = {
+   332→  nav: {
+   333→    hero: 'المقدمة',
+   334→    metrics: 'الشواهد',
+   335→    summary: 'التَّعريف',
+   336→    timeline: 'المسيرة',
+   337→    competencies: 'الملكات',
+   338→    certifications: 'الإجازات',
+   339→    leadership: 'القيادات',
+   340→    education: 'التَّحصيل',
+   341→    recommendation: 'الشَّهادة',
+   342→    contact: 'المخاطبة',
+   343→  },
+   344→  hero: {
+   345→    title: 'متخصص في الإدارة والقيادة',
+   346→    location: 'الإمارات العربيَّة المتحدة',
+   347→    tagline: '"التميّز ليس وجهةً نصل إليها، بل هو رحلةٌ مستمرة من النمو الاستراتيجي، والدقة التشغيلية، والقيادة التي لا تعرف التوقف."',
+   348→    downloadResume: 'تحميل السِّيرة',
+   349→    visitStudio: 'زيارة الاستوديو',
+   350→  },
+   351→  metrics: {
+   352→    experience: 'سنون التَّجربة',
+   353→    revenue: 'نموُّ الإيراد',
+   354→    promotions: 'الترقيات المتعاقبة',
+   355→    certified: 'مُراجع داخلي ISO',
+   356→    years: '+8',
+   357→    growth: '21%',
+   358→    rapid: '4',
+   359→    iso: '9001 و 45001',
+   360→    studio: 'استوديو الفرُونِسِس',
+   361→    studioSub: 'أنظمةٌ مُفصَّلةٌ ومنصَّات',
+   362→  },
+   363→  summary: {
+   364→    title: 'في التَّعريف بصاحب هذه السِّيرة',
+   365→    text: 'صاحبُ هذا التَّعريف متخصِّصٌ في الإدارة والقيادة، ذو تجربةٍ متَّصلةٍ نحو ثماني سنين، قاد فيها التَّحسينَ الإداريَّ ونموَّ الإيرادات وحُسنَ أداء الفِرق في خمسةِ أبوابٍ: التعليم، والتجزئة، ومراكز المخاطبة، والاتصالات، وترفيه الأهل، في الإمارات وبريطانيا ومصر. وبرهانُ ذلك أنَّه أحرز في أوَّل سنةٍ نموَّ إيرادٍ بمقدار واحدٍ وعشرين في المئة مع انقطاع الزوَّار، ونال أربعَ ترقياتٍ متعاقبةً مع ثلاث زياداتٍ في الأجر وقَبولِ انقضاء المُدَّة التجريبيَّة قبلَ أوانها في جهازٍ واحد، وأنَّ أطرَ الأداء التي وضعها صارت مرجعاً للجهاز. وهو مُراجعٌ داخليٌّ مُجازٌ (ISO 9001 و ISO 45001)، بَصيرٌ بالامتثال وتحسين العمليات وإدارة المواقع المتعدِّدة. وهو الآن مُعلِّمُ الدِّراسات الاجتماعيَّة بالإنجليزيَّة في مدرسة النَّهضة الوطنيَّة للبنين، ابتداءً من العام الدِّراسيّ 2026/2027، بعد أن كان مشرفاً لقسم المواد الوزارية لغير الناطقين بالعربية في مدرسة عين الخليج، مُشرفاً على إيصال المنهج وتنسيق العاملين وضبط الجودة للصُّفوف من الأوَّل إلى الثَّاني عشر، على وفق معايير ADEK و Irtiqa\'a. ثنائيُّ اللُّغة (العربيَّة لساناً، والإنجليزيَّة بدرجة IELTS الأكاديمي Band 7)، ذو مَلَكةٍ في القيادة بين الأقوام، تَصلحُ للأسواق العالميَّة المختلفة.',
+   366→  },
+   367→  timeline: {
+   368→    title: 'مسيرة العمل',
+   369→    present: 'إلى الآن',
+   370→    experiences: [
+   371→            {
+   372→        title: 'مُعلِّم الدِّراسات الاجتماعيَّة بالإنجليزيَّة',
+   373→        org: 'مدرسة النَّهضة الوطنيَّة للبنين، أبوظبي، الإمارات',
+   374→        period: 'أغسطس 2026 - الآن',
+   375→        achievements: ['تدريس الدِّراسات الاجتماعيَّة بالإنجليزيَّة في مدرسة النَّهضة الوطنيَّة للبنين، ابتداءً من العام الدِّراسيّ 2026/2027.'],
+   376→      },
+   377→            {
+   378→        title: 'مُعلِّم الدراسات الاجتماعيَّة بالإنجليزيَّة ورئيس قسم غير الناطقين بالعربية لمادَّتي MSC والتربية الإسلاميَّة (ب)',
+   379→
+   380→
+   381→        org: 'مدرسة عين الخليج الخاصَّة، الإمارات',
+   382→
+   383→        period: 'سبتمبر 2025 - يوليو 2026',
+   384→        achievements: [
+   385→          'تدريس مادَّتي MSC والتربية الإسلاميَّة (ب) باللُّغة الإنجليزيَّة، ضامناً الامتثال لمعايير ADEK و Irtiqa\'a',
+   386→          'توجيه المعلِّمين داخل القسم في التَّعليم المُتفاوِت، وإدماج التِّقنيات التَّعليميَّة، والحماية، والتَّعليم الشَّامل، والهوية الوطنيَّة الإماراتيَّة',
+   387→          'تولِّي رئاسة الهيئة التَّدريسيَّة لنموذج الأمم المتحدة في الفصل الدِّراسيّ الثَّاني، والإشراف على برنامج وفد المدرسة',
+   388→          'تدريب الوفد على الفوز بجائزة أفضل مدرسة في MANORMUN V 2026، وتنمية ملكات التَّفكير الدِّبلوماسيِّ والكتابة البحثيَّة ومهارات الإلقاء لدى الطلبة',
+   389→          'مساهمٌ فاعلٌ في مبادرة «الطالب أولاً»، ومرشدٌ ومصدرُ دعمٍ نفسيٍّ واجتماعيٍّ للطلبة على مستوى الحرم المدرسيّ، لا يقتصر على تلاميذه في الصف',
+   390→        ],
+   391→      },
+   392→      {
+   393→        title: 'مدير عمليات الفرع',
+   394→        org: 'شيكي مانكيز أرض الألعاب ذ.م.م، الإمارات',
+   395→        period: 'مايو 2024 - سبتمبر 2025',
+   396→        achievements: [
+   397→          'إحرازُ نموِّ إيرادٍ بمقدار 21% في السنة الأولى مع انقطاع الزوَّار، بتحسين باقات الخدمة وتقوية شراكات الموردين.',
+   398→          'نيلُ أربع ترقياتٍ متعاقبةٍ مع ثلاث زياداتٍ في الأجر وقَبولِ انقضاء المُدَّة التجريبيَّة قبل أوانها في سنةٍ واحدة.',
+   399→          'إدارةُ عمليات يوميَّةٍ لمنشأةٍ مساحتُها 1700 مترٍ مربَّعٍ بفريقٍ من اثني عشر عاملاً عبر خدمة النَّاس وعمليات الطعام وتنظيم المناسبات، مع حفظ الامتثال لـ ISO 9001 و ISO 45001 ونيل تقييم "أ" من البلديَّة في النَّظافة.',
+   400→        ],
+   401→      },
+   402→      {
+   403→        title: 'تنفيذي المبيعات - المدير المناوب',
+   404→        org: 'إي آند (اتصالات سابقًا) الإمارات، فرع العين مول',
+   405→        period: 'يوليو 2022 - يونيو 2024',
+   406→        achievements: [
+   407→          'أعلى التنفيذيين أداءً في المبيعات عبر جملةٍ من المؤشِّرات',
+   408→          'إدخالُ إطار مؤشِّر التَّرويج الصَّافي (NPS) لرضا النَّاس',
+   409→          'إدارةُ عمليات الخدمة ومؤشِّرات أداء الفريق',
+   410→        ],
+   411→      },
+   412→      {
+   413→        title: 'مستشار الحسابات الدوليَّة',
+   414→        org: 'Vodafone UK، عن بُعد',
+   415→        period: 'مارس 2019 - يوليو 2022',
+   416→        achievements: [
+   417→          'إدارةُ حساباتٍ دوليَّةٍ رفيعة القيمة بدقَّةٍ وعناية',
+   418→          'أداءٌ ثابتٌ في بيئةٍ بعيدةٍ متعدِّدة الحدود',
+   419→        ],
+   420→      },
+   421→      {
+   422→        title: 'قائد الفريق',
+   423→        org: 'FEED، الإسكندريَّة، مصر',
+   424→        period: 'فبراير 2017 - فبراير 2019',
+   425→        achievements: [
+   426→          'قيادةُ عمليات الفريق وتنسيق مُسلَّمات المشروع',
+   427→          'بناءُ الفرق عالية الأداء وتأديبُها من الأصل',
+   428→        ],
+   429→      },
+   430→      {
+   431→        title: 'مُساعد بحثٍ ومترجم',
+   432→        org: 'جامعة Emory',
+   433→        period: '2017',
+   434→        achievements: [
+   435→          'إجراءُ بحثٍ علميٍّ وتقديم خدمات الترجمة',
+   436→          'إسنادُ مبادرات التَّعاون العلميِّ بين الأقوام',
+   437→        ],
+   438→      },
+   439→    ],
+   440→  },
+   441→  competencies: {
+   442→    title: 'الملكات الأصليَّة',
+   443→    items: [
+   444→      'إدارةُ العمليات والمنشآت',
+   445→      'التَّخطيط الاستراتيجيُّ والتوقُّع الماليُّ',
+   446→      'استراتيجيَّة البيع ونموُّ الإيراد',
+   447→      'قيادة الفرق وتأديبها',
+   448→      'المراجعة الداخليَّة ISO 9001 و ISO 45001',
+   449→      'وضع المناهج وضبط الجودة',
+   450→      'اكتساب الزَّبائن وإدارة أصحاب المصلحة',
+   451→      'التَّعاونُ متعدِّد الوظائف',
+   452→      'المفاوضة مع الموردين وسلسلة الإمداد',
+   453→      'إدماجُ التقنيَّات التعليميَّة والتَّحويل الرَّقميّ',
+   454→      'التَّعليمُ المُتفاوِت',
+   455→      'المخاطبةُ ثنائيَّة اللُّغة (إنجليزي C1 / عربيٌّ أم)',
+   456→    ],
+   457→  },
+   458→  certifications: {
+   459→    title: 'الإجازات',
+   460→    validUntil: 'ساريٌ إلى',
+   461→    issued: 'أُجيز',
+   462→    items: [
+   463→      { name: 'رخصة التدريس المهنية المعتمدة (وزارة التعليم الإماراتية)', detail: 'ساريٌ إلى فبراير 2029' },
+   464→      { name: 'IELTS الأكاديمي - المستوى 7', detail: 'ساريٌ إلى أغسطس 2027' },
+   465→      { name: 'الاستعداد لأسبوعيك الأولين (HMH)', detail: 'أبريل 2026' },
+   466→      { name: 'جاهز للمصارعة (United World Wrestling)', detail: 'فبراير 2026' },
+   467→      { name: 'الذكاء الاصطناعي للمعلمين - المستوى الأول (Teachy)', detail: 'أكتوبر 2025' },
+   468→      { name: 'أساسيات الشبكات والأمن المعلوماتي (Mahara Tech/MCIT)', detail: 'يونيو 2025' },
+   469→      { name: 'المستوى المتقدم في سلامة الغذاء PIC (بلدية دبي)', detail: 'مايو 2025' },
+   470→      { name: 'مسؤول الإطفاء - المستوى الثاني (الدفاع المدني بدبي)', detail: 'ساريٌ إلى أغسطس 2026' },
+   471→      { name: 'إتقان التميز في المبيعات (إي آند - اتصالات سابقًا)', detail: 'أبريل 2024' },
+   472→      { name: 'الخط الأمامي لمبيعات التجزئة (إي آند - اتصالات سابقًا)', detail: 'أغسطس 2022' },
+   473→      { name: 'التحقق من المخطوطات (مكتبة الإسكندرية)', detail: 'نوفمبر 2021' },
+   474→      { name: 'التفكير النقدي واتخاذ القرار (LinkedIn Learning)', detail: 'يوليو 2021' },
+   475→    ],
+   476→  },
+   477→  leadership: {
+   478→    title: 'مبادرات القيادة',
+   479→    items: [
+   480→      {
+   481→        role: 'المُنشئ والمُقدِّم',
+   482→        org: 'مُدوَّنة "Echoes of Wisdom"',
+   483→        period: '2026 - الآن',
+   484→      },
+   485→      {
+   486→        role: 'شريكٌ مُؤسِّسٌ وعُضو',
+   487→        org: 'النَّادي التَّعليميِّ الشَّبابيِّ، Bibliotheca Alexandrina',
+   488→        period: 'أكتوبر 2013 - ديسمبر 2018',
+   489→      },
+   490→      {
+   491→        role: 'المنسِّق العامُّ',
+   492→        org: 'مبادرة فصل النُّفايات',
+   493→        period: 'فبراير 2015 - فبراير 2017',
+   494→      },
+   495→      {
+   496→        role: 'شريكُ التَّنظيم',
+   497→        org: 'المؤتمر الدوليُّ الثَّالث السَّنويّ، قسم الفلسفة، جامعة الإسكندريَّة',
+   498→        period: 'نوفمبر 2017',
+   499→      },
+   500→    ],
+   501→  },
+   502→  education: {
+   503→    title: 'التَّحصيل العلميّ',
+   504→    items: [
+   505→      {
+   506→        degree: 'دبلومٌ عالٍ في التَّربية',
+   507→        institution: 'كلِّيَّة التَّربية، جامعة الأزهر',
+   508→        period: 'سبتمبر 2024 - سبتمبر 2025',
+   509→      },
+   510→      {
+   511→        degree: 'إجازةٌ في الفلسفة',
+   512→        institution: 'كلِّيَّة الآداب، جامعة الإسكندريَّة',
+   513→        period: 'سبتمبر 2016 - مايو 2021',
+   514→      },
+   515→    ],
+   516→  },
+   517→  recommendation: {
+   518→    title: 'شهادةٌ مهنيَّة',
+   519→    intro_label: 'شهادةٌ على LinkedIn',
+   520→    date: '7 أبريل 2026',
+   521→    text: 'حظيت بفرصة العمل عن قرب مع أحمد خلال فترة تولّيه إدارة فرع العين في «شيكي مانكيز أرض الألعاب»، وقد لمست فيه قائدًا استثنائيًا يجمع بين الاجتهاد الدؤوب والانضباط الإداري الرفيع.\n\nيتميّز أحمد بتركيزٍ واضح على النتائج وقدرةٍ عالية على تحويل الأهداف إلى إنجازاتٍ ملموسة. وخلال عامٍ واحد من قيادته للفرع، حقّق نموًا في المبيعات بنسبة 21%، كما ارتفعت تقييمات العملاء ذات الخمس نجوم بنسبة 150%، وهي مؤشرات تعكس كفاءته في الإدارة وفهمه العميق لاحتياجات العملاء ومتطلبات العمل.\n\nغير أنّ ما يميّز أحمد حقًّا يتجاوز الأرقام والإحصاءات؛ إذ تكمن قوّته الأساسية في التزامه الصارم بمعايير الجودة والتشغيل. فقد استطاع، من خلال قيادةٍ حازمة ومنهجيةٍ منضبطة، أن يرسّخ ثقافةً من المسؤولية والتميّز داخل فريقه، الأمر الذي مكّن الفرع من المحافظة باستمرار على تصنيف «A» في عمليات التفتيش البلدية الخاصة بالصحة والسلامة المهنية والغذائية.\n\nويُعدّ أحمد من المهنيين الملتزمين بمعايير الجودة العالمية ونظم الإدارة المعتمدة، كما أنّه قائدٌ يؤمن بأن القدوة العملية أبلغ أثرًا من التوجيه النظري. وقد انعكس حرصه المستمر على النظافة، والانضباط، والالتزام بالإجراءات، والمسائل المهنية، بصورةٍ مباشرة على جودة تجربة العملاء وارتفاع مستوى رضاهم.\n\nأوصي بأحمد بكل ثقة لأي منصبٍ قيادي يتطلّب التميّز التشغيلي، والقدرة على بناء فرقٍ عالية الأداء، وتحقيق نتائج قابلة للقياس. فهو من القادة الذين لا يكتفون بتحقيق المعايير المطلوبة، بل يسعون دائمًا إلى الارتقاء بها وصناعة أثرٍ مستدام داخل المؤسسات التي يعملون بها.',
+   522→    author: 'رحمة الله برادعي',
+   523→    role: 'مدير إدارة التشغيل - دولة الإمارات العربية المتحدة',
+   524→    org: 'شيكي مانكيز أرض الألعاب (جميع فروع الإمارات)',
+   525→  },
+   526→  contact: {
+   527→    title: 'في المخاطبة',
+   528→    subtitle: 'أمستعدٌّ للمخاطبة؟ فليُخاطَبْ على أيِّ طريقٍ من هذه الطُّرق.',
+   529→    email: 'البريد الإلكترونيّ',
+   530→    phone: 'الهاتف',
+   531→    linkedin: 'LinkedIn',
+   532→    instagram: 'Instagram',
+   533→    tiktok: 'TikTok',
+   534→    youtube: 'YouTube',
+   535→    whatsapp: 'WhatsApp',
+   536→    website: 'الموقع',
+   537→  },
+   538→  music: {
+   539→    play: 'تشغيلُ الموسيقى المحيطيَّة',
+   540→    pause: 'إيقافُ الموسيقى المحيطيَّة',
+   541→  },
+   542→};
+   543→
+   544→const fr: Translations = {
+   545→  nav: {
+   546→    hero: 'Accueil',
+   547→    metrics: 'Indicateurs',
+   548→    summary: 'À propos',
+   549→    timeline: 'Carrière',
+   550→    competencies: 'Compétences',
+   551→    certifications: 'Certifications',
+   552→    leadership: 'Leadership',
+   553→    education: 'Formation',
+   554→    recommendation: 'Recommandation',
+   555→    contact: 'Contact',
+   556→  },
+   557→  hero: {
+   558→    title: 'Professionnel des Opérations et du Leadership',
+   559→    location: 'Émirats Arabes Unis',
+   560→    tagline: '"L\'excellence n\'est pas une destination : c\'est un voyage continu de croissance stratégique, de précision opérationnelle et de leadership inébranlable."',
+   561→    downloadResume: 'Télécharger le CV',
+   562→    visitStudio: 'Visiter le Studio',
+   563→  },
+   564→  metrics: {
+   565→    experience: 'Ans d\'Expérience',
+   566→    revenue: 'Croissance des Revenus',
+   567→    promotions: 'Promotions Rapides',
+   568→    certified: 'Auditeur Interne ISO',
+   569→    years: '8+',
+   570→    growth: '21%',
+   571→    rapid: '4',
+   572→    iso: '9001 & 45001',
+   573→    studio: 'Studio de Phronesis',
+   574→    studioSub: 'Systèmes sur mesure et plateformes',
+   575→  },
+   576→  summary: {
+   577→    title: 'Résumé Professionnel',
+   578→    text: 'Dirigeant opérations à fort impact et Chef de Département, fort de plus de 8 ans d\'expérience progressive en excellence opérationnelle, croissance des revenus et performance des équipes dans les secteurs de l\'éducation, du commerce de détail, des centres d\'appels, des télécommunications et des loisirs familiaux aux Émirats, au Royaume-Uni et en Égypte. Bilan éprouvé : 21% de croissance des revenus dès la première année malgré une baisse de fréquentation, quatre promotions rapides avec trois augmentations de salaire et fin anticipée de période d\'essai au sein d\'une seule organisation, et introduction de cadres de performance devenus des références organisationnelles. Auditeur interne expérimenté (ISO 9001 & ISO 45001), expert en conformité, optimisation des processus et opérations multi-sites. Actuellement Professeur d\'Études Sociales en anglais à Al Nahda National School for Boys à partir de l\'année académique 2026/2027, après avoir dirigé le Département des Disciplines du MoE pour non-arabophones à l\'École Ain Al Khaleej, pilotant la livraison des programmes, la coordination des équipes et l\'assurance qualité de la 1ère à la 12e année, en conformité avec les normes ADEK et Irtiqa\'a. Bilingue (arabe natif, anglais IELTS Académique Band 7), avec de solides capacités de leadership interculturel adaptées à des marchés internationaux diversifiés.',
+   579→  },
+   580→  timeline: {
+   581→    title: 'Parcours Professionnel',
+   582→    present: 'Présent',
+   583→    experiences: [      {
+   584→        title: "Professeur d'Études Sociales en Anglais",
+   585→        org: 'Al Nahda National School for Boys, Abu Dhabi, EAU',
+   586→        period: 'Août 2026 - Présent',
+   587→        achievements: ["Enseignement des Études Sociales en anglais à Al Nahda National School for Boys, à partir de l'année académique 2026/2027."],
+   588→      },
+   589→            {
+   590→        title: 'Enseignant en Études Sociales MSC et Éducation Islamique B et Responsable de la Section Non-Arabophones',
+   591→
+   592→
+   593→        org: 'École Privée Ain Al Khaleej, EAU',
+   594→
+   595→        period: 'Sep 2025 - Juil 2026',
+   596→        achievements: [
+   597→          'Enseignement des Études Sociales MSC et de l\'Éducation Islamique B en anglais, garantissant la conformité aux normes ADEK et Irtiqa\'a',
+   598→          'Mentorat des enseignants du département en pédagogie différenciée, intégration des technologies éducatives, protection des élèves, éducation inclusive et identité nationale des EAU',
+   599→          'Nommé Responsable Pédagogique du programme Model United Nations au second trimestre, en charge de la délégation scolaire',
+   600→          'Coaching de la délégation lauréate du prix Meilleure École à MANORMUN V 2026, développant le raisonnement diplomatique, la rédaction de recherches et la prise de parole des élèves',
+   601→          'Contributeur actif de l\'initiative « Étudiant d\'Abord » et source d\'encadrement et de soutien émotionnel pour les élèves sur l\'ensemble du campus, au-delà de ses propres classes',
+   602→        ],
+   603→      },
+   604→      {
+   605→        title: 'Directeur des Opérations de Succursale',
+   606→        org: 'Cheeky Monkeys Playland LLC, EAU',
+   607→        period: 'Mai 2024 - Sep 2025',
+   608→        achievements: [
+   609→      'Atteint 21% de croissance du chiffre d’affaires la première année malgré une baisse de fréquentation, grâce à l’optimisation des forfaits de services et au renforcement des partenariats fournisseurs.',
+   610→      'Obtenu quatre promotions rapides, trois augmentations de salaire et fin de période d’essai anticipée en un an.',
+   611→      'Dirigé les opérations quotidiennes d’un établissement de 1 700 m² avec une équipe transversale de 12 personnes, en maintenant la conformité ISO 9001 & ISO 45001 et une note municipale "A".',
+   612→      ]
+   613→      },
+   614→      {
+   615→        title: 'Exécutif Commercial - Responsable de Quart',
+   616→        org: 'e& (anciennement Etisalat) EAU, Succursale Al Ain Mall',
+   617→        period: 'Jul 2022 - Juin 2024',
+   618→        achievements: [
+   619→          'Exécutif commercial le plus performant sur plusieurs KPIs',
+   620→          'Introduction du framework Net Promoter Score (NPS) pour la satisfaction client',
+   621→          'Gestion des opérations de service et des métriques de performance d\'équipe',
+   622→        ],
+   623→      },
+   624→      {
+   625→        title: 'Conseiller en Comptes Internationaux',
+   626→        org: 'Vodafone UK, À distance',
+   627→        period: 'Mar 2019 - Jul 2022',
+   628→        achievements: [
+   629→          'Gestion de comptes internationaux à haute valeur avec précision et soin',
+   630→          'Performance constante dans un environnement distant et transfrontalier',
+   631→        ],
+   632→      },
+   633→      {
+   634→        title: 'Chef d\'Équipe',
+   635→        org: 'FEED, Alexandrie, Égypte',
+   636→        period: 'Fév 2017 - Fév 2019',
+   637→        achievements: [
+   638→          'Direction des opérations d\'équipe et coordination des livrables de projet',
+   639→          'Construction et mentorat d\'équipes performantes à partir de zéro',
+   640→        ],
+   641→      },
+   642→      {
+   643→        title: 'Assistant de Recherche & Traducteur',
+   644→        org: 'Université Emory',
+   645→        period: '2017',
+   646→        achievements: [
+   647→          'Recherche académique et services de traduction professionnelle',
+   648→          'Soutien aux initiatives de collaboration académique interculturelle',
+   649→        ],
+   650→      }
+   651→    ],
+   652→  },
+   653→  competencies: {
+   654→    title: 'Compétences Clés',
+   655→    items: [
+   656→      'Opérations & Gestion des Installations',
+   657→      'Planification Stratégique & Prévision Financière',
+   658→      'Stratégie de Vente & Croissance des Revenus',
+   659→      'Leadership d\'Équipe & Coaching',
+   660→      'Audit Interne ISO 9001 & ISO 45001',
+   661→      'Conception de Programmes & Assurance Qualité',
+   662→      'Acquisition de Clients & Gestion des Parties Prenantes',
+   663→      'Collaboration Interfonctionnelle',
+   664→      'Négociation Fournisseurs & Chaîne d\'Approvisionnement',
+   665→      'Intégration EdTech & Transformation Numérique',
+   666→      'Enseignement Différencié',
+   667→      'Communication Bilingue (Anglais C1 / Arabe Natif)',
+   668→    ],
+   669→  },
+   670→  certifications: {
+   671→    title: 'Certifications',
+   672→    validUntil: 'Valide jusqu\'au',
+   673→    issued: 'Délivré',
+   674→    items: [
+   675→      { name: 'Licence d\'Enseignement Professionnel Certifiée (MoE EAU)', detail: 'Valide jusqu\'en Fév 2029' },
+   676→      { name: 'IELTS Académique Bande 7', detail: 'Valide jusqu\'en Août 2027' },
+   677→      { name: 'Préparez Vos Deux Premières Semaines (HMH)', detail: 'Avr 2026' },
+   678→      { name: 'Prêt à Lutter (United World Wrestling)', detail: 'Fév 2026' },
+   679→      { name: 'IA pour Éducateurs Niveau 1 (Teachy)', detail: 'Oct 2025' },
+   680→      { name: 'Fondamentaux Réseau & Sécurité (Mahara Tech/MCIT)', detail: 'Juin 2025' },
+   681→      { name: 'PIC Avancé (Municipalité de Dubaï)', detail: 'Mai 2025' },
+   682→      { name: 'Garde-Feu Niveau 2 (Défense Civile de Dubaï)', detail: 'Valide jusqu\'en Août 2026' },
+   683→      { name: 'Maîtrise de l\'Excellence Commerciale (e& Etisalat)', detail: 'Avr 2024' },
+   684→      { name: 'Première Ligne pour Ventes au Détail (e& Etisalat)', detail: 'Août 2022' },
+   685→      { name: 'Vérification de Manuscrits (Bibliotheca Alexandrina)', detail: 'Nov 2021' },
+   686→      { name: 'Pensée Critique & Prise de Décision (LinkedIn Learning)', detail: 'Jul 2021' },
+   687→    ],
+   688→  },
+   689→  leadership: {
+   690→    title: 'Initiatives de Leadership',
+   691→    items: [
+   692→      {
+   693→        role: 'Créateur & Animateur',
+   694→        org: 'Podcast "Échos de la Sagesse"',
+   695→        period: '2026 - Présent',
+   696→      },
+   697→      {
+   698→        role: 'Cofondateur & Membre',
+   699→        org: 'Club de Jeunes Éducatif, Bibliotheca Alexandrina',
+   700→        period: 'Oct 2013 - Déc 2018',
+   701→      },
+   702→      {
+   703→        role: 'Coordinateur Général',
+   704→        org: 'Initiative de Tri des Déchets',
+   705→        period: 'Fév 2015 - Fév 2017',
+   706→      },
+   707→      {
+   708→        role: 'Co-Organisateur',
+   709→        org: '3ème Conférence Internationale Annuelle, Dépt Philosophie, Université d\'Alexandrie',
+   710→        period: 'Nov 2017',
+   711→      },
+   712→    ],
+   713→  },
+   714→  education: {
+   715→    title: 'Formation',
+   716→    items: [
+   717→      {
+   718→        degree: 'Diplôme d\'Études Supérieures en Éducation',
+   719→        institution: 'Faculté d\'Éducation, Université Al-Azhar',
+   720→        period: 'Sep 2024 - Sep 2025',
+   721→      },
+   722→      {
+   723→        degree: 'Licence en Philosophie',
+   724→        institution: 'Faculté des Lettres, Université d\'Alexandrie',
+   725→        period: 'Sep 2016 - Mai 2021',
+   726→      },
+   727→    ],
+   728→  },
+   729→  contact: {
+   730→    title: 'Prenez Contact',
+   731→    subtitle: 'Prêt à vous connecter ? Contactez-nous via l\'un des canaux ci-dessous.',
+   732→    email: 'Email',
+   733→    phone: 'Téléphone',
+   734→    linkedin: 'LinkedIn',
+   735→    instagram: 'Instagram',
+   736→    tiktok: 'TikTok',
+   737→    youtube: 'YouTube',
+   738→    whatsapp: 'WhatsApp',
+   739→    website: 'Site Web',
+   740→  },
+   741→  recommendation: {
+   742→    title: 'Recommandation Professionnelle',
+   743→    intro_label: 'Recommandation LinkedIn',
+   744→    date: '7 avril 2026',
+   745→    text: 'J’ai eu le plaisir de travailler étroitement avec Ahmed durant son mandat en tant que Directeur de notre filiale d’Al Ain chez Cheeky Monkeys Playland. Ahmed est un leader à fort impact qui manage avec un rare mélange de travail acharné et de supervision disciplinée.\n\nIl est remarquablement axé sur les résultats, ayant atteint une augmentation de 21% des ventes de la filiale en un an tout en boostant les retours clients 5 étoiles de 150%. Au-delà des chiffres, la plus grande force d’Ahmed réside dans son engagement intransigeant envers les standards opérationnels. Il a utilisé un style de management ferme et discipliné pour garantir à son équipe une performance au sommet, obtenant systématiquement une note "A" aux inspections municipales d’hygiène et de sécurité alimentaire.\n\nAhmed est un professionnel ISO dévoué qui mène par l’exemple. Sa capacité à maintenir un environnement à haute pression tout en se concentrant sur l’hygiène, la propreté et la responsabilisation de l’équipe s’est traduite directement par une satisfaction client renforcée. Je recommande vivement Ahmed pour tout rôle de leadership où l’excellence opérationnelle et la croissance mesurable sont les priorités.',
+   746→    author: 'Rehmatullah Baridaie',
+   747→    role: 'Directeur des Opérations, EAU',
+   748→    org: 'Cheeky Monkeys Playland (Toutes les filiales EAU)',
+   749→  },
+   750→  music: {
+   751→    play: 'Jouer Ambiance',
+   752→    pause: 'Pause Ambiance',
+   753→  },
+   754→};
+   755→
+   756→const es: Translations = {
+   757→  nav: {
+   758→    hero: 'Inicio',
+   759→    metrics: 'Métricas',
+   760→    summary: 'Resumen',
+   761→    timeline: 'Carrera',
+   762→    competencies: 'Competencias',
+   763→    certifications: 'Certificaciones',
+   764→    leadership: 'Liderazgo',
+   765→    education: 'Educación',
+   766→    recommendation: 'Recomendación',
+   767→    contact: 'Contacto',
+   768→  },
+   769→  hero: {
+   770→    title: 'Profesional de Operaciones y Liderazgo',
+   771→    location: 'Emiratos Árabes Unidos',
+   772→    tagline: '"La excelencia no es un destino : es un viaje continuo de crecimiento estratégico, precisión operativa y liderazgo incansable."',
+   773→    downloadResume: 'Descargar CV',
+   774→    visitStudio: 'Visitar Estudio',
+   775→  },
+   776→  metrics: {
+   777→    experience: 'Años de Experiencia',
+   778→    revenue: 'Crecimiento de Ingresos',
+   779→    promotions: 'Ascensos Rápidos',
+   780→    certified: 'Auditor Interno ISO',
+   781→    years: '8+',
+   782→    growth: '21%',
+   783→    rapid: '4',
+   784→    iso: '9001 y 45001',
+   785→    studio: 'Estudio de Phronesis',
+   786→    studioSub: 'Sistemas a medida y plataformas',
+   787→  },
+   788→  summary: {
+   789→    title: 'Resumen Profesional',
+   790→    text: 'Líder de operaciones de alto impacto y Jefe de Departamento con más de 8 años de experiencia progresiva impulsando la excelencia operativa, el crecimiento de ingresos y el rendimiento de equipos en los sectores de Educación, Retail, Contact Centers, Telecomunicaciones y Entretenimiento Familiar en EAU, Reino Unido y Egipto. Historial probado: 21% de crecimiento de ingresos en el primer año a pesar de una disminución en afluencia, cuatro ascensos rápidos con tres incrementos salariales y finalización anticipada del período de prueba en una sola organización, e introducción de marcos de desempeño que se convirtieron en referentes organizacionales. Auditor interno experimentado (ISO 9001 & ISO 45001) con experiencia en cumplimiento, optimización de procesos y operaciones multi-sede. Actualmente se desempeña como Profesor de Estudios Sociales en Inglés en Al Nahda National School for Boys a partir del año académico 2026/2027, tras liderar el Departamento de Asignaturas del MoE para No Arabohablantes en Ain Al Khaleej School, dirigiendo la entrega curricular, la coordinación del personal y el aseguramiento de calidad de 1º a 12º grado, conforme a los estándares ADEK e Irtiqa\'a. Bilingüe (árabe nativo, inglés IELTS Académico Band 7), con sólidas capacidades de liderazgo intercultural adecuadas para diversos mercados internacionales.',
+   791→  },
+   792→  timeline: {
+   793→    title: 'Trayectoria Profesional',
+   794→    present: 'Presente',
+   795→    experiences: [      {
+   796→        title: 'Profesor de Estudios Sociales en Inglés',
+   797→        org: 'Al Nahda National School for Boys, Abu Dhabi, EAU',
+   798→        period: 'Ago 2026 - Presente',
+   799→        achievements: ['Enseñanza de Estudios Sociales en Inglés en Al Nahda National School for Boys, comenzando el año académico 2026/2027.'],
+   800→      },
+   801→            {
+   802→        title: 'Profesor de Estudios Sociales MSC y Educación Islámica B y Líder de la Sección de No Arabohablantes',
+   803→
+   804→
+   805→        org: 'Escuela Privada Ain Al Khaleej, EAU',
+   806→
+   807→        period: 'Sep 2025 - Jul 2026',
+   808→        achievements: [
+   809→          'Impartición de Estudios Sociales MSC y Educación Islámica B en inglés, garantizando el cumplimiento de los estándares ADEK e Irtiqa\'a',
+   810→          'Mentoría a los docentes del departamento en instrucción diferenciada, integración de tecnologías educativas, salvaguarda, educación inclusiva e identidad nacional de los EAU',
+   811→          'Designado Líder de Facultad para Model United Nations en el segundo trimestre, haciéndose cargo del programa de delegación escolar',
+   812→          'Preparación de la delegación para ganar Mejor Escuela en MANORMUN V 2026, desarrollando el razonamiento diplomático, la escritura de investigaciones y la oratoria de los estudiantes',
+   813→          'Contribuyente activo de la iniciativa «Estudiante Primero» y fuente de mentoría y apoyo emocional para los estudiantes en todo el campus, más allá de sus propias clases',
+   814→        ],
+   815→      },
+   816→      {
+   817→        title: 'Gerente de Operaciones de Sucursal',
+   818→        org: 'Cheeky Monkeys Playland LLC, EAU',
+   819→        period: 'May 2024 - Sep 2025',
+   820→        achievements: [
+   821→      'Logró un crecimiento de ingresos del 21% en el primer año a pesar de una disminución en afluencia, mediante la optimización de paquetes de servicios y alianzas con proveedores más fuertes.',
+   822→      'Obtuvo cuatro ascensos rápidos, tres incrementos salariales y finalización anticipada del período de prueba en un año.',
+   823→      'Dirigió las operaciones diarias de un establecimiento de 1.700 m² con un equipo multifuncional de 12 personas, manteniendo el cumplimiento ISO 9001 & ISO 45001 y una calificación municipal "A".',
+   824→      ]
+   825→      },
+   826→      {
+   827→        title: 'Ejecutivo de Ventas - Gerente de Turno',
+   828→        org: 'e& (anteriormente Etisalat) EAU, Sucursal Al Ain Mall',
+   829→        period: 'Jul 2022 - Jun 2024',
+   830→        achievements: [
+   831→          'Ejecutivo de ventas con mejor desempeño en múltiples KPIs',
+   832→          'Introducción del marco Net Promoter Score (NPS) para satisfacción del cliente',
+   833→          'Gestión de operaciones de turno y métricas de rendimiento del equipo',
+   834→        ],
+   835→      },
+   836→      {
+   837→        title: 'Asesor de Cuentas Internacionales',
+   838→        org: 'Vodafone UK, Remoto',
+   839→        period: 'Mar 2019 - Jul 2022',
+   840→        achievements: [
+   841→          'Gestión de cuentas internacionales de alto valor con precisión y cuidado',
+   842→          'Desempeño constante en un entorno remoto y transfronterizo',
+   843→        ],
+   844→      },
+   845→      {
+   846→        title: 'Líder de Equipo',
+   847→        org: 'FEED, Alejandría, Egipto',
+   848→        period: 'Feb 2017 - Feb 2019',
+   849→        achievements: [
+   850→          'Liderazgo de operaciones del equipo y coordinación de entregables del proyecto',
+   851→          'Construcción y mentoría de equipos de alto rendimiento desde cero',
+   852→        ],
+   853→      },
+   854→      {
+   855→        title: 'Asistente de Investigación y Traductor',
+   856→        org: 'Universidad Emory',
+   857→        period: '2017',
+   858→        achievements: [
+   859→          'Investigación académica y servicios de traducción profesional',
+   860→          'Apoyo a iniciativas de colaboración académica intercultural',
+   861→        ],
+   862→      }
+   863→    ],
+   864→  },
+   865→  competencies: {
+   866→    title: 'Competencias Clave',
+   867→    items: [
+   868→      'Operaciones y Gestión de Instalaciones',
+   869→      'Planificación Estratégica y Previsión Financiera',
+   870→      'Estrategia de Ventas y Crecimiento de Ingresos',
+   871→      'Liderazgo de Equipos y Coaching',
+   872→      'Auditoría Interna ISO 9001 e ISO 45001',
+   873→      'Diseño Curricular y Aseguramiento de Calidad',
+   874→      'Adquisición de Clientes y Gestión de Stakeholders',
+   875→      'Colaboración Multifuncional',
+   876→      'Negociación con Proveedores y Cadena de Suministro',
+   877→      'Integración EdTech y Transformación Digital',
+   878→      'Instrucción Diferenciada',
+   879→      'Comunicación Bilingüe (Inglés C1 / Árabe Nativo)',
+   880→    ],
+   881→  },
+   882→  certifications: {
+   883→    title: 'Certificaciones',
+   884→    validUntil: 'Válido hasta',
+   885→    issued: 'Emitido',
+   886→    items: [
+   887→      { name: 'Licencia de Enseñanza Profesional Certificada (MoE EAU)', detail: 'Válido hasta Feb 2029' },
+   888→      { name: 'IELTS Académico Banda 7', detail: 'Válido hasta Ago 2027' },
+   889→      { name: 'Prepárate para Tus Primeras Dos Semanas (HMH)', detail: 'Abr 2026' },
+   890→      { name: 'Listo para Luchar (United World Wrestling)', detail: 'Feb 2026' },
+   891→      { name: 'IA para Educadores Nivel 1 (Teachy)', detail: 'Oct 2025' },
+   892→      { name: 'Fundamentos de Redes y Seguridad (Mahara Tech/MCIT)', detail: 'Jun 2025' },
+   893→      { name: 'PIC Avanzado (Municipio de Dubái)', detail: 'May 2025' },
+   894→      { name: 'Guardia de Incendios Nivel 2 (Defensa Civil de Dubái)', detail: 'Válido hasta Ago 2026' },
+   895→      { name: 'Dominio de la Excelencia en Ventas (e& Etisalat)', detail: 'Abr 2024' },
+   896→      { name: 'Primera Línea para Ventas Minoristas (e& Etisalat)', detail: 'Ago 2022' },
+   897→      { name: 'Verificación de Manuscritos (Bibliotheca Alexandrina)', detail: 'Nov 2021' },
+   898→      { name: 'Pensamiento Crítico y Toma de Decisiones (LinkedIn Learning)', detail: 'Jul 2021' },
+   899→    ],
+   900→  },
+   901→  leadership: {
+   902→    title: 'Iniciativas de Liderazgo',
+   903→    items: [
+   904→      {
+   905→        role: 'Creador y Presentador',
+   906→        org: 'Podcast "Ecos de Sabiduría"',
+   907→        period: '2026 - Presente',
+   908→      },
+   909→      {
+   910→        role: 'Cofundador y Miembro',
+   911→        org: 'Club Juvenil Educativo, Bibliotheca Alexandrina',
+   912→        period: 'Oct 2013 - Dic 2018',
+   913→      },
+   914→      {
+   915→        role: 'Coordinador General',
+   916→        org: 'Iniciativa de Segregación de Residuos',
+   917→        period: 'Feb 2015 - Feb 2017',
+   918→      },
+   919→      {
+   920→        role: 'Co-Organizador',
+   921→        org: '3ª Conferencia Internacional Anual, Depto. Filosofía, Universidad de Alejandría',
+   922→        period: 'Nov 2017',
+   923→      },
+   924→    ],
+   925→  },
+   926→  education: {
+   927→    title: 'Educación',
+   928→    items: [
+   929→      {
+   930→        degree: 'Diplomado de Posgrado en Educación',
+   931→        institution: 'Facultad de Educación, Universidad Al-Azhar',
+   932→        period: 'Sep 2024 - Sep 2025',
+   933→      },
+   934→      {
+   935→        degree: 'Licenciatura en Filosofía',
+   936→        institution: 'Facultad de Artes, Universidad de Alejandría',
+   937→        period: 'Sep 2016 - May 2021',
+   938→      },
+   939→    ],
+   940→  },
+   941→  contact: {
+   942→    title: 'Contáctame',
+   943→    subtitle: '¿Listo para conectar? Comunícate a través de cualquiera de los canales a continuación.',
+   944→    email: 'Correo Electrónico',
+   945→    phone: 'Teléfono',
+   946→    linkedin: 'LinkedIn',
+   947→    instagram: 'Instagram',
+   948→    tiktok: 'TikTok',
+   949→    youtube: 'YouTube',
+   950→    whatsapp: 'WhatsApp',
+   951→    website: 'Sitio Web',
+   952→  },
+   953→  recommendation: {
+   954→    title: 'Recomendación Profesional',
+   955→    intro_label: 'Recomendación en LinkedIn',
+   956→    date: '7 de abril de 2026',
+   957→    text: 'Tuve el placer de trabajar estrechamente con Ahmed durante su gestión como Gerente de nuestra sucursal de Al Ain en Cheeky Monkeys Playland. Ahmed es un líder de alto impacto que gestiona con una rara combinación de trabajo duro y supervisión disciplinada.\n\nEs notablemente orientado a resultados, habiendo logrado un aumento del 21% en las ventas de la sucursal en un año mientras incrementaba los comentarios de clientes de 5 estrellas en un 150%. Más allá de los números, la mayor fortaleza de Ahmed radica en su compromiso inquebrantable con los estándares operativos. Utilizó un estilo de gestión firme y disciplinado para asegurar que su equipo mantuviera un rendimiento máximo, obteniendo consistentemente una calificación "A" en las inspecciones municipales de salud e higiene alimentaria.\n\nAhmed es un profesional ISO dedicado que lidera con el ejemplo. Su capacidad para mantener un entorno de alta presión mientras se enfoca en higiene, limpieza y responsabilidad del equipo se tradujo directamente en una mayor satisfacción del cliente. Recomiendo ampliamente a Ahmed para cualquier rol de liderazgo donde la excelencia operativa y el crecimiento medible sean las prioridades.',
+   958→    author: 'Rehmatullah Baridaie',
+   959→    role: 'Director de Operaciones, EAU',
+   960→    org: 'Cheeky Monkeys Playland (Todas las sucursales EAU)',
+   961→  },
+   962→  music: {
+   963→    play: 'Reproducir Ambiental',
+   964→    pause: 'Pausar Ambiental',
+   965→  },
+   966→};
+   967→const pt: Translations = {
+   968→  nav: {
+   969→    hero: 'Início',
+   970→    metrics: 'Indicadores',
+   971→    summary: 'Sobre',
+   972→    timeline: 'Carreira',
+   973→    competencies: 'Competências',
+   974→    certifications: 'Certificações',
+   975→    leadership: 'Liderança',
+   976→    education: 'Educação',
+   977→    recommendation: 'Recomendação',
+   978→    contact: 'Contato',
+   979→  },
+   980→  hero: {
+   981→    title: 'Profissional de Operações e Liderança',
+   982→    location: 'Emirados Árabes Unidos',
+   983→    tagline: '"A excelência não é um destino: é uma jornada contínua de crescimento estratégico, precisão operacional e liderança incansável."',
+   984→    downloadResume: 'Baixar Currículo',
+   985→    visitStudio: 'Visitar Estúdio',
+   986→  },
+   987→  metrics: {
+   988→    experience: 'Anos de Experiência',
+   989→    revenue: 'Crescimento de Receita',
+   990→    promotions: 'Promoções Rápidas',
+   991→    certified: 'Auditor Interno ISO',
+   992→    years: '+8',
+   993→    growth: '21%',
+   994→    rapid: '4',
+   995→    iso: '9001 e 45001',
+   996→    studio: 'Estúdio de Phronesis',
+   997→    studioSub: 'Sistemas sob medida e plataformas',
+   998→  },
+   999→  summary: {
+  1000→    title: 'Resumo Profissional',
+  1001→    text: 'Líder de operações de alto impacto e Chefe de Departamento com mais de 8 anos de experiência progressiva impulsionando a excelência operacional, o crescimento da receita e o desempenho das equipes nos setores de Educação, Varejo, Contact Centers, Telecomunicações e Entretenimento Familiar nos EAU, Reino Unido e Egito. Histórico comprovado de 21% de crescimento da receita no primeiro ano apesar da queda no público, quatro promoções rápidas com três aumentos salariais e conclusão antecipada do período de experiência em uma única organização, e introdução de frameworks de desempenho que se tornaram referências organizacionais. Auditor interno experiente (ISO 9001 & ISO 45001) com expertise em conformidade, otimização de processos e operações multi-site. Atualmente atua como Professor de Estudos Sociais em Inglês na Al Nahda National School for Boys a partir do ano letivo 2026/2027, após liderar o Departamento de Disciplinas do MoE para Não-Arabófonos na Ain Al Khaleej School, dirigindo a entrega do currículo, a coordenação da equipe e a garantia de qualidade do 1º ao 12º ano, em conformidade com os padrões ADEK e Irtiqa\'a. Bilíngue (árabe nativo, inglês IELTS Acadêmico Band 7), com fortes capacidades de liderança intercultural adequadas a diversos mercados internacionais.',
+  1002→  },
+  1003→  timeline: {
+  1004→    title: 'Trajetória Profissional',
+  1005→    present: 'Presente',
+  1006→    experiences: [
+  1007→            {
+  1008→        title: 'Professor de Estudos Sociais em Inglês',
+  1009→        org: 'Al Nahda National School for Boys, Abu Dhabi, EAU',
+  1010→        period: 'Ago 2026 - Presente',
+  1011→        achievements: ['Ensino de Estudos Sociais em Inglês na Al Nahda National School for Boys, iniciando o ano letivo 2026/2027.'],
+  1012→      },
+  1013→            {
+  1014→        title: 'Professor de Estudos Sociais MSC e Educação Islâmica B e Líder da Seção de Não-Arabófonos',
+  1015→
+  1016→
+  1017→        org: 'Escola Particular Ain Al Khaleej, EAU',
+  1018→
+  1019→        period: 'Set 2025 - Jul 2026',
+  1020→        achievements: [
+  1021→          'Ministração de Estudos Sociais MSC e Educação Islâmica B em inglês, garantindo conformidade com os padrões ADEK e Irtiqa\'a',
+  1022→          'Mentoria dos professores do departamento em instrução diferenciada, integração de tecnologias educacionais, salvaguarda, educação inclusiva e identidade nacional dos EAU',
+  1023→          'Nomeado Líder de Faculdade para Model United Nations no segundo trimestre, assumindo o programa de delegação escolar',
+  1024→          'Preparação da delegação para vencer Melhor Escola em MANORMUN V 2026, desenvolvendo o raciocínio diplomático, a escrita de pesquisas e a oratória dos alunos',
+  1025→          'Contribuidor ativo da iniciativa «Estudante Primeiro» e fonte de mentoria e apoio emocional para os alunos em todo o campus, além de suas próprias turmas',
+  1026→        ],
+  1027→      },
+  1028→      {
+  1029→        title: 'Gerente de Operações de Filial',
+  1030→        org: 'Cheeky Monkeys Playland LLC, EAU',
+  1031→        period: 'Mai 2024 - Set 2025',
+  1032→        achievements: [
+  1033→          'Alcançou 21% de crescimento da receita no primeiro ano apesar da queda no público, por meio da otimização de pacotes de serviços e do fortalecimento de parcerias com fornecedores.',
+  1034→          'Obteve quatro promoções rápidas, três aumentos salariais e conclusão antecipada do período de experiência em um ano.',
+  1035→          'Dirigiu as operações diárias de uma instalação de 1.700 m² com uma equipe multifuncional de 12 pessoas, mantendo a conformidade com ISO 9001 e ISO 45001 e a classificação municipal "A" de higiene.',
+  1036→        ],
+  1037→      },
+  1038→      {
+  1039→        title: 'Executivo de Vendas - Gerente de Turno',
+  1040→        org: 'e& (anteriormente Etisalat) EAU',
+  1041→        period: 'Jul 2022 - Jun 2024',
+  1042→        achievements: [
+  1043→          'Executivo de vendas de melhor desempenho em múltiplos KPIs',
+  1044→          'Introduziu o framework de Net Promoter Score (NPS) para satisfação do cliente',
+  1045→          'Gerenciou operações de turno e métricas de desempenho da equipe',
+  1046→        ],
+  1047→      },
+  1048→      {
+  1049→        title: 'Consultor de Contas Internacionais',
+  1050→        org: 'Vodafone UK, Remoto',
+  1051→        period: 'Mar 2019 - Jul 2022',
+  1052→        achievements: [
+  1053→          'Gerenciou contas internacionais de alto valor com precisão e cuidado',
+  1054→          'Entregou desempenho consistente em um ambiente remoto e transfronteiriço',
+  1055→        ],
+  1056→      },
+  1057→      {
+  1058→        title: 'Líder de Equipe',
+  1059→        org: 'FEED, Alexandria, Egito',
+  1060→        period: 'Fev 2017 - Fev 2019',
+  1061→        achievements: [
+  1062→          'Liderou operações da equipe e coordenou entregas de projetos',
+  1063→          'Construiu e mentorou equipes de alto desempenho do zero',
+  1064→        ],
+  1065→      },
+  1066→      {
+  1067→        title: 'Assistente de Pesquisa e Tradutor',
+  1068→        org: 'Emory University',
+  1069→        period: '2017',
+  1070→        achievements: [
+  1071→          'Conduziu pesquisa acadêmica e forneceu serviços de tradução profissional',
+  1072→          'Apoiou iniciativas de colaboração acadêmica intercultural',
+  1073→        ],
+  1074→      },
+  1075→    ],
+  1076→  },
+  1077→  competencies: {
+  1078→    title: 'Competências Centrais',
+  1079→    items: [
+  1080→      'Gestão de Operações e Instalações',
+  1081→      'Planejamento Estratégico e Projeção Financeira',
+  1082→      'Estratégia de Vendas e Crescimento de Receita',
+  1083→      'Liderança e Mentoria de Equipes',
+  1084→      'Auditoria Interna ISO 9001 e ISO 45001',
+  1085→      'Desenho Curricular e Garantia de Qualidade',
+  1086→      'Aquisição de Clientes e Gestão de Stakeholders',
+  1087→      'Colaboração Multifuncional',
+  1088→      'Negociação com Fornecedores e Cadeia de Suprimentos',
+  1089→      'Integração de EdTech e Transformação Digital',
+  1090→      'Instrução Diferenciada',
+  1091→      'Comunicação Bilíngue (Inglês C1 / Árabe Nativo)',
+  1092→    ],
+  1093→  },
+  1094→  certifications: {
+  1095→    title: 'Certificações',
+  1096→    validUntil: 'Válido até',
+  1097→    issued: 'Emitido',
+  1098→    items: [
+  1099→      { name: 'Licença de Ensino Profissional Certificada (MoE EAU)', detail: 'Válido até Fev 2029' },
+  1100→      { name: 'IELTS Acadêmico Band 7', detail: 'Válido até Ago 2027' },
+  1101→      { name: 'Prepare For Your First Two Weeks (HMH)', detail: 'Abr 2026' },
+  1102→      { name: 'Ready to Wrestle (United World Wrestling)', detail: 'Fev 2026' },
+  1103→      { name: 'AI for Educators Level 1 (Teachy)', detail: 'Out 2025' },
+  1104→      { name: 'Network Fundamentals & Security (Mahara Tech/MCIT)', detail: 'Jun 2025' },
+  1105→      { name: 'Advanced PIC (Dubai Municipality)', detail: 'Mai 2025' },
+  1106→      { name: 'Fire Warden Level 2 (Dubai Civil Defence)', detail: 'Válido até Ago 2026' },
+  1107→      { name: 'Mastering Sales Excellence (e& Etisalat)', detail: 'Abr 2024' },
+  1108→      { name: 'Front Line for Retail Sales (e& Etisalat)', detail: 'Ago 2022' },
+  1109→      { name: 'Verification of Manuscripts (Bibliotheca Alexandrina)', detail: 'Nov 2021' },
+  1110→      { name: 'Critical Thinking & Decision Making (LinkedIn Learning)', detail: 'Jul 2021' },
+  1111→    ],
+  1112→  },
+  1113→  leadership: {
+  1114→    title: 'Iniciativas de Liderança',
+  1115→    items: [
+  1116→      {
+  1117→        role: 'Criador e Apresentador',
+  1118→        org: 'Podcast "Echoes of Wisdom"',
+  1119→        period: '2026 - Presente',
+  1120→      },
+  1121→      {
+  1122→        role: 'Cofundador e Membro',
+  1123→        org: 'Clube Juvenil Educacional, Bibliotheca Alexandrina',
+  1124→        period: 'Out 2013 - Dez 2018',
+  1125→      },
+  1126→      {
+  1127→        role: 'Coordenador Geral',
+  1128→        org: 'Iniciativa de Segregação de Resíduos',
+  1129→        period: 'Fev 2015 - Fev 2017',
+  1130→      },
+  1131→      {
+  1132→        role: 'Coorganizador',
+  1133→        org: '3ª Conferência Internacional Anual, Departamento de Filosofia, Universidade de Alexandria',
+  1134→        period: 'Nov 2017',
+  1135→      },
+  1136→    ],
+  1137→  },
+  1138→  education: {
+  1139→    title: 'Educação',
+  1140→    items: [
+  1141→      {
+  1142→        degree: 'Pós-Graduação em Educação',
+  1143→        institution: 'Faculdade de Educação, Universidade Al-Azhar',
+  1144→        period: 'Set 2024 - Set 2025',
+  1145→      },
+  1146→      {
+  1147→        degree: 'Bacharelado em Filosofia',
+  1148→        institution: 'Faculdade de Artes, Universidade de Alexandria',
+  1149→        period: 'Set 2016 - Mai 2021',
+  1150→      },
+  1151→    ],
+  1152→  },
+  1153→  recommendation: {
+  1154→    title: 'Recomendação Profissional',
+  1155→    intro_label: 'Recomendação no LinkedIn',
+  1156→    date: '7 de abril de 2026',
+  1157→    text: 'Tive o prazer de trabalhar intimamente com Ahmed durante sua gestão como Gerente da nossa filial de Al Ain na Cheeky Monkeys Playland. Ahmed é um líder de alto impacto que gerencia com uma rara combinação de trabalho árduo e supervisão disciplinada.\n\nEle é notavelmente orientado a resultados, tendo alcançado um aumento de 21% nas vendas da filial em um ano, ao mesmo tempo em que elevou as avaliações de 5 estrelas dos clientes em 150%. Além dos números, a maior força de Ahmed reside em seu compromisso intransigente com os padrões operacionais. Ele utilizou um estilo de gestão firme e disciplinado para garantir que sua equipe mantivesse desempenho de pico, obtendo consistentemente classificação "A" nas inspeções municipais de saúde e higiene alimentar.\n\nAhmed é um profissional ISO dedicado que lidera pelo exemplo. Sua capacidade de manter um ambiente de alta pressão enquanto se concentra em higiene, limpeza e responsabilidade da equipe refletiu-se diretamente no aumento da satisfação do cliente. Recomendo fortemente Ahmed para qualquer função de liderança em que a excelência operacional e o crescimento mensurável sejam as prioridades.',
+  1158→    author: 'Rehmatullah Baridaie',
+  1159→    role: 'Diretor de Operações, EAU',
+  1160→    org: 'Cheeky Monkeys Playland (Todas as filiais dos EAU)',
+  1161→  },
+  1162→  contact: {
+  1163→    title: 'Entre em Contato',
+  1164→    subtitle: 'Pronto para se conectar? Entre em contato por qualquer um dos canais abaixo.',
+  1165→    email: 'E-mail',
+  1166→    phone: 'Telefone',
+  1167→    linkedin: 'LinkedIn',
+  1168→    instagram: 'Instagram',
+  1169→    tiktok: 'TikTok',
+  1170→    youtube: 'YouTube',
+  1171→    whatsapp: 'WhatsApp',
+  1172→    website: 'Site',
+  1173→  },
+  1174→  music: {
+  1175→    play: 'Tocar Ambient',
+  1176→    pause: 'Pausar Ambient',
+  1177→  },
+  1178→};
+  1179→
+  1180→
+  1181→const ru: Translations = {
+  1182→  nav: {
+  1183→    hero: 'Главная',
+  1184→    metrics: 'Показатели',
+  1185→    summary: 'О себе',
+  1186→    timeline: 'Карьера',
+  1187→    competencies: 'Компетенции',
+  1188→    certifications: 'Сертификаты',
+  1189→    leadership: 'Лидерские инициативы',
+  1190→    education: 'Образование',
+  1191→    recommendation: 'Рекомендация',
+  1192→    contact: 'Контакты',
+  1193→  },
+  1194→  hero: {
+  1195→    title: 'Руководитель операционной деятельности и профильный лидер',
+  1196→    location: 'Объединённые Арабские Эмираты',
+  1197→    tagline: '"Совершенство не является конечной целью: это непрерывный путь стратегического роста, операционной точности и последовательного лидерства."',
+  1198→    downloadResume: 'Скачать резюме',
+  1199→    visitStudio: 'Перейти в студию',
+  1200→  },
+  1201→  metrics: {
+  1202→    experience: 'Лет опыта',
+  1203→    revenue: 'Рост выручки',
+  1204→    promotions: 'Быстрых повышений',
+  1205→    certified: 'Внутренний аудитор ISO',
+  1206→    years: '8+',
+  1207→    growth: '21%',
+  1208→    rapid: '4',
+  1209→    iso: '9001 и 45001',
+  1210→    studio: 'Студия Фронезиса',
+  1211→    studioSub: 'Кастомные системы и платформы',
+  1212→  },
+  1213→  summary: {
+  1214→    title: 'Профессиональное резюме',
+  1215→    text: 'Руководитель операционной деятельности высокого уровня и заведующий кафедрой с более чем восьмилетним опытом последовательного профессионального развития, обеспечивающим операционное совершенство, рост выручки и повышение эффективности команд в сфере образования, розничной торговли, контакт-центров, телекоммуникаций и семейного досуга в ОАЭ, Великобритании и Египте. Доказанный результат: 21-процентный рост выручки за первый год при снижении visitor traffic, четыре последовательных повышения в одной организации с тремя увеличениями денежного вознаграждения и досрочным завершением испытательного срока, а также внедрение систем оценки эффективности, ставших внутренним стандартом организации. Опытный внутренний аудитор (ISO 9001 и ISO 45001), специализирующийся на вопросах комплаенса, оптимизации процессов и управления многосайтовыми операциями. В настоящее время работает учителем английских общественных наук в Al Nahda National School for Boys с учебного года 2026/2027, ранее руководил кафедрой дисциплин MoE для неарабоязычных учащихся в школе Ain Al Khaleej, обеспечивая реализацию учебных программ, координацию преподавательского состава и контроль качества для 1-12 классов в соответствии со стандартами ADEK и Irtiqa\'a. Свободно владеет арабским (родной) и английским (IELTS Academic Band 7) языками; обладает выраженными межкультурными лидерскими компетенциями, применимыми на различных международных рынках.',
+  1216→  },
+  1217→  timeline: {
+  1218→    title: 'Карьерная траектория',
+  1219→    present: 'настоящее время',
+  1220→    experiences: [
+  1221→            {
+  1222→        title: 'Учитель английских общественных наук',
+  1223→        org: 'Al Nahda National School for Boys, Абу-Даби, ОАЭ',
+  1224→        period: 'Авг 2026 - настоящее время',
+  1225→        achievements: ['Преподавание английских общественных наук в Al Nahda National School for Boys, начиная с учебного года 2026/2027.'],
+  1226→      },
+  1227→            {
+  1228→        title: 'Учитель английских общественных наук MSC и исламского воспитания B и руководитель секции для неарабоязычных учащихся',
+  1229→
+  1230→
+  1231→        org: 'Частная школа Ain Al Khaleej, ОАЭ',
+  1232→
+  1233→        period: 'Сен 2025 - Июл 2026',
+  1234→        achievements: [
+  1235→          'Преподавание общественных наук MSC и исламского воспитания B на английском языке с обеспечением соответствия стандартам ADEK и Irtiqa\'a',
+  1236→          'Наставничество преподавателей кафедры в области дифференцированного обучения, интеграции образовательных технологий, защиты детей, инклюзивного образования и национальной идентичности ОАЭ',
+  1237→          'Назначен научным руководителем программы Model United Nations во втором триместре, приняв на себя руководство школьной делегацией',
+  1238→          'Подготовка делегации к получению премии «Лучшая школа» на MANORMUN V 2026, развитие у учащихся дипломатического мышления, навыков исследовательской работы и ораторского искусства',
+  1239→          'Активный участник инициативы «Ученик прежде всего» и источник наставничества и эмоциональной поддержки для учащихся всей школы, а не только своих классов',
+  1240→        ],
+  1241→      },
+  1242→      {
+  1243→        title: 'Менеджер операционной деятельности филиала',
+  1244→        org: 'Cheeky Monkeys Playland LLC, ОАЭ',
+  1245→        period: 'Май 2024 - Сен 2025',
+  1246→        achievements: [
+  1247→          'Достигнут 21-процентный рост выручки за первый год при снижении visitor traffic за счёт оптимизации сервисных пакетов и укрепления партнёрств с поставщиками.',
+  1248→          'Получены четыре последовательных повышения, три увеличения денежного вознаграждения и досрочное завершение испытательного срока в течение одного года.',
+  1249→          'Управление ежедневными операциями объекта площадью 1 700 кв. м с кросс-функциональной командой из 12 сотрудников; обеспечено соблюдение стандартов ISO 9001 и ISO 45001 и сохранена высшая ("A") оценка муниципальных проверок по санитарии.',
+  1250→        ],
+  1251→      },
+  1252→      {
+  1253→        title: 'Специалист по продажам - дежурный администратор',
+  1254→        org: 'e& (ранее Etisalat) ОАЭ, Филиал Al Ain Mall',
+  1255→        period: 'Июл 2022 - Июн 2024',
+  1256→        achievements: [
+  1257→          'Наивысшие показатели среди торговых представителей по ряду KPI',
+  1258→          'Внедрена методология Net Promoter Score (NPS) для оценки удовлетворённости клиентов',
+  1259→          'Управление операционной деятельностью смены и метриками эффективности команды',
+  1260→        ],
+  1261→      },
+  1262→      {
+  1263→        title: 'Консультант по международным счетам',
+  1264→        org: 'Vodafone UK, удалённая работа',
+  1265→        period: 'Мар 2019 - Июл 2022',
+  1266→        achievements: [
+  1267→          'Ведение высокодоходных международных счетов с тщательным вниманием к деталям',
+  1268→          'Стабильные результаты в условиях удалённой кросс-граничной работы',
+  1269→        ],
+  1270→      },
+  1271→      {
+  1272→        title: 'Тимлид',
+  1273→        org: 'FEED, Александрия, Египет',
+  1274→        period: 'Фев 2017 - Фев 2019',
+  1275→        achievements: [
+  1276→          'Руководство операционной деятельностью команды и координация результатов проектов',
+  1277→          'Формирование и наставничество высокоэффективных команд с нуля',
+  1278→        ],
+  1279→      },
+  1280→      {
+  1281→        title: 'Научный ассистент и переводчик',
+  1282→        org: 'Emory University',
+  1283→        period: '2017',
+  1284→        achievements: [
+  1285→          'Проведение академических исследований и профессиональный перевод',
+  1286→          'Поддержка инициатив межкультурного академического сотрудничества',
+  1287→        ],
+  1288→      },
+  1289→    ],
+  1290→  },
+  1291→  competencies: {
+  1292→    title: 'Ключевые компетенции',
+  1293→    items: [
+  1294→      'Операционное и объектовое управление',
+  1295→      'Стратегическое планирование и финансовое прогнозирование',
+  1296→      'Стратегия продаж и рост выручки',
+  1297→      'Лидерство и наставничество команд',
+  1298→      'Внутренний аудит ISO 9001 и ISO 45001',
+  1299→      'Разработка учебных программ и контроль качества',
+  1300→      'Привлечение клиентов и управление стейкхолдерами',
+  1301→      'Кросс-функциональное взаимодействие',
+  1302→      'Переговоры с поставщиками и управление цепочками поставок',
+  1303→      'Интеграция EdTech и цифровая трансформация',
+  1304→      'Дифференцированное обучение',
+  1305→      'Билингвальная коммуникация (английский C1 / арабский родной)',
+  1306→    ],
+  1307→  },
+  1308→  certifications: {
+  1309→    title: 'Сертификаты',
+  1310→    validUntil: 'Действует до',
+  1311→    issued: 'Выдан',
+  1312→    items: [
+  1313→      { name: 'Сертифицированная преподавательская лицензия (MoE ОАЭ)', detail: 'Действует до Фев 2029' },
+  1314→      { name: 'IELTS Academic Band 7', detail: 'Действует до Авг 2027' },
+  1315→      { name: 'Prepare For Your First Two Weeks (HMH)', detail: 'Апр 2026' },
+  1316→      { name: 'Ready to Wrestle (United World Wrestling)', detail: 'Фев 2026' },
+  1317→      { name: 'AI for Educators Level 1 (Teachy)', detail: 'Окт 2025' },
+  1318→      { name: 'Network Fundamentals & Security (Mahara Tech/MCIT)', detail: 'Июн 2025' },
+  1319→      { name: 'Advanced PIC (Dubai Municipality)', detail: 'Май 2025' },
+  1320→      { name: 'Fire Warden Level 2 (Dubai Civil Defence)', detail: 'Действует до Авг 2026' },
+  1321→      { name: 'Mastering Sales Excellence (e& Etisalat)', detail: 'Апр 2024' },
+  1322→      { name: 'Front Line for Retail Sales (e& Etisalat)', detail: 'Авг 2022' },
+  1323→      { name: 'Verification of Manuscripts (Bibliotheca Alexandrina)', detail: 'Ноя 2021' },
+  1324→      { name: 'Critical Thinking & Decision Making (LinkedIn Learning)', detail: 'Июл 2021' },
+  1325→    ],
+  1326→  },
+  1327→  leadership: {
+  1328→    title: 'Лидерские инициативы',
+  1329→    items: [
+  1330→      {
+  1331→        role: 'Создатель и ведущий',
+  1332→        org: 'Подкаст "Echoes of Wisdom"',
+  1333→        period: '2026 - настоящее время',
+  1334→      },
+  1335→      {
+  1336→        role: 'Сооснователь и участник',
+  1337→        org: 'Образовательный молодёжный клуб, Bibliotheca Alexandrina',
+  1338→        period: 'Окт 2013 - Дек 2018',
+  1339→      },
+  1340→      {
+  1341→        role: 'Генеральный координатор',
+  1342→        org: 'Инициатива по сортировке отходов',
+  1343→        period: 'Фев 2015 - Фев 2017',
+  1344→      },
+  1345→      {
+  1346→        role: 'Сопредседатель организационного комитета',
+  1347→        org: 'Третья ежегодная международная конференция, философский факультет Александрийского университета',
+  1348→        period: 'Ноя 2017',
+  1349→      },
+  1350→    ],
+  1351→  },
+  1352→  education: {
+  1353→    title: 'Образование',
+  1354→    items: [
+  1355→      {
+  1356→        degree: 'Последипломное образование в области педагогики',
+  1357→        institution: 'Педагогический факультет, Университет Аль-Азхар',
+  1358→        period: 'Сен 2024 - Сен 2025',
+  1359→      },
+  1360→      {
+  1361→        degree: 'Бакалавр философии',
+  1362→        institution: 'Факультет искусств, Александрийский университет',
+  1363→        period: 'Сен 2016 - Май 2021',
+  1364→      },
+  1365→    ],
+  1366→  },
+  1367→  recommendation: {
+  1368→    title: 'Профессиональная рекомендация',
+  1369→    intro_label: 'Рекомендация в LinkedIn',
+  1370→    date: '7 апреля 2026 г.',
+  1371→    text: 'Мне доставило удовольствие тесное сотрудничество с Ахмедом в период его работы менеджером нашего филиала в Эль-Айне (Cheeky Monkeys Playland). Ахмед: лидер с выраженным эффектом присутствия, сочетающий в управлении редкое единство трудовой отдачи и дисциплинированного надзора.\n\nЕго отличает выраженная ориентация на результат: за один год он обеспечил 21-процентный рост продаж филиала, одновременно увеличив количество отзывов с высшей оценкой (пять звёзд) на 150%. Однако за цифрами стоит главное достоинство Ахмеда: непоколебимая приверженность операционным стандартам. Последовательно применяя твёрдый и дисциплинированный стиль управления, он обеспечивал работу команды на пике эффективности и регулярно получал высшую категорию ("A") при муниципальных инспекциях по санитарии и безопасности пищевых продуктов.\n\nАхмед: преданный своему делу профессионал в области систем менеджмента ISO, ведущий за собой личным примером. Его способность удерживать команду в режиме высокой интенсивности, не упуская из виду вопросы гигиены, чистоты и персональной ответственности, напрямую отразилась на росте удовлетворённости клиентов. С уверенностью рекомендую Ахмеда на любую руководящую позицию, где приоритетами являются операционное совершенство и измеримый рост.',
+  1372→    author: 'Рехматулла Баридаи',
+  1373→    role: 'Директор по операциям, ОАЭ',
+  1374→    org: 'Cheeky Monkeys Playland (все филиалы в ОАЭ)',
+  1375→  },
+  1376→  contact: {
+  1377→    title: 'Связаться',
+  1378→    subtitle: 'Готовы к общению? Воспользуйтесь любым из указанных каналов.',
+  1379→    email: 'Электронная почта',
+  1380→    phone: 'Телефон',
+  1381→    linkedin: 'LinkedIn',
+  1382→    instagram: 'Instagram',
+  1383→    tiktok: 'TikTok',
+  1384→    youtube: 'YouTube',
+  1385→    whatsapp: 'WhatsApp',
+  1386→    website: 'Веб-сайт',
+  1387→  },
+  1388→  music: {
+  1389→    play: 'Включить фоновую музыку',
+  1390→    pause: 'Остановить фоновую музыку',
+  1391→  },
+  1392→};
+  1393→
+  1394→
+  1395→const zh: Translations = {
+  1396→  nav: {
+  1397→    hero: '首页',
+  1398→    metrics: '指标',
+  1399→    summary: '简介',
+  1400→    timeline: '职业',
+  1401→    competencies: '能力',
+  1402→    certifications: '认证',
+  1403→    leadership: '领导力',
+  1404→    education: '教育',
+  1405→    recommendation: '推荐',
+  1406→    contact: '联系',
+  1407→  },
+  1408→  hero: {
+  1409→    title: '运营与领导力专业人士',
+  1410→    location: '阿拉伯联合酋长国',
+  1411→    tagline: '"卓越不是终点::它是一段持续的战略增长、运营精准与不懈领导力的旅程。"',
+  1412→    downloadResume: '下载简历',
+  1413→    visitStudio: '访问工作室',
+  1414→  },
+  1415→  metrics: {
+  1416→    experience: '年经验',
+  1417→    revenue: '营收增长',
+  1418→    promotions: '快速晋升',
+  1419→    certified: 'ISO内审员',
+  1420→    years: '8+',
+  1421→    growth: '21%',
+  1422→    rapid: '4次',
+  1423→    iso: '9001和45001',
+  1424→    studio: 'Phronesis 工作室',
+  1425→    studioSub: '定制系统与平台',
+  1426→  },
+  1427→  summary: {
+  1428→    title: '专业概述',
+  1429→    text: '具有高影响力的运营领导者和部门负责人，拥有8年以上持续职业发展经验，在教育、零售、呼叫中心、电信和家庭娱乐等领域推动运营卓越、营收增长和团队绩效提升，足迹遍及阿联酋、英国和埃及。可证明的业绩：尽管客流量下降，第一年仍实现21%的营收增长，在单一组织内获得四次快速晋升、三次加薪和提前完成试用期，并制定出成为组织标杆的绩效框架。经验丰富的内部审计师（ISO 9001与ISO 45001），专精于合规、流程优化和多站点运营。现任Al Nahda National School for Boys英语社会研究教师（自2026/2027学年起），此前在Ain Al Khaleej学校担任教育部（MoE）非阿拉伯语母语者学部负责人，领导课程交付、人员协调和质量保障，覆盖1至12年级，符合ADEK和Irtiqa\'a标准。精通阿拉伯语（母语）和英语（学术雅思Band 7），具备适用于多元国际市场的跨文化领导能力。',
+  1430→  },
+  1431→  timeline: {
+  1432→    title: '职业历程',
+  1433→    present: '至今',
+  1434→    experiences: [      {
+  1435→        title: '英语社会研究教师',
+  1436→        org: 'Al Nahda National School for Boys，阿布扎比，阿联酋',
+  1437→        period: '2026年8月 - 至今',
+  1438→        achievements: ['在Al Nahda National School for Boys教授英语社会研究，自2026/2027学年起任教。'],
+  1439→      },
+  1440→            {
+  1441→        title: 'MSC社会研究与伊斯兰教育B教师及非阿拉伯语母语者学部部长',
+  1442→
+  1443→
+  1444→        org: 'Ain Al Khaleej私立学校，阿联酋',
+  1445→
+  1446→        period: '2025年9月 - 2026年7月',
+  1447→        achievements: [
+  1448→          '以英语为教学语言讲授MSC社会研究与伊斯兰教育B，确保符合ADEK和Irtiqa\'a标准',
+  1449→          '指导部门教师在差异化教学、教育科技整合、学生保护、包容性教育及阿联酋国家认同方面的实践',
+  1450→          '第二学期被任命为模拟联合国（MUN）教研组长，负责学校代表团项目',
+  1451→          '指导代表团在MANORMUN V 2026中荣获最佳学校奖，培养学生的外交思辨能力、研究写作能力和公开演讲技能',
+  1452→          '积极参与"学生优先"倡议，并在校园范围内为学生（不仅限于自己班级的学生）提供心理与情感支持',
+  1453→        ],
+  1454→      },
+  1455→      {
+  1456→        title: '分支机构运营经理',
+  1457→        org: 'Cheeky Monkeys Playland LLC，阿联酋',
+  1458→        period: '2024年5月 - 2025年9月',
+  1459→        achievements: [
+  1460→      '在客流量下降的情况下，第一年通过优化服务套餐和巩固供应商合作伙伴关系实现21%的营收增长。',
+  1461→      '在一年内获得四次快速晋升、三次加薪和提前完成试用期。',
+  1462→      '管理1,700平方米设施的日常运营，带领12人跨职能团队，保持ISO 9001和ISO 45001合规及市政"A"评级。',
+  1463→      ]
+  1464→      },
+  1465→      {
+  1466→        title: '销售主管 - 值班经理',
+  1467→        org: 'e&（前身为 Etisalat）阿联酋，Al Ain Mall 分店',
+  1468→        period: '2022年7月 - 2024年6月',
+  1469→        achievements: [
+  1470→          '多项KPI下表现最优秀的销售主管',
+  1471→          '引入客户净推荐值（NPS）框架以衡量客户满意度',
+  1472→          '管理值班运营和团队绩效指标',
+  1473→        ],
+  1474→      },
+  1475→      {
+  1476→        title: '国际账户顾问',
+  1477→        org: '英国Vodafone，远程',
+  1478→        period: '2019年3月 - 2022年7月',
+  1479→        achievements: [
+  1480→          '以精准和细致管理高价值国际账户',
+  1481→          '在远程跨国环境中保持持续的高绩效表现',
+  1482→        ],
+  1483→      },
+  1484→      {
+  1485→        title: '团队负责人',
+  1486→        org: 'FEED，亚历山大，埃及',
+  1487→        period: '2017年2月 - 2019年2月',
+  1488→        achievements: [
+  1489→          '领导团队运营，协调项目交付成果',
+  1490→          '从零开始组建和培养高绩效团队',
+  1491→        ],
+  1492→      },
+  1493→      {
+  1494→        title: '研究助理与翻译',
+  1495→        org: '埃默里大学',
+  1496→        period: '2017年',
+  1497→        achievements: [
+  1498→          '开展学术研究，提供专业翻译服务',
+  1499→          '支持跨文化学术合作倡议',
+  1500→        ],
+  1501→      }
+  1502→    ],
+  1503→  },
+  1504→  competencies: {
+  1505→    title: '核心能力',
+  1506→    items: [
+  1507→      '运营与设施管理',
+  1508→      '战略规划与财务预测',
+  1509→      '销售策略与营收增长',
+  1510→      '团队领导与指导',
+  1511→      'ISO 9001和ISO 45001内部审核',
+  1512→      '课程设计与质量保证',
+  1513→      '客户获取与利益相关者管理',
+  1514→      '跨职能协作',
+  1515→      '供应商谈判与供应链',
+  1516→      'EdTech整合与数字化转型',
+  1517→      '差异化教学',
+  1518→      '双语沟通（英语C1/阿拉伯语母语）',
+  1519→    ],
+  1520→  },
+  1521→  certifications: {
+  1522→    title: '专业认证',
+  1523→    validUntil: '有效期至',
+  1524→    issued: '颁发',
+  1525→    items: [
+  1526→      { name: '认证专业教师资格证（阿联酋教育部）', detail: '有效期至2029年2月' },
+  1527→      { name: '雅思学术类7分', detail: '有效期至2027年8月' },
+  1528→      { name: '为前两周做准备（HMH）', detail: '2026年4月' },
+  1529→      { name: '准备摔跤（世界摔跤联合会）', detail: '2026年2月' },
+  1530→      { name: '教育工作者AI一级（Teachy）', detail: '2025年10月' },
+  1531→      { name: '网络基础与安全（Mahara Tech/MCIT）', detail: '2025年6月' },
+  1532→      { name: '高级PIC（迪拜市政厅）', detail: '2025年5月' },
+  1533→      { name: '消防员二级（迪拜民防局）', detail: '有效期至2026年8月' },
+  1534→      { name: '销售卓越精通（e& Etisalat）', detail: '2024年4月' },
+  1535→      { name: '零售销售前线（e& Etisalat）', detail: '2022年8月' },
+  1536→      { name: '手稿验证（亚历山大图书馆）', detail: '2021年11月' },
+  1537→      { name: '批判性思维与决策（领英学习）', detail: '2021年7月' },
+  1538→    ],
+  1539→  },
+  1540→  leadership: {
+  1541→    title: '领导力项目',
+  1542→    items: [
+  1543→      {
+  1544→        role: '创始人与主持人',
+  1545→        org: '"智慧回声"播客',
+  1546→        period: '2026年 - 至今',
+  1547→      },
+  1548→      {
+  1549→        role: '联合创始人与成员',
+  1550→        org: '教育青年俱乐部，亚历山大图书馆',
+  1551→        period: '2013年10月 - 2018年12月',
+  1552→      },
+  1553→      {
+  1554→        role: '总协调员',
+  1555→        org: '垃圾分类倡议',
+  1556→        period: '2015年2月 - 2017年2月',
+  1557→      },
+  1558→      {
+  1559→        role: '联合组织者',
+  1560→        org: '第三届年度国际会议，哲学系，亚历山大大学',
+  1561→        period: '2017年11月',
+  1562→      },
+  1563→    ],
+  1564→  },
+  1565→  education: {
+  1566→    title: '教育背景',
+  1567→    items: [
+  1568→      {
+  1569→        degree: '教育研究生文凭',
+  1570→        institution: '教育学院，艾资哈尔大学',
+  1571→        period: '2024年9月 - 2025年9月',
+  1572→      },
+  1573→      {
+  1574→        degree: '哲学学士学位',
+  1575→        institution: '文学院，亚历山大大学',
+  1576→        period: '2016年9月 - 2021年5月',
+  1577→      },
+  1578→    ],
+  1579→  },
+  1580→  contact: {
+  1581→    title: '联系我',
+  1582→    subtitle: '准备好联系了吗？通过以下任一渠道联系。',
+  1583→    email: '电子邮件',
+  1584→    phone: '电话',
+  1585→    linkedin: '领英',
+  1586→    instagram: 'Instagram',
+  1587→    tiktok: 'TikTok',
+  1588→    youtube: 'YouTube',
+  1589→    whatsapp: 'WhatsApp',
+  1590→    website: '网站',
+  1591→  },
+  1592→  recommendation: {
+  1593→    title: '专业推荐',
+  1594→    intro_label: 'LinkedIn 推荐',
+  1595→    date: '2026年4月7日',
+  1596→    text: '在Ahmed担任Cheeky Monkeys Playland艾因分店经理期间，我有幸与他密切合作。Ahmed是一位高效领导者，他以罕见的勤奋与严格监督相结合的方式进行管理。\n\n他非常注重结果，在一年内将分店销售额提升了21%，同时将五星客户反馈提高了150%。除了数字之外，Ahmed最大的优势在于他对运营标准的坚定不移的承诺。他采用坚定、纪律严明的管理风格，确保团队保持最佳表现，持续获得市政食品卫生和安全检查的"A"评级。\n\nAhmed是一位专注的ISO专业人士，以身作则。他在保持高压环境的同时专注于卫生、清洁和团队问责的能力，直接转化为客户满意度的提升。我强烈推荐Ahmed担任任何以运营卓越和可衡量增长为优先事项的领导职位。',
+  1597→    author: 'Rehmatullah Baridaie',
+  1598→    role: '运营总监，阿联酋',
+  1599→    org: 'Cheeky Monkeys Playland（所有阿联酋分店）',
+  1600→  },
+  1601→  music: {
+  1602→    play: '播放背景音乐',
+  1603→    pause: '暂停背景音乐',
+  1604→  },
+  1605→};
+  1606→
+  1607→const ur: Translations = {
+  1608→  nav: {
+  1609→    hero: 'ہوم',
+  1610→    metrics: 'میٹرکس',
+  1611→    summary: 'تعارف',
+  1612→    timeline: 'کیریئر',
+  1613→    competencies: 'صلاحیتیں',
+  1614→    certifications: 'سرٹیفکیٹس',
+  1615→    leadership: 'قیادت',
+  1616→    education: 'تعلیم',
+  1617→    recommendation: 'سفارش',
+  1618→    contact: 'رابطہ',
+  1619→  },
+  1620→  hero: {
+  1621→    title: 'آپریشنز اور قیادت کے پیشہ ور',
+  1622→    location: 'متحدہ عرب امارات',
+  1623→    tagline: '"بہایت منزل نہیں : یہ تزویراتی نمو، آپریشنل درستگی اور لگاتار قیادت کا مسلسل سفر ہے۔"',
+  1624→    downloadResume: 'ریزیومے ڈاؤن لوڈ کریں',
+  1625→    visitStudio: 'اسٹوڈیو دیکھیں',
+  1626→  },
+  1627→  metrics: {
+  1628→    experience: 'سال کا تجربہ',
+  1629→    revenue: 'آمدنی میں اضافہ',
+  1630→    promotions: 'فوری ترقیاں',
+  1631→    certified: 'ISO اندرونی آڈیٹر',
+  1632→    years: '+8',
+  1633→    growth: '21%',
+  1634→    rapid: '4',
+  1635→    iso: '9001 اور 45001',
+  1636→    studio: 'اسٹوڈیو آف فرُونِسِس',
+  1637→    studioSub: 'مخصوص نظام اور پلیٹ فارم',
+  1638→  },
+  1639→  summary: {
+  1640→    title: 'پیشہ ورانہ خلاصہ',
+  1641→    text: 'ایک اعلیٰ اثر انگیز آپریشنز کے رہنما اور ڈیپارٹمنٹ لیڈ، جن کے پاس متحدہ عرب امارات، برطانیہ اور مصر میں تعلیم، پرچون ریٹیل، کال سینٹرز، ٹیلی کام اور فیملی انٹرٹینمنٹ کے شعبوں میں آپریشنل فضیلت، آمدنی میں نمو اور ٹیم کی کارکردگی کو فروغ دینے میں 8 سال سے زائد کی مسلسل پیشہ ورانہ تجربہ ہے۔ ثابت شدہ کارنامہ: زائرین میں کمی کے باوجود پہلے سال 21% آمدنی میں اضافہ، ایک ہی تنظیم میں چار تیز ترقیات، تن تنخواہ کے اضافے اور پرابیشن کی قبل از وقت تکمیل، اور کارکردگی کے وہ فریم ورکس متعارف کرانا جو تنظیمی معیار بن گئے۔ ISO 9001 اور ISO 45001 کے لیے تجربہ کار اندرونی آڈیٹر، کمپلائنس، عملے کی بہتری اور ملٹی سائٹ آپریشنز میں مہارت رکھتے ہیں۔ فی الحال النہدہ نیشنل اسکول فار بوائز میں انگریزی سماجی مطالعات کے استاد کی حیثیت سے خدمات انجام دے رہے ہیں (2026/2027 تعلیمی سال سے)، اس سے قبل عین الخلیج اسکول میں غیر عربی بولنے والوں کے لیے MoE مضامین کے ڈیپارٹمنٹ لیڈ کی حیثیت سے گریڈ 1 سے 12 تک نصاب کی ترسیل، عملے کے کوآرڈینیشن اور کوالٹی ایشورنس کی قیادت کر رہے تھے، جو ADEK اور Irtiqa\'a کے معیارات کے مطابق ہے۔ عربی (مادری زبان) اور انگریزی (اکاڈمک IELTS Band 7) میں دو لسانی، متنوع بین الاقوامی بازاروں کے لیے موزوں مضبوط بین الثقافتی قیادت کی صلاحیتوں کے حامل ہیں۔',
+  1642→  },
+  1643→  timeline: {
+  1644→    title: 'کیریئر کا زمانی خط',
+  1645→    present: 'موجودہ',
+  1646→    experiences: [      {
+  1647→        title: 'انگریزی سماجی مطالعات کا استاد',
+  1648→        org: 'النہدہ نیشنل اسکول فار بوائز، ابوظبی، متحدہ عرب امارات',
+  1649→        period: 'اگست 2026 - موجودہ',
+  1650→        achievements: ['النہدہ نیشنل اسکول فار بوائز میں انگریزی سماجی مطالعات پڑھانا، 2026/2027 تعلیمی سال سے آغاز۔'],
+  1651→      },
+  1652→            {
+  1653→        title: 'MSC اسٹڈیز اور اسلامی تعلیم (ب) کے استاد اور غیر عربی بولنے والوں کے سیکشن کے لیڈ',
+  1654→
+  1655→
+  1656→        org: 'عین الخلیج پرائیویٹ اسکول، متحدہ عرب امارات',
+  1657→
+  1658→        period: 'ستمبر 2025 - جولائی 2026',
+  1659→        achievements: [
+  1660→          'انگریزی ذریعہ تعلیم کے ساتھ MSC اسٹڈیز اور اسلامی تعلیم (ب) پڑھانا، ADEK اور Irtiqa\'a کے معیارات کی پابندی کو یقینی بنانا',
+  1661→          'ڈیپارٹمنٹ کے اساتذہ کو تفریقی تعلیم، تعلیمی ٹیکنالوجی کے انضمام، بچوں کی حفاظت، شامل تعلیم اور متحدہ عرب امارات کی قومی شناخت میں رہنمائی',
+  1662→          'دوسری سمسٹر میں ماڈل یونائیٹڈ نیشنز کے فیکلٹی ہیڈ کے طور پر تقرری، اسکول وفد پروگرام کی ذمہ داری سنبھالنا',
+  1663→          'وفد کو MANORMUN V 2026 میں بہترین اسکول کا اعزاز دلانا، طلبا میں سفارتی استدلال، تحقیقی تحریر اور عوامی تقریر کی مہارتوں کی ترقی',
+  1664→          'اسکول کی «طالب علم سب سے پہلے» Initiative میں فعال شراکت، اور اپنے ہی کلاسوں سے ماورا طلبا کے لیے کیمپس بھر میں رہنمائی اور جذباتی معاونت کا سرچشمہ',
+  1665→        ],
+  1666→      },
+  1667→      {
+  1668→        title: 'برانچ آپریشنز مینجر',
+  1669→        org: 'چیکی منکیز پلے لینڈ ایل ایل سی، متحدہ عرب امارات',
+  1670→        period: 'مئی 2024 - ستمبر 2025',
+  1671→        achievements: [
+  1672→      'پہلے سال میں اندازہ میں کمی کے باوجود 21% آمدنی میں اضافہ، سروس پیکیجز کو بہتر بنا کر اور وینڈر شراکت داریوں کو مضبوط کر کے۔',
+  1673→      'ایک سال کے اندر چار تیز ترقیات، تن تنخواہ کی اضافے اور پرابیشن کی قبل از وقت تکمیل۔',
+  1674→      '1,700 مربع میٹر کی سہولت کے روزانہ آپریشنز کی منتظم، 12 افراد پر مشتمل کراس فنکشنل ٹیم کے ساتھ، ISO 9001 اور ISO 45001 کی تعمیل اور بلدیہ کی "A" درجہ بندی برقرار رکھتے ہوئے۔',
+  1675→      ]
+  1676→      },
+  1677→      {
+  1678→        title: 'سیلز ایگزیکٹو - ڈیوٹی مینیجر',
+  1679→        org: 'e& (سابقہً Etisalat) متحدہ عرب امارات، العین مال برانچ',
+  1680→        period: 'جولائی 2022 - جون 2024',
+  1681→        achievements: [
+  1682→          'متعدد KPIs پر سب سے زیادہ کارکردگی والا سیلز ایگزیکٹو',
+  1683→          'کسٹمر اطمینان کے لیے Net Promoter Score (NPS) فریم ورک متعارف کرایا',
+  1684→          'ڈیوٹی آپریشنز اور ٹیم پرفارمنس میٹرکس کی انتظامیہ',
+  1685→        ],
+  1686→      },
+  1687→      {
+  1688→        title: 'بین الاقوامی اکاؤنٹ مشیر',
+  1689→        org: 'ووڈافون برطانیہ، ریموٹ',
+  1690→        period: 'مارچ 2019 - جولائی 2022',
+  1691→        achievements: [
+  1692→          'درستگی اور احتیاط کے ساتھ اعلیٰ قدر بین الاقوامی اکاؤنٹس کی انتظامیہ',
+  1693→          'ریموٹ، کراس بارڈر ماحول میں مستقل کارکردگی',
+  1694→        ],
+  1695→      },
+  1696→      {
+  1697→        title: 'ٹیم لیڈر',
+  1698→        org: 'فید، اسکندریہ، مصر',
+  1699→        period: 'فروری 2017 - فروری 2019',
+  1700→        achievements: [
+  1701→          'ٹیم آپریشنز کی قیادت اور پروجیکٹ فراہمی کے کوآرڈینیشن',
+  1702→          'نئے سرے سے اعلی کارکردگی والی ٹیموں کی تعمیر اور رہنمائی',
+  1703→        ],
+  1704→      },
+  1705→      {
+  1706→        title: 'ریسرچ اسسٹنٹ اور مترجم',
+  1707→        org: 'ایموری یونیورسٹی',
+  1708→        period: '2017',
+  1709→        achievements: [
+  1710→          'تعلیمی تحقیق اور پیشہ ورانہ ترجمہ خدمات',
+  1711→          'بین الثقافتی تعلیمی تعاون کی_initiatoves کی حمایت',
+  1712→        ],
+  1713→      }
+  1714→    ],
+  1715→  },
+  1716→  competencies: {
+  1717→    title: 'بنیادی صلاحیتیں',
+  1718→    items: [
+  1719→      'آپریشنز اور سہولیات کی انتظامیہ',
+  1720→      'تزویراتی منصوبہ بندی اور مالی پیشین گوئی',
+  1721→      'سیلز حکمت عملی اور آمدنی میں اضافہ',
+  1722→      'ٹیم قیادت اور کوچنگ',
+  1723→      'ISO 9001 اور ISO 45001 اندرونی آڈٹ',
+  1724→      'نصاب ڈیزائن اور معیار یقین',
+  1725→      'کلائنٹ حصول اور اسٹیک ہولڈر مینجمنٹ',
+  1726→      'کراس فنکشنل تعاون',
+  1727→      'وینڈر مذاکرات اور سپلائی چین',
+  1728→      'EdTech انضمام اور ڈیجیٹل تبدیلی',
+  1729→      'تفریق شدہ تدریس',
+  1730→      'دو زبانی مواصلات (انگریزی C1 / عربی مادری زبان)',
+  1731→    ],
+  1732→  },
+  1733→  certifications: {
+  1734→    title: 'سرٹیفکیٹس',
+  1735→    validUntil: 'میعاد',
+  1736→    issued: 'جاری',
+  1737→    items: [
+  1738→      { name: 'سرٹیفائیڈ پروفیشنل ٹیچنگ لائسنس (UAE MoE)', detail: 'فروری 2029 تک معتبر' },
+  1739→      { name: 'IELTS اکیڈمک بینڈ 7', detail: 'اگست 2027 تک معتبر' },
+  1740→      { name: 'اپنے پہلے دو ہفتوں کی تیاری (HMH)', detail: 'اپریل 2026' },
+  1741→      { name: 'کشتی کے لیے تیار (United World Wrestling)', detail: 'فروری 2026' },
+  1742→      { name: 'معلمین کے لیے AI سطح 1 (Teachy)', detail: 'اکتوبر 2025' },
+  1743→      { name: 'نیٹ ورک بنیادیات اور سیکیورٹی (Mahara Tech/MCIT)', detail: 'جون 2025' },
+  1744→      { name: 'ایڈوانسڈ PIC (دبئی بلدیہ)', detail: 'مئی 2025' },
+  1745→      { name: 'فائر وارڈن لیول 2 (دبئی سول ڈیفنس)', detail: 'اگست 2026 تک معتبر' },
+  1746→      { name: 'سیلز ایکسیلنس میں مہارت (e& اتصلات)', detail: 'اپریل 2024' },
+  1747→      { name: 'ریٹیل سیلز کے لیے فرنٹ لائن (e& اتصلات)', detail: 'اگست 2022' },
+  1748→      { name: 'مخطوطات کی توثیق (بائبلوتھیکا الیگزینڈرینا)', detail: 'نومبر 2021' },
+  1749→      { name: 'تنقیدی سوچ اور فیصلہ سازی (LinkedIn Learning)', detail: 'جولائی 2021' },
+  1750→    ],
+  1751→  },
+  1752→  leadership: {
+  1753→    title: 'قیادت کی_initiatoves',
+  1754→    items: [
+  1755→      {
+  1756→        role: 'خالق اور میزبان',
+  1757→        org: 'پوڈکاسٹ "حکمت کی گونج"',
+  1758→        period: '2026 - موجودہ',
+  1759→      },
+  1760→      {
+  1761→        role: 'شریک بانی اور رکن',
+  1762→        org: 'تعلیمی یوتھ کلب، بائبلوتھیکا الیگزینڈرینا',
+  1763→        period: 'اکتوبر 2013 - دسمبر 2018',
+  1764→      },
+  1765→      {
+  1766→        role: 'جنرل کوآرڈینیٹر',
+  1767→        org: 'کچرے کی_تقسیم_initiative',
+  1768→        period: 'فروری 2015 - فروری 2017',
+  1769→      },
+  1770→      {
+  1771→        role: 'شریک منتظم',
+  1772→        org: 'تیسرا سالانہ بین الاقوامی کنفرنس، فلاسفی ڈیپارٹمنٹ، اسکندریہ یونیورسٹی',
+  1773→        period: 'نومبر 2017',
+  1774→      },
+  1775→    ],
+  1776→  },
+  1777→  education: {
+  1778→    title: 'تعلیم',
+  1779→    items: [
+  1780→      {
+  1781→        degree: 'تعلیم میں پوسٹ گریجویٹ ڈپلومہ',
+  1782→        institution: 'فیکلٹی آف ایجوکیشن، الازہر یونیورسٹی',
+  1783→        period: 'ستمبر 2024 - ستمبر 2025',
+  1784→      },
+  1785→      {
+  1786→        degree: 'فلاسفی میں بیچلر ڈگری',
+  1787→        institution: 'فیکلٹی آف آرٹس، اسکندریہ یونیورسٹی',
+  1788→        period: 'ستمبر 2016 - مئی 2021',
+  1789→      },
+  1790→    ],
+  1791→  },
+  1792→  contact: {
+  1793→    title: 'رابطہ کریں',
+  1794→    subtitle: 'رابطہ کرنے کے لیے تیار ہیں؟ نیچے دیے گئے کسی بھی ذریعے سے رابطہ کریں۔',
+  1795→    email: 'ای میل',
+  1796→    phone: 'فون',
+  1797→    linkedin: 'لنکڈ ان',
+  1798→    instagram: 'انسٹاگرام',
+  1799→    tiktok: 'ٹک ٹاک',
+  1800→    youtube: 'یوٹیوب',
+  1801→    whatsapp: 'واٹس ایپ',
+  1802→    website: 'ویب سائٹ',
+  1803→  },
+  1804→  recommendation: {
+  1805→    title: 'پیشہ ورانہ سفارش',
+  1806→    intro_label: 'LinkedIn سفارش',
+  1807→    date: '7 اپریل 2026',
+  1808→    text: 'مجھے احمد کے ساتھ Cheeky Monkeys Playland کے العین برانچ کے اسٹور مینیجر کی حیثیت سے کام کرنے کی خوشی ہوئی۔ احمد ایک اعلیٰ اثر رکھنے والے رہنما ہیں جو محنت اور نظم و ضبط کی نگرانی کے نادر امتزاج کے ساتھ کام کرتے ہیں۔\n\nوہ نتائج پر غیر معمولی توجہ رکھتے ہیں، ایک سال میں برانچ کی فروخت میں 21% اضافہ کیا اور ساتھ ہی 5 ستارہ کسٹمر رائے میں 150% اضافہ کیا۔ اعداد و شمار سے بالاتر، احمد کی سب سے بڑی طاقت آپریشنل معیارات کے لیے ان کے غیر مصالحتانہ وعدے میں ہے۔ انہوں نے ایک مضبوط، نظم و ضبط والے مینجمنٹ انداز کا استعمال کیا تاکہ ان کی ٹیم کو عروج پر رکھیں، مسلسل بلدیہ کی خوراک صحت اور حفاظت کے معائنوں میں "A" درجہ حاصل کیا۔\n\nاحمد ایک وقف ISO پیشہ ور ہیں جو مثال سے قیادت کرتے ہیں۔ ان کی صلاحیت کو برقرار رکھنے کے لیے اعلیٰ دباؤ والے ماحول کو برقرار رکھتے ہوئے حفظان صحت، صفائی اور ٹیم جوابدہی پر توجہ مرکوز کرنا، براہ راست کسٹمر اطمینان میں اضافہ ہوا۔ میں احمد کی کسی بھی قیادت کے کردار کے لیے زبردست سفارش کرتا ہوں جہاں آپریشنل فضیلت اور قابل پیمائش نمودگی ترجیحات ہیں۔',
+  1809→    author: 'رحمت اللہ باریبئی',
+  1810→    role: 'آپریشنز کے سربراہ، متحدہ عرب امارات',
+  1811→    org: 'Cheeky Monkeys Playland (تمام متحدہ عرب امارات برانچز)',
+  1812→  },
+  1813→  music: {
+  1814→    play: 'میوزک چلائیں',
+  1815→    pause: 'میوزک روکیں',
+  1816→  },
+  1817→};
+  1818→
+  1819→const tr: Translations = {
+  1820→  nav: {
+  1821→    hero: 'Ana Sayfa',
+  1822→    metrics: 'Metrikler',
+  1823→    summary: 'Hakkında',
+  1824→    timeline: 'Kariyer',
+  1825→    competencies: 'Yetkinlikler',
+  1826→    certifications: 'Sertifikalar',
+  1827→    leadership: 'Liderlik',
+  1828→    education: 'Eğitim',
+  1829→    recommendation: 'Tavsiye',
+  1830→    contact: 'İletişim',
+  1831→  },
+  1832→  hero: {
+  1833→    title: 'Operasyon ve Liderlik Profesyoneli',
+  1834→    location: 'Birleşik Arap Emirlikleri',
+  1835→    tagline: '"Mükemmellik bir varış noktası değil : stratejik büyüme, operasyonel hassasiyet ve amansız liderliğin sürekli bir yolculuğudur."',
+  1836→    downloadResume: 'CV’yi İndir',
+  1837→    visitStudio: 'Stüdyoyu Ziyaret Et',
+  1838→  },
+  1839→  metrics: {
+  1840→    experience: 'Yıl Deneyim',
+  1841→    revenue: 'Gelir Büyümesi',
+  1842→    promotions: 'Hızlı Terfi',
+  1843→    certified: 'ISO İç Denetçi',
+  1844→    years: '8+',
+  1845→    growth: '21%',
+  1846→    rapid: '4',
+  1847→    iso: '9001 ve 45001',
+  1848→    studio: 'Phronesis Stüdyosu',
+  1849→    studioSub: 'Özel sistemler ve platformlar',
+  1850→  },
+  1851→  summary: {
+  1852→    title: 'Profesyonel Özet',
+  1853→    text: "Yüksek etkili Operasyon Lideri ve Departman Lideri olarak, BAE, İngiltere ve Mısır'da Eğitim, Perakende, Çağrı Merkezleri, Telekomünikasyon ve Aile Eğlencesi sektörlerinde operasyonel mükemmelliği, gelir büyümesini ve ekip performansını yönlendiren 8 yılı aşkın ilerleyici deneyime sahip. Kanıtlanmış sicil: ziyaretçi sayısındaki düşüşe rağmen ilk yılda %21 gelir büyümesi sağlama, tek bir kuruluş içinde dört hızlı terfi, üç maaş artışı ve deneme süresinin erken tamamlanması, ayrıca kurumsal referanslar haline gelen performans çerçeveleri getirme. ISO 9001 ve ISO 45001 için deneyimli iç denetçi; uyumluluk, süreç optimizasyonu ve çoklu tesis operasyonları konusunda uzmanlık. Şu anda Al Nahda National School for Boys'ta 2026/2027 akademik yılından itibaren İngilizce Sosyal Bilgiler Öğretmeni olarak görev yapmakta, öncesinde Ain Al Khaleej School'da Arapça Bilmeyenler için MoE Dersleri Departman Lideri olarak ADEK ve Irtiqa'a standartlarına uygun biçimde 1.-12. sınıflar için müfredat sunumunu, personel koordinasyonunu ve kalite güvencesini denetlemekteydi. Arapça (ana dil) ve İngilizce (Akademik IELTS Band 7) dilinde iki dilli; çeşitli uluslararası pazarlara uygun güçlü kültürlerarası liderlik yeteneklerine sahip.",
+  1854→  },
+  1855→  timeline: {
+  1856→    title: 'Kariyer Zaman Çizelgesi',
+  1857→    present: 'Günümüz',
+  1858→    experiences: [      {
+  1859→        title: 'İngilizce Sosyal Bilgiler Öğretmeni',
+  1860→        org: 'Al Nahda National School for Boys, Abu Dhabi, BAE',
+  1861→        period: 'Ağu 2026 - Günümüz',
+  1862→        achievements: ["Al Nahda National School for Boys'ta İngilizce Sosyal Bilgiler öğretmenliği, 2026/2027 akademik yılından itibaren başlamaktadır."],
+  1863→      },
+  1864→            {
+  1865→        title: 'MSC Çalışmaları ve İslam Eğitimi B Öğretmeni ve Arapça Bilmeyenler Bölümü Lideri',
+  1866→
+  1867→
+  1868→        org: 'Ain Al Khaleej Özel Okulu, BAE',
+  1869→
+  1870→        period: 'Eyl 2025 - Tem 2026',
+  1871→        achievements: [
+  1872→          'MSC Çalışmaları ve İslam Eğitimi B\'yi İngilizce ortamda sunarak ADEK ve Irtiqa\'a uyumluluğunu sağlamak',
+  1873→          'Bölüm öğretmenlerine farklılaştırılmış öğretim, eğitim teknolojileri entegrasyonu, çocuk koruma, kapsayıcı eğitim ve BAE ulusal kimliği konusunda mentorluk yapmak',
+  1874→          '2. dönemde Model Birleşmiş Milletler Fakülte Başkanı olarak atanmak ve okul heyeti programının sorumluluğunu üstlenmek',
+  1875→          'Heyeti MANORMUN V 2026\'da En İyi Okul ödülüne hazırlamak; öğrencilerin diplomatik akıl yürütme, araştırma yazımı ve konuşma becerilerini geliştirmek',
+  1876→          'Okulun «Öğrenci Önce» inisiyatifine aktif katkıda bulunmak ve kendi sınıflarının ötesinde kampüs geneli öğrenciler için mentorluk ve duygusal destek kaynağı olmak',
+  1877→        ],
+  1878→      },
+  1879→      {
+  1880→        title: 'Şube Operasyon Yöneticisi',
+  1881→        org: 'Cheeky Monkeys Playland LLC, BAE',
+  1882→        period: 'May 2024 - Eyl 2025',
+  1883→        achievements: [
+  1884→      'Hizmet paketlerini optimize ederek ve tedarikçi ortaklıklarını güçlendirerek ziyaretçi sayısındaki düşüşe rağmen ilk yılda %21 gelir büyümesi sağladı.',
+  1885→      'Bir yıl içinde dört hızlı terfi, üç maaş artışı ve deneme süresinin erken tamamlanmasını kazandı.',
+  1886→      'ISO 9001 ve ISO 45001 uyumu ile belediye "A" notunu sürdürerek 12 kişilik çapraz işlevli ekiple 1.700 m²’lik tesisin günlük operasyonlarını yönetti.',
+  1887→      ]
+  1888→      },
+  1889→      {
+  1890→        title: 'Satış Yöneticisi - Vardiya Müdürü',
+  1891→        org: 'e& (eski adıyla Etisalat) BAE, Al Ain Mall Şubesi',
+  1892→        period: 'Tem 2022 - Haz 2024',
+  1893→        achievements: [
+  1894→          'Birden fazla KPI\'da en yüksek performanslı satış yöneticisi',
+  1895→          'Müşteri memnuniyeti için Net Promoter Score (NPS) çerçevesini tanıttı',
+  1896→          'Vardiya operasyonlarını ve ekip performans metriklerini yönetti',
+  1897→        ],
+  1898→      },
+  1899→      {
+  1900→        title: 'Uluslararası Hesap Danışmanı',
+  1901→        org: 'Vodafone İngiltere, Uzaktan',
+  1902→        period: 'Mar 2019 - Tem 2022',
+  1903→        achievements: [
+  1904→          'Yüksek değerli uluslararası hesapları hassasiyet ve özenle yönetti',
+  1905→          'Uzaktan, sınırlararası bir ortamda tutarlı performans sergiledi',
+  1906→        ],
+  1907→      },
+  1908→      {
+  1909→        title: 'Ekip Lideri',
+  1910→        org: 'FEED, İskenderiye, Mısır',
+  1911→        period: 'Şub 2017 - Şub 2019',
+  1912→        achievements: [
+  1913→          'Ekip operasyonlarına liderlik etti ve proje teslimatlarını koordine etti',
+  1914→          'Sıfırdan yüksek performanslı ekipler kurdu ve mentorluk yaptı',
+  1915→        ],
+  1916→      },
+  1917→      {
+  1918→        title: 'Araştırma Asistanı ve Çevirmen',
+  1919→        org: 'Emory Üniversitesi',
+  1920→        period: '2017',
+  1921→        achievements: [
+  1922→          'Akademik araştırma yürüttü ve profesyonel çeviri hizmetleri sundu',
+  1923→          'Kültürlerarası akademik işbirliği girişimlerini destekledi',
+  1924→        ],
+  1925→      }
+  1926→    ],
+  1927→  },
+  1928→  competencies: {
+  1929→    title: 'Temel Yetkinlikler',
+  1930→    items: [
+  1931→      'Operasyon ve Tesis Yönetimi',
+  1932→      'Stratejik Planlama ve Finansal Öngörü',
+  1933→      'Satış Stratejisi ve Gelir Büyümesi',
+  1934→      'Ekip Liderliği ve Koçluk',
+  1935→      'ISO 9001 ve ISO 45001 İç Denetim',
+  1936→      'Müfredat Tasarımı ve Kalite Güvencesi',
+  1937→      'Müşteri Edinme ve Paydaş Yönetimi',
+  1938→      'Çapraz İşlevsel İşbirliği',
+  1939→      'Tedarikçi Müzakeresi ve Tedarik Zinciri',
+  1940→      'EdTech Entegrasyonu ve Dijital Dönüşüm',
+  1941→      'Farklılaştırılmış Öğretim',
+  1942→      'İki Dilli İletişim (İngilizce C1 / Arapça Ana Dil)',
+  1943→    ],
+  1944→  },
+  1945→  certifications: {
+  1946→    title: 'Sertifikalar',
+  1947→    validUntil: 'Geçerlilik',
+  1948→    issued: 'Verildi',
+  1949→    items: [
+  1950→      { name: 'Sertifikalı Profesyonel Öğretmen Lisansı (BAE MoE)', detail: 'Şub 2029\'a kadar geçerli' },
+  1951→      { name: 'IELTS Akademik Puan 7', detail: 'Ağu 2027\'ye kadar geçerli' },
+  1952→      { name: 'İlk İki Haftanıza Hazırlanın (HMH)', detail: 'Nis 2026' },
+  1953→      { name: 'Güreşe Hazır (United World Wrestling)', detail: 'Şub 2026' },
+  1954→      { name: 'Eğitimciler için AI Seviye 1 (Teachy)', detail: 'Eki 2025' },
+  1955→      { name: 'Ağ Temelleri ve Güvenlik (Mahara Tech/MCIT)', detail: 'Haz 2025' },
+  1956→      { name: 'İleri PIC (Dubai Belediyesi)', detail: 'May 2025' },
+  1957→      { name: 'Yangın Görevlisi Seviye 2 (Dubai Sivil Savunma)', detail: 'Ağu 2026\'ya kadar geçerli' },
+  1958→      { name: 'Satış Mükemmelliğinde Uzmanlık (e& Etisalat)', detail: 'Nis 2024' },
+  1959→      { name: 'Perakende Satış için Ön Hat (e& Etisalat)', detail: 'Ağu 2022' },
+  1960→      { name: 'Yazma Doğrulama (Bibliotheca Alexandrina)', detail: 'Kas 2021' },
+  1961→      { name: 'Eleştirel Düşünme ve Karar Verme (LinkedIn Learning)', detail: 'Tem 2021' },
+  1962→    ],
+  1963→  },
+  1964→  leadership: {
+  1965→    title: 'Liderlik Girişimleri',
+  1966→    items: [
+  1967→      {
+  1968→        role: 'Kurucu ve Sunucu',
+  1969→        org: '"Bilginin Yankıları" Podcast',
+  1970→        period: '2026 - Günümüz',
+  1971→      },
+  1972→      {
+  1973→        role: 'Kurucu Ortak ve Üye',
+  1974→        org: 'Eğitim Gençlik Kulübü, Bibliotheca Alexandrina',
+  1975→        period: 'Eki 2013 - Ara 2018',
+  1976→      },
+  1977→      {
+  1978→        role: 'Genel Koordinatör',
+  1979→        org: 'Atık Ayırma Girişimi',
+  1980→        period: 'Şub 2015 - Şub 2017',
+  1981→      },
+  1982→      {
+  1983→        role: 'Ortak Düzenleyici',
+  1984→        org: '3. Yıllık Uluslararası Konferans, Felsefe Bölümü, İskenderiye Üniversitesi',
+  1985→        period: 'Kas 2017',
+  1986→      },
+  1987→    ],
+  1988→  },
+  1989→  education: {
+  1990→    title: 'Eğitim',
+  1991→    items: [
+  1992→      {
+  1993→        degree: 'Eğitimde Yüksek Lisans Diploması',
+  1994→        institution: 'Eğitim Fakültesi, El-Ezher Üniversitesi',
+  1995→        period: 'Eyl 2024 - Eyl 2025',
+  1996→      },
+  1997→      {
+  1998→        degree: 'Felsefe Lisans Derecesi',
+  1999→        institution: 'Edebiyat Fakültesi, İskenderiye Üniversitesi',
+  2000→        period: 'Eyl 2016 - May 2021',
+
+[showing lines 1-2000 of 2042; use offset=2001 with limit to continue reading]
