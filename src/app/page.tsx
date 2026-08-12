@@ -310,7 +310,7 @@ export default function Home() {
             </motion.div>
             <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 md:p-8 space-y-4">
               <p className="text-white/70 leading-relaxed text-sm md:text-base">
-                Philosopher and educator with a Bachelor of Arts in Philosophy from Alexandria University and a Postgraduate Diploma in Education from Al-Azhar University. Research experience at Emory University, working under Dr. Rahimjon Abdugafurov on historical manuscripts in Islamic civilization. Author of <em className="text-amber-300/80">Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI</em> (2026), a scholarly handbook engaging both Norman Webb&apos;s contemporary framework and the Islamic intellectual tradition from Al-Hasan al-Basri to Ibn Khaldun.
+                Philosopher and educator with a Bachelor of Arts in Philosophy from Alexandria University and a Postgraduate Diploma in Education from Al-Azhar University. Research experience at Emory University, working under Dr. Rahimjon Abdugafurov on historical manuscripts in Islamic civilization, and undergraduate formation under Prof. Dr. Ashraf Hassan Mansour, Chair of the Department of Philosophy at Alexandria University. Author of <em className="text-amber-300/80">Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI</em> (2026), a scholarly handbook engaging both Norman Webb&apos;s contemporary framework and the Islamic intellectual tradition from Al-Hasan al-Basri to Ibn Khaldun.
               </p>
               <p className="text-white/70 leading-relaxed text-sm md:text-base">
                 ADEK-approved teacher and UAE Ministry of Education Licensed Teacher with eight years of experience across education, operations, and academic research in the UAE, UK, and Egypt. Member of the British Philosophical Association (BPA) since 2025. Bilingual in Arabic (native) and English (Academic IELTS Band 7). Creator and host of <em className="text-amber-300/80">Echoes of Wisdom</em>, a bilingual philosophy podcast with sixteen episodes across two seasons. Seeking to contribute to philosophy instruction and research at the university level.
@@ -470,8 +470,11 @@ export default function Home() {
                 <span className="text-xs text-white/40 font-mono">Sep 2016 – May 2021  ·  Good</span>
               </div>
               <p className="text-sm text-white/50 mb-3">Faculty of Arts, Alexandria University, Egypt</p>
-              <p className="text-sm text-white/60 leading-relaxed">
+              <p className="text-sm text-white/60 leading-relaxed mb-3">
                 Comprehensive programme covering formal, inductive, and mathematical logic; philosophy of science; metaphysics; philosophy of language; ethics and value theory; Greek, Islamic, modern, and contemporary philosophy; ancient Eastern thought; Islamic theology (Kalam) and Sufism; and logic and artificial intelligence. Included the study of philosophical texts in a European language throughout most academic semesters. Accredited and attested by authorities in Egypt and the UAE, with formal equivalency issued by the UAE Ministry of Education.
+              </p>
+              <p className="text-xs text-white/40 italic">
+                Department Chair: Prof. Dr. Ashraf Hassan Mansour (recommendation letter available upon request).
               </p>
             </motion.div>
 
@@ -649,14 +652,14 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center space-y-4">
           <div className="flex items-center justify-center gap-2 text-white/40 text-sm">
             <img src="/phronesis-logo.png" alt="" className="w-6 h-6 opacity-60" />
-            <span>Ahmed Ali · Academic Portfolio</span>
+            <span>Ahmed Ali · Higher Education & Research Portfolio</span>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-white/30">
             <a href="https://phronesis-studio.com/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Studio of Phronesis</a>
             <span>·</span>
-            <a href="https://ahmed-ali-ops.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Operations Portfolio</a>
+            <a href="https://ahmed-ali-ops.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Professional & Operations</a>
             <span>·</span>
-            <a href="https://mr-ahmed-ali.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Teaching Portfolio</a>
+            <a href="https://mr-ahmed-ali.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">K-12 Teaching</a>
           </div>
           <p className="text-xs text-white/20 pt-4">© 2026 Ahmed Ali. All rights reserved.</p>
         </div>
