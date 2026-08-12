@@ -310,7 +310,7 @@ export default function Home() {
             </motion.div>
             <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 md:p-8 space-y-4">
               <p className="text-white/70 leading-relaxed text-sm md:text-base">
-                Philosopher and educator with a Bachelor of Arts in Philosophy from Alexandria University and a Postgraduate Diploma in Education from Al-Azhar University. Research experience at Emory University, working under Dr. Rahimjon Abdugafurov on historical manuscripts in Islamic civilization, and undergraduate formation under Prof. Dr. Ashraf Hassan Mansour, Chair of the Department of Philosophy at Alexandria University. Author of <em className="text-amber-300/80">Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI</em> (2026), a scholarly handbook engaging both Norman Webb&apos;s contemporary framework and the Islamic intellectual tradition from Al-Hasan al-Basri to Ibn Khaldun.
+                Philosopher and educator with a Bachelor of Arts in Philosophy from Alexandria University and a Postgraduate Diploma in Education from Al-Azhar University. Research experience at Emory University, working under Dr. Rahimjon Abdugafurov on philosophical and theological manuscripts in Islamic civilization, and undergraduate formation under Prof. Dr. Ashraf Hassan Mansour, Chair of the Department of Philosophy at Alexandria University. Author of <em className="text-amber-300/80">Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI</em> (2026), a scholarly handbook engaging both Norman Webb&apos;s contemporary framework and the Islamic intellectual tradition from Al-Hasan al-Basri to Ibn Khaldun.
               </p>
               <p className="text-white/70 leading-relaxed text-sm md:text-base">
                 ADEK-approved teacher and UAE Ministry of Education Licensed Teacher with eight years of experience across education, operations, and academic research in the UAE, UK, and Egypt. Member of the British Philosophical Association (BPA) since 2025. Bilingual in Arabic (native) and English (Academic IELTS Band 7). Creator and host of <em className="text-amber-300/80">Echoes of Wisdom</em>, a bilingual philosophy podcast with sixteen episodes across two seasons. Seeking to contribute to philosophy instruction and research at the university level.
@@ -397,7 +397,7 @@ export default function Home() {
                 <ul className="space-y-2 text-sm text-white/60 mt-3">
                   <li className="flex items-start gap-2">
                     <span className="text-amber-400 mt-1.5 flex-shrink-0">·</span>
-                    <span>Transcribed and analysed historical manuscripts in Islamic civilization under Dr. Abdugafurov&apos;s supervision, focusing on philosophical and theological contexts.</span>
+                    <span>Transcribed and analysed philosophical and theological manuscripts in Islamic civilization under Dr. Abdugafurov&apos;s supervision, focusing on their philosophical and theological contexts.</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-amber-400 mt-1.5 flex-shrink-0">·</span>
