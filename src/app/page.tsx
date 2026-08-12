@@ -41,18 +41,32 @@ function QRCodeSection() {
 
   return (
     <motion.div variants={fadeInUp} className="flex flex-col items-center gap-4">
-      <button
-        onClick={() => setShowQR(!showQR)}
-        className="glass-card-hover rounded-2xl px-6 py-3 flex items-center gap-3 cursor-pointer group"
-      >
-        <svg className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
-          <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
-        </svg>
-        <span className="text-white/80 group-hover:text-white transition-colors text-sm font-medium">
-          {showQR ? 'Hide QR Code' : 'Share Portfolio'}
-        </span>
-      </button>
+      <div className="flex flex-col sm:flex-row items-center gap-3">
+        <a
+          href="/Academic_CV_Ahmed_Ali.pdf"
+          download
+          className="glass-card-hover rounded-2xl px-6 py-3 flex items-center gap-3 cursor-pointer group"
+        >
+          <svg className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+          <span className="text-white/80 group-hover:text-white transition-colors text-sm font-medium">
+            Download CV
+          </span>
+        </a>
+        <button
+          onClick={() => setShowQR(!showQR)}
+          className="glass-card-hover rounded-2xl px-6 py-3 flex items-center gap-3 cursor-pointer group"
+        >
+          <svg className="w-5 h-5 text-amber-400 group-hover:text-amber-300 transition-colors" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+          </svg>
+          <span className="text-white/80 group-hover:text-white transition-colors text-sm font-medium">
+            {showQR ? 'Hide QR Code' : 'Share Portfolio'}
+          </span>
+        </button>
+      </div>
 
       <AnimatePresence>
         {showQR && (
@@ -188,8 +202,6 @@ function SectionHeader({ icon, title }: { icon: React.ReactNode; title: string }
 
 // ─── Main Page ───────────────────────────────────────────
 export default function Home() {
-  const [imgLoaded, setImgLoaded] = useState(false)
-
   return (
     <div className="relative min-h-screen flex flex-col">
       <StarField />
@@ -203,15 +215,11 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="relative">
               <div className="relative w-40 h-40 md:w-48 md:h-48">
                 <OrbitRing />
-                <div className="absolute inset-0 rounded-full overflow-hidden golden-border animate-pulse-glow">
-                  {!imgLoaded && (
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-yellow-600/20 animate-pulse" />
-                  )}
+                <div className="absolute inset-0 rounded-full overflow-hidden golden-border animate-pulse-glow bg-gradient-to-br from-amber-500/20 to-yellow-600/20">
                   <img
                     src="/profile.jpg"
                     alt="Ahmed Ali — Philosopher and Educator"
-                    className={`w-full h-full object-cover transition-opacity duration-700 ${imgLoaded ? 'opacity-100' : 'opacity-0'}`}
-                    onLoad={() => setImgLoaded(true)}
+                    className="w-full h-full object-cover"
                   />
                 </div>
               </div>
@@ -333,12 +341,9 @@ export default function Home() {
                 <div className="flex-shrink-0 mx-auto md:mx-0">
                   <div className="w-32 h-44 md:w-36 md:h-52 rounded-lg overflow-hidden golden-border shadow-2xl shadow-amber-500/20">
                     <img
-                      src="https://phronesis-studio.com/images/books/depth-of-knowledge-front.jpg"
+                      src="/depth-of-knowledge-front.jpg"
                       alt="Depth of Knowledge — Book Cover"
                       className="w-full h-full object-cover"
-                      onError={(e) => {
-                        (e.target as HTMLImageElement).style.display = 'none'
-                      }}
                     />
                   </div>
                 </div>
@@ -434,7 +439,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card-hover text-amber-300 text-sm font-medium mt-2"
                 >
-                  Listen to Episodes
+                  Explore Episodes & Articles
                 </a>
               </div>
             </motion.div>
@@ -539,17 +544,7 @@ export default function Home() {
                 </ul>
               </div>
 
-              {/* Emory */}
-              <div className="glass-card rounded-2xl p-5 md:p-6">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-2">
-                  <h4 className="text-base md:text-lg font-semibold text-white/90">
-                    Research Assistant and Translator
-                  </h4>
-                  <span className="text-xs text-white/40 font-mono">2017</span>
-                </div>
-                <p className="text-sm text-white/50 mb-2">Emory University (with Ustadh Dr. Rahimjon Abdugafurov)</p>
-                <p className="text-sm text-white/60">Transcribed and analysed historical manuscripts in Islamic civilization; produced English–Arabic academic translations; contributed scholarly material on philosophical and theological dimensions of historical texts.</p>
-              </div>
+
             </motion.div>
           </AnimatedSection>
         </div>

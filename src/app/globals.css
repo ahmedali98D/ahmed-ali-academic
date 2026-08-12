@@ -79,6 +79,21 @@
   }
   body {
     @apply bg-background text-foreground;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  /* Keep headings, buttons, labels, and short UI text left-aligned (not justified) */
+  h1, h2, h3, h4, h5, h6,
+  button, label, .font-mono, code, kbd, pre,
+  input, option, select, textarea {
+    text-align: left;
+  }
+  /* Center-align hero content (single-line headings in hero) */
+  section:first-of-type h1,
+  section:first-of-type p,
+  section:first-of-type span {
+    text-align: center;
   }
 }
 
