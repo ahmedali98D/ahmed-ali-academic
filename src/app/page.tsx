@@ -238,7 +238,7 @@ export default function Home() {
             {/* Typing Quote */}
             <motion.div variants={fadeInUp} className="max-w-2xl mx-auto">
               <p className="text-base md:text-lg text-white/50 italic font-light">
-                <TypingQuote text="&ldquo;Recall is not reasoning. The restoration of that distinction is the work of a lifetime.&rdquo;" />
+                <TypingQuote text="&ldquo;The gap between what is and what should be is not a problem to be solved once, but a discipline to be practiced for a lifetime.&rdquo;" />
               </p>
             </motion.div>
 
@@ -295,7 +295,7 @@ export default function Home() {
       </section>
 
       {/* ─── Profile Section ──────────────────────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
@@ -321,7 +321,7 @@ export default function Home() {
       </section>
 
       {/* ─── Research & Publications Section ──────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
@@ -339,7 +339,7 @@ export default function Home() {
             <motion.div variants={fadeInUp} className="glass-card rounded-2xl p-6 md:p-8 mb-6">
               <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-shrink-0 mx-auto md:mx-0">
-                  <div className="w-32 h-44 md:w-36 md:h-52 rounded-lg overflow-hidden golden-border shadow-2xl shadow-amber-500/20">
+                  <div className="w-40 h-56 md:w-48 md:h-72 rounded-lg overflow-hidden golden-border shadow-2xl shadow-amber-500/20">
                     <img
                       src="/depth-of-knowledge-front.jpg"
                       alt="Depth of Knowledge — Book Cover"
@@ -448,7 +448,7 @@ export default function Home() {
       </section>
 
       {/* ─── Education Section ────────────────────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
@@ -492,7 +492,7 @@ export default function Home() {
       </section>
 
       {/* ─── Teaching & Academic Experience ───────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
@@ -551,7 +551,7 @@ export default function Home() {
       </section>
 
       {/* ─── Certifications & Credentials ─────────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
@@ -591,7 +591,7 @@ export default function Home() {
       </section>
 
       {/* ─── Affiliations & Languages ─────────────────── */}
-      <section className="relative z-10 px-4 py-16 md:py-24">
+      <section className="relative z-10 px-4 py-8 md:py-12">
         <div className="max-w-4xl mx-auto">
           <AnimatedSection>
             <motion.div variants={fadeInUp}>
