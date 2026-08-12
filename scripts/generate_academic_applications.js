@@ -188,7 +188,7 @@ function buildAcademicCV() {
     new Paragraph({ spacing: { after: 15 }, keepNext: true, children: [t("Research Assistant and Translator", { font: HEAD, size: 23, color: C.navyDark, bold: true, italics: true })] }),
     new Paragraph({ spacing: { after: 60 }, keepNext: true, children: [t("Emory University (with Ustadh Dr. Rahimjon Abdugafurov)  |  2017", { size: 20, color: C.gray })] }),
     ...bullets([
-      "Transcribed and analysed historical manuscripts in Islamic civilization under the supervision of Dr. Rahimjon Abdugafurov, focusing on philosophical and theological contexts.",
+      "Transcribed and analysed philosophical and theological manuscripts in Islamic civilization under the supervision of Dr. Rahimjon Abdugafurov, focusing on philosophical and theological contexts.",
       "Produced English" + EN + "Arabic translations of academic works for use in bilingual educational settings, maintaining scholarly precision across both languages.",
       "Contributed scholarly material analysing the philosophical and theological dimensions of historical texts for academic research at Emory University.",
       "Engaged primary-source manuscripts with attention to philological detail, doctrinal context, and the conceptual genealogies linking classical Islamic philosophy to contemporary philosophical questions.",
@@ -231,7 +231,7 @@ function buildAcademicCV() {
 
     ...job("Research Assistant and Translator", "Emory University (with Ustadh Dr. Rahimjon Abdugafurov)", "2017",
       [
-        "Transcribed and analysed historical manuscripts in Islamic civilization under Dr. Abdugafurov's supervision, focusing on philosophical and theological contexts.",
+        "Transcribed and analysed philosophical and theological manuscripts in Islamic civilization under Dr. Abdugafurov's supervision, focusing on philosophical and theological contexts.",
         "Produced English" + EN + "Arabic translations of academic works for bilingual educational settings.",
         "Contributed scholarly material analysing the philosophical and theological dimensions of historical texts.",
       ]
@@ -370,7 +370,7 @@ function buildCMULetter() {
 
     body("My scholarly profile is perhaps best represented by my single-author book, Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI (Independently published, First Edition, 2026; ISBN 979-8-1913137-5-7; 149 pages). The handbook engages Norman Webb's Depth of Knowledge framework, returning to Webb's original 1997 and 2002 monographs as primary sources and correcting the widespread misinterpretation perpetuated by the unauthorized \u201CDOK Wheel.\u201D A substantial chapter traces the principle that recall is not reasoning through the Islamic intellectual tradition, from Al-Hasan al-Basri in the eighth century to Ibn Khaldun's four-level progression in the Muqaddimah (1377). The book is available globally on Amazon, and its detail page may be consulted at https://phronesis-studio.com/en/publications/depth-of-knowledge."),
 
-    body("Prior to my current appointment, I served as Research Assistant and Translator at Emory University in 2017, working under the supervision of Ustadh Dr. Rahimjon Abdugafurov on historical manuscripts in Islamic civilization. My responsibilities included transcription, analysis of philosophical and theological contexts, and the production of English\u2013Arabic academic translations for bilingual educational settings. This appointment cultivated my capacity for primary-source research, philological attention, and the conceptual analysis linking classical Islamic philosophy to contemporary questions."),
+    body("Prior to my current appointment, I served as Research Assistant and Translator at Emory University in 2017, working under the supervision of Ustadh Dr. Rahimjon Abdugafurov on philosophical and theological manuscripts in Islamic civilization. My responsibilities included transcription, analysis of philosophical and theological contexts, and the production of English\u2013Arabic academic translations for bilingual educational settings. This appointment cultivated my capacity for primary-source research, philological attention, and the conceptual analysis linking classical Islamic philosophy to contemporary questions."),
 
     body("I have additionally contributed to public philosophy through the creation and hosting of Echoes of Wisdom, a bilingual (Arabic/English) philosophy podcast with sixteen episodes across two seasons, addressing ethics, logic, epistemology, philosophy of mind, and political philosophy. The podcast reflects my commitment to rendering philosophical ideas accessible to diverse audiences while preserving their scholarly integrity, and it demonstrates sustained engagement with both Western and Islamic philosophical traditions in a public-facing medium."),
 
@@ -489,7 +489,7 @@ function buildCDOLetter() {
 
     body("I hold a Bachelor of Arts in Philosophy from Alexandria University and a Postgraduate Diploma in Education from Al-Azhar University. I am a Member of the British Philosophical Association (BPA) and the author of Depth of Knowledge: A Practical Guide to Designing Rigorous Questions Without AI (Independently published, 2026; ISBN 979-8-1913137-5-7), a scholarly handbook grounded in Norman Webb's Depth of Knowledge framework, with a substantial chapter tracing a key epistemological principle through the Islamic intellectual tradition from Al-Hasan al-Basri to Ibn Khaldun."),
 
-    body("My academic research experience includes serving as Research Assistant and Translator at Emory University in 2017, working under Dr. Rahimjon Abdugafurov on historical manuscripts in Islamic civilization, with responsibility for transcription, philosophical and theological analysis, and English\u2013Arabic academic translation. This appointment cultivated my capacity for primary-source research and the conceptual analysis linking classical Islamic philosophy to contemporary questions."),
+    body("My academic research experience includes serving as Research Assistant and Translator at Emory University in 2017, working under Dr. Rahimjon Abdugafurov on philosophical and theological manuscripts in Islamic civilization, with responsibility for transcription, philosophical and theological analysis, and English\u2013Arabic academic translation. This appointment cultivated my capacity for primary-source research and the conceptual analysis linking classical Islamic philosophy to contemporary questions."),
 
     body("My teaching experience includes K-12 instruction in the UAE with substantial philosophical content across ethics, epistemology, philosophy of religion, and political philosophy. I served as Faculty Head for Model United Nations and coached the school delegation to win Best School at MANORMUN V 2026. I hold a UAE Ministry of Education Certified Professional Teaching License (valid until February 2029) and am ADEK-approved. I am bilingual in Arabic (native) and English (Academic IELTS Band 7), and I am dynamic, flexible, and available for a full-time position."),
 
