@@ -661,6 +661,12 @@ export default function Home() {
             <span>·</span>
             <a href="https://mr-ahmed-ali.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">K-12 Teaching</a>
           </div>
+          {/* Professional Engagements — on-site professional development */}
+          <div className="pt-4 border-t border-white/5">
+            <p className="text-[11px] text-white/30 leading-relaxed max-w-2xl mx-auto text-center">
+              On-site professional development delivered internationally. In October 2026, an 8-module teacher training program commenced at Creative Learning International Center, Panglao, Philippines, applying cognitive frameworks from this portfolio to classroom practice. Modules 1 to 3 delivered; program ongoing through December 2026. <a href="https://phronesis-studio.com/en/work" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-amber-400 transition-colors underline">View full case study</a>.
+            </p>
+          </div>
           <p className="text-xs text-white/20 pt-4">© 2026 Ahmed Ali. All rights reserved.</p>
         </div>
       </footer>
