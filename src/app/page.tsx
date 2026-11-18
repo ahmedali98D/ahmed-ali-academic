@@ -518,7 +518,7 @@ export default function Home() {
                   </h4>
                   <span className="text-xs text-white/40 font-mono">Aug 2026 – Present</span>
                 </div>
-                <p className="text-sm text-white/50 mb-2">Studio of Phronesis, Central Visayas, Philippines</p>
+                <p className="text-sm text-white/50 mb-2">Studio of Phronesis</p>
                 <p className="text-sm text-white/60">Founded Studio of Phronesis as a practice grounded in philosophy and practical wisdom. Delivered an 8-module professional development program at Creative Learning International Center, Panglao, Bohol, Philippines (October to December 2026), grounded in Bloom&apos;s Taxonomy, Webb&apos;s DOK, Marzano&apos;s New Taxonomy, Understanding by Design, and Depth of Knowledge (2026), aligned to Philippine DepEd K to 3 standards. Each teacher produced a 16-point lesson plan, a cognitive depth audit, a five-question formative assessment with Plickers, and a final peer-reviewed classroom-ready lesson plan.</p>
               </div>
 
