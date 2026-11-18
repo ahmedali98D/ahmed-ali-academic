@@ -510,16 +510,16 @@ export default function Home() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-4">
-              {/* Al Nahda */}
+              {/* Founder & Education Consultant */}
               <div className="glass-card rounded-2xl p-5 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-2">
                   <h4 className="text-base md:text-lg font-semibold text-white/90">
-                    English Social Studies Teacher
+                    Founder & Education Consultant
                   </h4>
                   <span className="text-xs text-white/40 font-mono">Aug 2026 – Present</span>
                 </div>
-                <p className="text-sm text-white/50 mb-2">Al Nahda National School for Boys, Abu Dhabi, UAE</p>
-                <p className="text-sm text-white/60">Appointed to teach English Social Studies for the 2026/2027 academic year.</p>
+                <p className="text-sm text-white/50 mb-2">Studio of Phronesis, Central Visayas, Philippines</p>
+                <p className="text-sm text-white/60">Founded Studio of Phronesis as a practice grounded in philosophy and practical wisdom. Delivered an 8-module professional development program at Creative Learning International Center, Panglao, Bohol, Philippines (October to December 2026), grounded in Bloom&apos;s Taxonomy, Webb&apos;s DOK, Marzano&apos;s New Taxonomy, Understanding by Design, and Depth of Knowledge (2026), aligned to Philippine DepEd K to 3 standards. Each teacher produced a 16-point lesson plan, a cognitive depth audit, a five-question formative assessment with Plickers, and a final peer-reviewed classroom-ready lesson plan.</p>
               </div>
 
               {/* Ain Al Khaleej */}
@@ -660,12 +660,6 @@ export default function Home() {
             <a href="https://ahmed-ali-ops.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">Professional & Operations</a>
             <span>·</span>
             <a href="https://mr-ahmed-ali.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition-colors">K-12 Teaching</a>
-          </div>
-          {/* Professional Engagements — on-site professional development */}
-          <div className="pt-4 border-t border-white/5">
-            <p className="text-[11px] text-white/30 leading-relaxed max-w-2xl mx-auto text-center">
-              On-site professional development delivered internationally. In October 2026, an 8-module teacher training program commenced at Creative Learning International Center, Panglao, Philippines, applying cognitive frameworks from this portfolio to classroom practice. Modules 1 to 3 delivered; program ongoing through December 2026. <a href="https://phronesis-studio.com/en/work" target="_blank" rel="noopener noreferrer" className="text-white/40 hover:text-amber-400 transition-colors underline">View full case study</a>.
-            </p>
           </div>
           <p className="text-xs text-white/20 pt-4">© 2026 Ahmed Ali. All rights reserved.</p>
         </div>
