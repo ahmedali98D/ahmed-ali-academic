@@ -520,6 +520,10 @@ export default function Home() {
                 </div>
                 <p className="text-sm text-white/50 mb-2">Studio of Phronesis</p>
                 <p className="text-sm text-white/60">Founded Studio of Phronesis as a practice grounded in philosophy and practical wisdom. Delivered an 8-module professional development program at Creative Learning International Center, Panglao, Bohol, Philippines (October to December 2026), grounded in Bloom&apos;s Taxonomy, Webb&apos;s DOK, Marzano&apos;s New Taxonomy, Understanding by Design, and Depth of Knowledge (2026), aligned to Philippine DepEd K to 3 standards. Each teacher produced a 16-point lesson plan, a cognitive depth audit, a five-question formative assessment with Plickers, and a final peer-reviewed classroom-ready lesson plan.</p>
+                <a href="https://phronesis-studio.com/en/engagements" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-2 text-xs text-amber-400/80 hover:text-amber-400 transition-colors">
+                  <span>Learn more about this program</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+                </a>
               </div>
 
               {/* Ain Al Khaleej */}
