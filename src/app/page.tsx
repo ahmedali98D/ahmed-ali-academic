@@ -530,7 +530,7 @@ export default function Home() {
               <div className="glass-card rounded-2xl p-5 md:p-6">
                 <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-2">
                   <h4 className="text-base md:text-lg font-semibold text-white/90">
-                    MSC Studies & Islamic Education B Teacher; Lead, Non-Arabic Speaking Section
+                    Humanities Teacher and Section Lead
                   </h4>
                   <span className="text-xs text-white/40 font-mono">Sep 2025 – Jul 2026</span>
                 </div>
